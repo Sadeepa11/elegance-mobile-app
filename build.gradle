@@ -1,0 +1,21 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+ ext {
+    ndkVersion = "29.0.14033849"
+  }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.1'
+        classpath 'com.google.gms:google-services:4.3.15' // Firebase
+        classpath 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1' // Maps Secrets
+    }
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

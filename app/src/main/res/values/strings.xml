@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Elegance</string>
+    <string name="welcome_message">Welcome to Elegance</string>
+    <string name="fashion_tagline">Women\'s Fashion Boutique</string>
+    
+    <!-- Auth -->
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    
+    <!-- Navigation -->
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="admin">Admin</string>
+</resources>

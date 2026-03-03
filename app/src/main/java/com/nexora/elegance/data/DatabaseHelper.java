@@ -1,0 +1,52 @@
+package com.nexora.elegance.data;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "Elegance.db";
+    private static final int DATABASE_VERSION = 1;
+
+    // User table
+    public static final String TABLE_USERS = "users";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_PASSWORD = "password";
+    public static final String COLUMN_ROLE = "role";
+
+    // Cart table
+    public static final String TABLE_CART = "cart";
+    public static final String COLUMN_PRODUCT_ID = "product_id";
+    public static final String COLUMN_QUANTITY = "quantity";
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String createUsersTable = "CREATE TABLE " + TABLE_USERS + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_NAME + " TEXT, " +
+                COLUMN_EMAIL + " TEXT UNIQUE, " +
+                COLUMN_PASSWORD + " TEXT, " +
+                COLUMN_ROLE + " TEXT)";
+
+        String createCartTable = "CREATE TABLE " + TABLE_CART + " (" +
+                COLUMN_PRODUCT_ID + " TEXT PRIMARY KEY, " +
+                COLUMN_QUANTITY + " INTEGER)";
+
+        db.execSQL(createUsersTable);
+        db.execSQL(createCartTable);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CART);
+        onCreate(db);
+    }
+}

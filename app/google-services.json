@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227820709837",
+    "project_id": "elegance-9d812",
+    "storage_bucket": "elegance-9d812.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227820709837:android:02051779caba40f5ee4684",
+        "android_client_info": {
+          "package_name": "com.nexora.elegance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-ageda12OpJgtb-sjUPWQS6dIV3Lrk3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

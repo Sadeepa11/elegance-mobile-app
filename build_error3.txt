@@ -1,0 +1,24 @@
+﻿.\gradlew : 
+At line:1 char:1
++ .\gradlew assembleDebug 2>&1 | Out-File -Encoding utf8 build_error3.t ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'D:\Elegance\build.gradle' line: 20
+
+* What went wrong:
+A problem occurred evaluating root project 'Elegance'.
+> Build was configured to prefer settings repositories over project 
+repositories but repository 'Google' was added by build file 'build.gradle'
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
