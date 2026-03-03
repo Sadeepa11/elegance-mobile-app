@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nexora.elegance.data.models.CartItem;
 import com.nexora.elegance.data.models.Order;
-import com.nexora.elegance.data.models.Review;
 import com.nexora.elegance.databinding.ActivityOrderDetailsBinding;
 import com.nexora.elegance.ui.adapters.OrderDetailsAdapter;
 
@@ -27,7 +26,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.UUID;
 
 public class OrderDetailsActivity extends AppCompatActivity {
 
@@ -73,10 +71,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         // Setup generic items recycler seamlessly pushing the list to adapter mapping
         // bounds
-        boolean isCompleted = currentOrder.getStatus() != null
-                && currentOrder.getStatus().equalsIgnoreCase("Completed");
-
-        adapter = new OrderDetailsAdapter(this, currentOrder.getItems(), isCompleted, this::onReviewClick);
+        adapter = new OrderDetailsAdapter(this, currentOrder.getItems());
         binding.detailItemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.detailItemsRecyclerView.setAdapter(adapter);
     }
@@ -88,40 +83,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
             Toast.makeText(this, "Generating PDF Slip...", Toast.LENGTH_SHORT).show();
             generatePdfSlip();
         });
-    }
-
-    private void onReviewClick(CartItem item) {
-        AddReviewBottomSheet reviewSheet = new AddReviewBottomSheet(item, (reviewedItem, rating, reviewText) -> {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if (user == null) {
-                Toast.makeText(this, "Please login to submit reviews", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            String reviewId = UUID.randomUUID().toString();
-            String userName = user.getDisplayName() != null && !user.getDisplayName().isEmpty() ? user.getDisplayName()
-                    : "Elegance User";
-
-            Review review = new Review(
-                    reviewId,
-                    reviewedItem.getProductId(),
-                    user.getUid(),
-                    userName,
-                    rating,
-                    reviewText,
-                    System.currentTimeMillis());
-
-            FirebaseFirestore.getInstance().collection("products")
-                    .document(reviewedItem.getProductId())
-                    .collection("reviews")
-                    .document(reviewId)
-                    .set(review)
-                    .addOnSuccessListener(
-                            aVoid -> Toast.makeText(this, "Review submitted successfully!", Toast.LENGTH_SHORT).show())
-                    .addOnFailureListener(
-                            e -> Toast.makeText(this, "Failed to submit review", Toast.LENGTH_SHORT).show());
-        });
-        reviewSheet.show(getSupportFragmentManager(), "AddReviewBottomSheet");
     }
 
     private void generatePdfSlip() {

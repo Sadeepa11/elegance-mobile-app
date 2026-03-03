@@ -100,21 +100,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Review Button injected conditionally internally via Adapter -->
-    <Button
-        android:id="@+id/btnAddReview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Review"
-        android:textSize="12sp"
-        android:textColor="@color/md_theme_light_primary"
-        android:backgroundTint="#00000000"
-        app:strokeColor="@color/md_theme_light_primary"
-        app:strokeWidth="1dp"
-        app:cornerRadius="8dp"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="4dp"
-        android:visibility="gone" />
 
 </com.google.android.material.card.MaterialCardView>

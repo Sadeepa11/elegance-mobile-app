@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,19 +21,10 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
     private final Context context;
     private final List<CartItem> itemList;
-    private final boolean isOrderCompleted;
-    private final OnReviewClickListener reviewListener;
 
-    public interface OnReviewClickListener {
-        void onReviewClick(CartItem item);
-    }
-
-    public OrderDetailsAdapter(Context context, List<CartItem> itemList, boolean isOrderCompleted,
-            OnReviewClickListener reviewListener) {
+    public OrderDetailsAdapter(Context context, List<CartItem> itemList) {
         this.context = context;
         this.itemList = itemList;
-        this.isOrderCompleted = isOrderCompleted;
-        this.reviewListener = reviewListener;
     }
 
     @NonNull
@@ -71,25 +61,6 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
                 .placeholder(R.drawable.rounded_white_square)
                 .into(holder.detailItemImage);
 
-        // Dynamically show the review button only if order status explicitly equals
-        // "Completed"
-        if (isOrderCompleted) {
-            holder.btnAddReview.setVisibility(View.VISIBLE);
-            holder.btnAddReview.setOnClickListener(v -> {
-                if (reviewListener != null) {
-                    reviewListener.onReviewClick(item);
-                }
-            });
-
-            // Adjust Card Padding gracefully natively shifting layout margins
-            // mathematically
-            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) ((ViewGroup) holder.detailItemName
-                    .getParent()).getLayoutParams();
-            layoutParams.bottomMargin = 48; // Space for button
-            ((ViewGroup) holder.detailItemName.getParent()).setLayoutParams(layoutParams);
-        } else {
-            holder.btnAddReview.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -100,7 +71,6 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     public static class DetailViewHolder extends RecyclerView.ViewHolder {
         ImageView detailItemImage;
         TextView detailItemName, detailItemSize, detailItemColor, detailItemPrice, detailItemQty;
-        Button btnAddReview;
 
         public DetailViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,7 +80,6 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             detailItemColor = itemView.findViewById(R.id.detailItemColor);
             detailItemPrice = itemView.findViewById(R.id.detailItemPrice);
             detailItemQty = itemView.findViewById(R.id.detailItemQty);
-            btnAddReview = itemView.findViewById(R.id.btnAddReview);
         }
     }
 }
