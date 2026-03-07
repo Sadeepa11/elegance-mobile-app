@@ -18,6 +18,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * OrderAdapter manages the list of orders in the user's order history.
+ * It provides status-based styling and formatting for order timestamps.
+ */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 
     private final Context context;

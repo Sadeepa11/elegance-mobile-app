@@ -3,6 +3,11 @@ package com.nexora.elegance.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * SessionManager handles persistent storage of user authentication state and
+ * roles.
+ * It uses SharedPreferences to keep the user logged in across app restarts.
+ */
 public class SessionManager {
     private final SharedPreferences prefs;
     private static final String PREF_NAME = "ElegancePrefs";

@@ -11,6 +11,10 @@ import com.nexora.elegance.R;
 import com.nexora.elegance.data.models.Category;
 import java.util.List;
 
+/**
+ * CategoryAdapter displays product categories (e.g., Electronics, Fashion)
+ * in a horizontal or grid layout.
+ */
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
     private List<Category> categoryList;
@@ -36,13 +40,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categoryList.get(position);
         holder.name.setText(category.getName());
-        
+
         com.bumptech.glide.Glide.with(holder.itemView.getContext())
                 .load(category.getImageUrl())
                 .placeholder(R.drawable.cat_dress)
                 .error(R.drawable.cat_dress)
                 .into(holder.image);
-                
+
         holder.itemView.setOnClickListener(v -> listener.onCategoryClick(category));
     }
 

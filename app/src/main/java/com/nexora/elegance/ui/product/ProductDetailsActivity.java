@@ -23,6 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * ProductDetailsActivity displays comprehensive information about a specific
+ * product.
+ * Features include:
+ * - Image slider with dot indicators.
+ * - Dynamic variant selection (Color and Size).
+ * - Real-time stock status display based on variant selection.
+ * - Quantity management.
+ * - "Buy Now" (direct to checkout) and "Add to Cart" functionality.
+ */
 public class ProductDetailsActivity extends AppCompatActivity {
 
     private Product product;
@@ -52,6 +62,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
+        // Retrieve product object passed via Intent
         if (getIntent().hasExtra("product")) {
             product = (Product) getIntent().getSerializableExtra("product");
         }
@@ -86,6 +97,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
         textQty = findViewById(R.id.textQty);
     }
 
+    /**
+     * Binds the product data to the UI components.
+     * Handles images, descriptions, features, and pricing.
+     */
     private void setupData() {
         if (product == null)
             return;
@@ -98,11 +113,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
             productShortDesc.setVisibility(android.view.View.GONE);
         }
 
+        // Dynamically add feature bullet points
         productFeaturesContainer.removeAllViews();
         if (product.getFeatures() != null && !product.getFeatures().isEmpty()) {
             for (String feature : product.getFeatures()) {
                 TextView featureView = new TextView(this);
-                // Create bullet point text
                 featureView.setText("•  " + feature);
                 featureView.setTextColor(android.graphics.Color.parseColor("#424242"));
                 featureView.setTextSize(12);
@@ -112,15 +127,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
 
         currentPrice.setText(String.format(Locale.getDefault(), "LKR %.2f", product.getPrice()));
-        oldPrice.setText(String.format(Locale.getDefault(), "LKR %.2f", product.getPrice() * 2)); // Mocking 50%
-                                                                                                  // discount
+        oldPrice.setText(String.format(Locale.getDefault(), "LKR %.2f", product.getPrice() * 2));
         oldPrice.setPaintFlags(oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
+        // Configure Image ViewPager
         List<String> displayImages = new ArrayList<>();
         if (product.getImageUrls() != null && !product.getImageUrls().isEmpty()) {
             displayImages.addAll(product.getImageUrls());
         }
-        // Fallback to cover image if gallery is empty
         if (displayImages.isEmpty() && product.getImageUrl() != null && !product.getImageUrl().isEmpty()) {
             displayImages.add(product.getImageUrl());
         }
@@ -130,6 +144,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         setupDots(displayImages.size());
 
+        // Setup variants if available
         List<Product.VariantColor> variants = product.getVariants();
         if (variants != null && !variants.isEmpty()) {
             colorsSection.setVisibility(android.view.View.VISIBLE);
@@ -141,27 +156,29 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initializes and maintains the circle indicators for the image carousel.
+     */
     private void setupDots(int count) {
         if (dotsContainer == null || count == 0)
             return;
         dots = new ImageView[count];
         dotsContainer.removeAllViews();
 
-        int size = (int) (8 * getResources().getDisplayMetrics().density); // 8dp
+        int size = (int) (8 * getResources().getDisplayMetrics().density);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
         params.setMargins(size / 2, 0, size / 2, 0);
 
         for (int i = 0; i < count; i++) {
             dots[i] = new ImageView(this);
-            dots[i].setImageResource(R.drawable.bg_white_button); // using white button as generic unselected generic
-                                                                  // dot
+            dots[i].setImageResource(R.drawable.bg_white_button);
             dots[i].setColorFilter(android.graphics.Color.parseColor("#E0E0E0"));
             dots[i].setLayoutParams(params);
             dotsContainer.addView(dots[i]);
         }
 
         if (dots.length > 0) {
-            dots[0].setColorFilter(android.graphics.Color.parseColor("#FD6E8A")); // active color
+            dots[0].setColorFilter(android.graphics.Color.parseColor("#FD6E8A"));
         }
 
         imageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -179,6 +196,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Renders color selection chips. Changing color resets the selected size.
+     */
     private void setupColors(List<Product.VariantColor> variants) {
         productColorsContainer.removeAllViews();
         if (variants.isEmpty())
@@ -192,8 +212,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             TextView chip = createChip(vc.getColor(), vc == currentlySelectedColor);
             chip.setOnClickListener(v -> {
                 currentlySelectedColor = vc;
-                currentlySelectedSize = null; // Reset size selection on color change
-                setupColors(variants); // Re-render to update active chip
+                currentlySelectedSize = null;
+                setupColors(variants);
                 setupSizes(currentlySelectedColor);
             });
             productColorsContainer.addView(chip);
@@ -202,6 +222,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setupSizes(currentlySelectedColor);
     }
 
+    /**
+     * Renders size selection chips for the currently selected color.
+     */
     private void setupSizes(Product.VariantColor colorVariant) {
         productSizesContainer.removeAllViews();
         List<Product.VariantSize> sizes = colorVariant.getSizes();
@@ -223,7 +246,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             chip.setOnClickListener(v -> {
                 currentlySelectedSize = vs;
                 updateSizeSelection();
-                setupSizes(colorVariant); // Re-render chips to show active
+                setupSizes(colorVariant);
             });
             productSizesContainer.addView(chip);
         }
@@ -380,8 +403,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Adds the selected variant to the user's cart in Firestore.
+     * 
+     * @param colorStr Selected color name.
+     * @param sizeStr  Selected size name.
+     * @param maxStock Available stock for the selected variant.
+     */
     private void addToCartNatively(String colorStr, String sizeStr, int maxStock) {
-        // Implement native Firestore adding logic bypassing BottomSheet completely
         com.google.firebase.auth.FirebaseAuth auth = com.google.firebase.auth.FirebaseAuth.getInstance();
         if (auth.getCurrentUser() == null) {
             Toast.makeText(this, "Please login to add items to cart", Toast.LENGTH_SHORT).show();
@@ -392,6 +421,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         com.google.firebase.firestore.FirebaseFirestore firestore = com.google.firebase.firestore.FirebaseFirestore
                 .getInstance();
 
+        // Build comprehensive maps for the CartItem model
         java.util.List<String> availableColors = new java.util.ArrayList<>();
         java.util.List<String> availableSizes = new java.util.ArrayList<>();
         java.util.Map<String, Integer> stockMap = new java.util.HashMap<>();
@@ -411,6 +441,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         }
 
+        // Create Cart Item and persist to Firestore
         com.nexora.elegance.data.models.CartItem cartItem = new com.nexora.elegance.data.models.CartItem(
                 product.getId() + "_" + System.currentTimeMillis(),
                 product.getId(),

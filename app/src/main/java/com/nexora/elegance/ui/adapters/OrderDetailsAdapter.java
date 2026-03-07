@@ -17,6 +17,10 @@ import com.nexora.elegance.data.models.CartItem;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * OrderDetailsAdapter displays items belonging to a specific historical order.
+ * It is used in the OrderDetailsActivity to show purchased variants and prices.
+ */
 public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapter.DetailViewHolder> {
 
     private final Context context;

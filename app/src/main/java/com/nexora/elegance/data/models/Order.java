@@ -3,6 +3,11 @@ package com.nexora.elegance.data.models;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Order represents a completed purchase transaction.
+ * It contains order metadata, shipping details, and the list of items
+ * purchased.
+ */
 public class Order implements Serializable {
     private String orderId;
     private String userId;

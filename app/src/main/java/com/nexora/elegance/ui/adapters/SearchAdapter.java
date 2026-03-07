@@ -13,6 +13,10 @@ import com.nexora.elegance.databinding.ItemProductSearchBinding;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * SearchAdapter displays search results in a staggered grid layout.
+ * It dynamically adjusts image heights to create a modern masonry effect.
+ */
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 
     private List<Product> products;

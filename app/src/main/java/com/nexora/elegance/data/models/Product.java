@@ -2,6 +2,10 @@ package com.nexora.elegance.data.models;
 
 import java.io.Serializable;
 
+/**
+ * Product represents a searchable item in the store.
+ * It supports complex variant hierarchies (Color -> Size -> Stock).
+ */
 public class Product implements Serializable {
     private String id;
     private String name;

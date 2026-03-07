@@ -18,6 +18,11 @@ import com.nexora.elegance.data.models.CartItem;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * CheckoutAdapter displays a read-only summary of items during the checkout
+ * flow.
+ * It shows selected variants, quantities, and calculated sub-totals.
+ */
 public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.CheckoutViewHolder> {
 
     private List<CartItem> checkoutItems;

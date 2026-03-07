@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * LocationDataProvider provides static hierarchical data for countries, states,
+ * districts, and cities.
+ * This is used to populate address forms across the application.
+ */
 public class LocationDataProvider {
 
     // Country -> States

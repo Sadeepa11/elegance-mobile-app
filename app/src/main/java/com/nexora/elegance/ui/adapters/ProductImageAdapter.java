@@ -10,6 +10,11 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.nexora.elegance.R;
 import java.util.List;
 
+/**
+ * ProductImageAdapter provides a zoomable image slider for product details.
+ * It uses {@link com.github.chrisbanes.photoview.PhotoView} for pinch-to-zoom
+ * support.
+ */
 public class ProductImageAdapter extends RecyclerView.Adapter<ProductImageAdapter.ImageViewHolder> {
 
     private final List<String> imageUrls;

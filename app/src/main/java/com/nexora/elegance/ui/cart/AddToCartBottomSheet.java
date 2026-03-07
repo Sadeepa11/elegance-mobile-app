@@ -33,6 +33,13 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Locale;
 
+/**
+ * AddToCartBottomSheet provides a quick way for users to select product
+ * variants
+ * (Color and Size) and specify the quantity before adding a product to their
+ * cart.
+ * It features dynamic spinners that update based on available stock.
+ */
 public class AddToCartBottomSheet extends BottomSheetDialogFragment {
 
     private Product product;
@@ -77,6 +84,10 @@ public class AddToCartBottomSheet extends BottomSheetDialogFragment {
         setupListeners();
     }
 
+    /**
+     * Initializes the UI with product data and sets up the color/size dependency
+     * logic.
+     */
     private void setupData() {
         if (product == null)
             return;
@@ -89,7 +100,7 @@ public class AddToCartBottomSheet extends BottomSheetDialogFragment {
                 .placeholder(R.drawable.ic_logo)
                 .into(modalProductImage);
 
-        // Extract colors
+        // Populate the color spinner from variants
         if (product.getVariants() != null) {
             for (Product.VariantColor vc : product.getVariants()) {
                 availableColors.add(vc.getColor());
@@ -105,6 +116,7 @@ public class AddToCartBottomSheet extends BottomSheetDialogFragment {
         colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerModalColor.setAdapter(colorAdapter);
 
+        // Listener to update sizes when a color is selected
         spinnerModalColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -127,7 +139,7 @@ public class AddToCartBottomSheet extends BottomSheetDialogFragment {
             }
         });
 
-        // Trigger default sizes
+        // Initialize with the first color
         updateSizeSpinner(0);
     }
 
@@ -157,6 +169,9 @@ public class AddToCartBottomSheet extends BottomSheetDialogFragment {
         updateQtyLimit();
     }
 
+    /**
+     * Updates the maximum allowed quantity based on the selected variant's stock.
+     */
     private void updateQtyLimit() {
         int maxQty = 1;
 
@@ -175,11 +190,11 @@ public class AddToCartBottomSheet extends BottomSheetDialogFragment {
         }
 
         if (maxQty <= 0) {
-            maxQty = 1; // Fallback so user can at least try or we show out of stock elsewhere
+            maxQty = 1;
         }
         currentMaxQty = maxQty;
 
-        // Verify current input against new maxQty
+        // Auto-correct current quantity if it exceeds the new stock limit
         String currentText = etModalQty.getText().toString();
         if (!currentText.isEmpty()) {
             try {
@@ -233,6 +248,11 @@ public class AddToCartBottomSheet extends BottomSheetDialogFragment {
         });
     }
 
+    /**
+     * Persists the selected item and variants to the user's Firestore cart
+     * collection.
+     * Merges identical items by generating a unique document ID.
+     */
     private void saveToFirebase() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             Toast.makeText(getContext(), "Please log in first", Toast.LENGTH_SHORT).show();
@@ -258,12 +278,11 @@ public class AddToCartBottomSheet extends BottomSheetDialogFragment {
         String selectedColor = (String) spinnerModalColor.getSelectedItem();
         String selectedSize = (String) spinnerModalSize.getSelectedItem();
 
-        // We use a combination of Product ID + Size + Color as the cart doc ID to merge
-        // identical items
+        // Unique ID to avoid duplicate lines for the same variant in the cart
         String cartItemId = product.getId() + "_" + selectedColor.replaceAll("\\s+", "") + "_"
                 + selectedSize.replaceAll("\\s+", "");
 
-        // Generate stockMap to snapshot maximum quantities per variant
+        // Snapshot current stock for validation later during checkout
         Map<String, Integer> stockMap = new HashMap<>();
         if (product.getVariants() != null) {
             for (Product.VariantColor vc : product.getVariants()) {

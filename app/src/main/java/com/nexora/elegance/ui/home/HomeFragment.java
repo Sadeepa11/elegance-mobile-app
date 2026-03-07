@@ -27,6 +27,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * HomeFragment is the landing screen of the app.
+ * It displays a horizontal list of product categories and a grid of featured
+ * products.
+ * It also handles real-time updates for products and categories from Firestore,
+ * and allows users to manage their wishlist directly from the home feed.
+ */
 public class HomeFragment extends Fragment {
 
         private FragmentHomeBinding binding;
@@ -51,14 +58,20 @@ public class HomeFragment extends Fragment {
 
                 mFirestore = FirebaseFirestore.getInstance();
 
+                // Initialize UI components and adapters
                 setupCategories();
                 setupRecyclerView();
 
+                // Start fetching data from Firestore
                 fetchCategories();
                 fetchProducts();
                 fetchWishlistIds();
         }
 
+        /**
+         * Fetches IDs of products in the current user's wishlist to show correct
+         * filled/empty heart icons.
+         */
         private void fetchWishlistIds() {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user == null)
@@ -77,6 +90,7 @@ public class HomeFragment extends Fragment {
                                                 for (QueryDocumentSnapshot doc : value) {
                                                         wishlistedIds.add(doc.getId());
                                                 }
+                                                // Sync wishlist status with the adapter
                                                 if (productAdapter != null) {
                                                         productAdapter.setWishlistedIds(wishlistedIds);
                                                 }
@@ -84,6 +98,9 @@ public class HomeFragment extends Fragment {
                                 });
         }
 
+        /**
+         * Configures the Horizontal RecyclerView for Categories.
+         */
         private void setupCategories() {
                 categoryAdapter = new CategoryAdapter(categoryList, category -> Toast
                                 .makeText(getContext(), "Category: " + category.getName(), Toast.LENGTH_SHORT).show());
@@ -93,6 +110,9 @@ public class HomeFragment extends Fragment {
                 binding.categoryRecyclerView.setAdapter(categoryAdapter);
         }
 
+        /**
+         * Listens for changes in the 'categories' collection in Firestore.
+         */
         private void fetchCategories() {
                 mFirestore.collection("categories")
                                 .addSnapshotListener((value, error) -> {
@@ -116,9 +136,13 @@ public class HomeFragment extends Fragment {
                                 });
         }
 
+        /**
+         * Configures the Grid RecyclerView for Products.
+         */
         private void setupRecyclerView() {
                 productAdapter = new ProductAdapter(productList,
                                 product -> {
+                                        // On Click: Open Product Details
                                         if (getContext() != null) {
                                                 Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
                                                 intent.putExtra("product", product);
@@ -126,17 +150,19 @@ public class HomeFragment extends Fragment {
                                         }
                                 },
                                 product -> {
+                                        // On Add to Cart Click: Show Bottom Sheet
                                         com.nexora.elegance.ui.cart.AddToCartBottomSheet bottomSheet = new com.nexora.elegance.ui.cart.AddToCartBottomSheet(
                                                         product);
                                         bottomSheet.show(getParentFragmentManager(), "AddToCartBottomSheet");
                                 },
                                 product -> {
+                                        // On Wishlist Toggle Click
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                         if (user != null) {
                                                 String uid = user.getUid();
 
                                                 if (wishlistedIds.contains(product.getId())) {
-                                                        // Remove from wishlist
+                                                        // Toggle Off: Remove from wishlist
                                                         mFirestore.collection("users").document(uid)
                                                                         .collection("wishlist")
                                                                         .document(product.getId())
@@ -150,7 +176,7 @@ public class HomeFragment extends Fragment {
                                                                                 }
                                                                         });
                                                 } else {
-                                                        // Add to wishlist
+                                                        // Toggle On: Add to wishlist
                                                         mFirestore.collection("users").document(uid)
                                                                         .collection("wishlist")
                                                                         .document(product.getId())
@@ -178,6 +204,9 @@ public class HomeFragment extends Fragment {
 
         }
 
+        /**
+         * Listens for changes in the 'products' collection in Firestore.
+         */
         private void fetchProducts() {
                 mFirestore.collection("products")
                                 .addSnapshotListener((value, error) -> {
@@ -201,6 +230,7 @@ public class HomeFragment extends Fragment {
                                                 }
                                                 productAdapter.notifyDataSetChanged();
 
+                                                // Show empty state UI if no products are found
                                                 if (productList.isEmpty()) {
                                                         binding.noDataText.setVisibility(View.VISIBLE);
                                                 } else {
@@ -213,6 +243,7 @@ public class HomeFragment extends Fragment {
         @Override
         public void onDestroyView() {
                 super.onDestroyView();
+                // Clean up binding reference to avoid memory leaks
                 binding = null;
         }
 }

@@ -30,6 +30,13 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * MainActivity is the central hub of the Elegance mobile application.
+ * It manages the main navigation between different sections of the app (Home,
+ * Wishlist, Cart, Search, Order History),
+ * handles fragment transactions, schedules periodic background synchronization,
+ * and maintains real-time listeners for wishlist and cart badge counts.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Initialize background tasks and setup UI components
         scheduleBackgroundSync();
         loadFragment(new HomeFragment());
         setupNavigation();
@@ -52,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         setupCartBadge();
     }
 
+    /**
+     * Configures the click listeners for the custom bottom navigation bar.
+     */
     private void setupNavigation() {
         binding.navHome.setOnClickListener(v -> handleSelection(v));
         binding.navWishlist.setOnClickListener(v -> handleSelection(v));
@@ -59,10 +70,14 @@ public class MainActivity extends AppCompatActivity {
         binding.navSearch.setOnClickListener(v -> handleSelection(v));
         binding.navOrderHistory.setOnClickListener(v -> handleSelection(v));
 
-        // Default selection
+        // Default selection: Home set to active
         handleSelection(binding.navHome);
     }
 
+    /**
+     * Sets up a real-time Firestore listener to keep the Wishlist badge updated.
+     * Hides the badge if the user is not logged in or the wishlist is empty.
+     */
     private void setupWishlistBadge() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
@@ -88,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Sets up a real-time Firestore listener to keep the Cart badge updated.
+     * Hides the badge if the user is not logged in or the cart is empty.
+     */
     private void setupCartBadge() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
@@ -116,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Clean up listeners to prevent memory leaks
         if (wishlistListener != null) {
             wishlistListener.remove();
         }
@@ -124,19 +144,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles the bottom navigation selection logic including fragment switching
+     * and visual feedback (tinting/animations).
+     *
+     * @param view The navigation item view that was clicked.
+     */
     private void handleSelection(View view) {
         if (view == null)
             return;
         if (view == currentSelected && currentSelected != null)
             return;
 
-        // Reset all
+        // Reset visual state of all tabs
         resetAll();
         currentSelected = view;
 
         int id = view.getId();
 
-        // Cart FAB
+        // Special handling for the Floating Action Button (Cart)
         if (id == R.id.nav_cart) {
             animateCartFab();
             loadFragment(new com.nexora.elegance.ui.cart.CartFragment());
@@ -146,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         // Highlight selected tab
         tintNavItem(view, true);
 
-        // Load fragment
+        // Load the appropriate fragment based on the clicked view's ID
         if (id == R.id.nav_home)
             loadFragment(new HomeFragment());
         else if (id == R.id.nav_wishlist)
@@ -157,6 +183,13 @@ public class MainActivity extends AppCompatActivity {
             loadFragment(new OrderHistoryFragment());
     }
 
+    /**
+     * Tints the icons and text of a navigation item to indicate active/inactive
+     * state.
+     *
+     * @param view   The navigation layout view.
+     * @param active True to apply active branding, false for inactive gray.
+     */
     private void tintNavItem(View view, boolean active) {
         if (!(view instanceof LinearLayout))
             return;
@@ -176,6 +209,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Performs a scale animation on the Cart FAB for a premium feel.
+     */
     private void animateCartFab() {
         binding.navCart.animate()
                 .scaleX(0.85f).scaleY(0.85f)
@@ -188,6 +224,9 @@ public class MainActivity extends AppCompatActivity {
                 .start();
     }
 
+    /**
+     * Resets all navigation items to their default inactive state.
+     */
     private void resetAll() {
         View[] tabs = { binding.navHome, binding.navWishlist, binding.navSearch, binding.navOrderHistory };
         for (View tab : tabs) {
@@ -198,6 +237,10 @@ public class MainActivity extends AppCompatActivity {
         binding.navCart.setScaleY(1f);
     }
 
+    /**
+     * Schedules the BackgroundSyncWorker to run periodically every 15 minutes.
+     * This ensures offline data or background updates are synced with the server.
+     */
     private void scheduleBackgroundSync() {
         PeriodicWorkRequest syncRequest = new PeriodicWorkRequest.Builder(
                 BackgroundSyncWorker.class, 15, TimeUnit.MINUTES).build();
@@ -205,12 +248,21 @@ public class MainActivity extends AppCompatActivity {
                 "EleganceSync", ExistingPeriodicWorkPolicy.KEEP, syncRequest);
     }
 
+    /**
+     * Swaps the current fragment in the container with a new one.
+     *
+     * @param fragment The fragment to display.
+     */
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)
                 .commit();
     }
 
+    /**
+     * Opens the ProfileUpdateActivity when the profile image in the header is
+     * clicked.
+     */
     public void onProfileImageClick(View view) {
         android.content.Intent intent = new android.content.Intent(this,
                 com.nexora.elegance.ui.profile.ProfileUpdateActivity.class);

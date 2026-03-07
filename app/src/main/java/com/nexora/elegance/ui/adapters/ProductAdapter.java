@@ -13,6 +13,11 @@ import java.util.Set;
 import java.util.HashSet;
 import android.graphics.Color;
 
+/**
+ * ProductAdapter manages the grid display of products on Home and Category
+ * screens.
+ * It supports wishlist state management and quick "Add to Cart" actions.
+ */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> products;

@@ -22,6 +22,14 @@ import com.nexora.elegance.data.models.CartItem;
 
 import java.util.List;
 
+/**
+ * CartAdapter manages the list of products in the shopping cart.
+ * It provides interactive controls for:
+ * - Updating variant selections (Size/Color) which auto-updates stock
+ * availability.
+ * - Incrementing/Decrementing quantities with real-time stock boundary checks.
+ * - Removing items from the cart.
+ */
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
     private List<CartItem> cartItems;
@@ -108,7 +116,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         holder.btnQtyPlus.setOnClickListener(v -> {
             int currentQty = item.getQuantity();
-            int maxQty = 10;
+            int maxQty = 10; // Default fallback
+            // Check stock map if available for this specific variant
             if (item.getStockMap() != null) {
                 String c = item.getColor() != null ? item.getColor() : "Default";
                 String s = item.getSize() != null ? item.getSize() : "Default";

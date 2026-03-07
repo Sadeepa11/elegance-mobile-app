@@ -2,6 +2,11 @@ package com.nexora.elegance.data.models;
 
 import java.io.Serializable;
 
+/**
+ * CartItem represents a specific product variant added to the user's shopping
+ * cart.
+ * It contains variant-specific details (color, size) selected by the user.
+ */
 public class CartItem implements Serializable {
     private String id;
     private String productId;

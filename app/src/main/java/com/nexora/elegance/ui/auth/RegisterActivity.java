@@ -12,6 +12,12 @@ import com.nexora.elegance.data.SessionManager;
 import com.nexora.elegance.databinding.ActivityRegisterBinding;
 import com.nexora.elegance.models.UserModel;
 
+/**
+ * RegisterActivity manages new user registration.
+ * It provides a form for users to provide their name, email, and password,
+ * performs client-side validation, handles account creation via Firebase Auth,
+ * and saves initial user profiles to Firestore.
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
@@ -29,8 +35,10 @@ public class RegisterActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         sessionManager = new SessionManager(this);
 
+        // Go back to login
         binding.backButton.setOnClickListener(v -> finish());
 
+        // Setup Registration Logic
         binding.registerButton.setOnClickListener(v -> {
             String name = binding.nameEdit.getText().toString();
             String email = binding.emailEdit.getText().toString();
@@ -38,37 +46,43 @@ public class RegisterActivity extends AppCompatActivity {
             String confirmPassword = binding.confirmPasswordEdit.getText().toString();
             boolean isAgreed = binding.termsCheckbox.isChecked();
 
+            // Client-side validation: Check for empty fields
             if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Client-side validation: Password strength check
             if (password.length() < 8) {
                 Toast.makeText(this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Client-side validation: Password matching check
             if (!password.equals(confirmPassword)) {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Ensure terms are accepted
             if (!isAgreed) {
                 Toast.makeText(this, "Please agree to Terms & Conditions", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Firebase Registration
+            // Start Firebase Authentication process for new user creation
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             String uid = mAuth.getCurrentUser().getUid();
+                            // Create a UserModel to represent the new user's profile
                             UserModel user = new UserModel(uid, name, email, "buyer");
 
-                            // Store in Firestore
+                            // Store the user profile in Firestore
                             mFirestore.collection("users").document(uid).set(user)
                                     .addOnSuccessListener(aVoid -> {
                                         Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                        // Initialize session and navigate to main
                                         sessionManager.setLogin(true, email, "buyer");
                                         navigateToMain();
                                     })
@@ -83,12 +97,16 @@ public class RegisterActivity extends AppCompatActivity {
                     });
         });
 
+        // Switch to Login Screen
         binding.loginLink.setOnClickListener(v -> {
             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             finish();
         });
     }
 
+    /**
+     * Navigates to the main application dashboard and clears the activity stack.
+     */
     private void navigateToMain() {
         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         finishAffinity();

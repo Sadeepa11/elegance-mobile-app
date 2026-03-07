@@ -23,6 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * CartFragment displays the list of products currently in the user's shopping
+ * cart.
+ * It allows users to:
+ * - View cart items with details (price, size, color).
+ * - Remove items or adjust quantities.
+ * - See an order summary with subtotal and total estimations.
+ * - Proceed to the checkout activity.
+ */
 public class CartFragment extends Fragment {
 
     private FragmentCartBinding binding;
@@ -51,6 +60,9 @@ public class CartFragment extends Fragment {
         fetchCartItems();
     }
 
+    /**
+     * Initializes the RecyclerView and handles item interactions via callbacks.
+     */
     private void setupRecyclerView() {
         cartAdapter = new CartAdapter(getContext(), cartList, new CartAdapter.OnCartItemInteractionListener() {
             @Override
@@ -69,6 +81,7 @@ public class CartFragment extends Fragment {
     }
 
     private void setupListeners() {
+        // Navigate to CheckoutActivity if cart is not empty
         binding.btnProceed.setOnClickListener(v -> {
             if (cartList.isEmpty()) {
                 Toast.makeText(getContext(), "Your cart is empty", Toast.LENGTH_SHORT).show();
@@ -80,8 +93,6 @@ public class CartFragment extends Fragment {
             }
         });
 
-        // The back button will pop the fragment manager's back stack or rely on
-        // MainActivity
         binding.btnBack.setOnClickListener(v -> {
             if (getActivity() != null) {
                 getActivity().onBackPressed();
@@ -89,6 +100,9 @@ public class CartFragment extends Fragment {
         });
     }
 
+    /**
+     * Fetches the user's cart from Firestore and sets up a real-time listener.
+     */
     private void fetchCartItems() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
@@ -123,6 +137,9 @@ public class CartFragment extends Fragment {
                 });
     }
 
+    /**
+     * Deletes a specific item from the user's Firestore cart.
+     */
     private void removeCartItem(CartItem item) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null)
@@ -140,6 +157,9 @@ public class CartFragment extends Fragment {
                 });
     }
 
+    /**
+     * Updates an existing cart item (e.g., quantity changes) in Firestore.
+     */
     private void updateCartItem(CartItem item) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null)
@@ -160,6 +180,10 @@ public class CartFragment extends Fragment {
                 });
     }
 
+    /**
+     * Calculates and displays the order summary totals based on the current cart
+     * content.
+     */
     private void updateTotals() {
         double orderAmount = 0.0;
         for (CartItem item : cartList) {
@@ -167,6 +191,7 @@ public class CartFragment extends Fragment {
             orderAmount += (item.getPrice() * qty);
         }
 
+        // Potential fees (currently set to 0)
         double convenienceFee = 0.0;
         double deliveryFee = 0.0;
 

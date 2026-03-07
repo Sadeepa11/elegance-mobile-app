@@ -4,6 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * DatabaseHelper manages the local SQLite database for the Elegance app.
+ * It is primarily used for local user data caching and offline cart management.
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Elegance.db";

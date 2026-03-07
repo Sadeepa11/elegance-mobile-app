@@ -2,6 +2,9 @@ package com.nexora.elegance.data.models;
 
 import java.io.Serializable;
 
+/**
+ * Review represents user feedback for a specific product.
+ */
 public class Review implements Serializable {
     private String reviewId;
     private String productId;

@@ -12,6 +12,10 @@ import com.nexora.elegance.data.SessionManager;
 import com.nexora.elegance.databinding.FragmentProfileBinding;
 import com.nexora.elegance.ui.auth.LoginActivity;
 
+/**
+ * ProfileFragment displays high-level user information and provides access
+ * to logout and profile settings.
+ */
 public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
@@ -28,11 +32,13 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Load user session details
         SessionManager sessionManager = new SessionManager(requireContext());
         binding.userName.setText("Elegance User");
         String email = sessionManager.getUserEmail();
         binding.userEmail.setText(email != null ? email : "user@elegance.com");
 
+        // Handle Logout
         binding.logoutButton.setOnClickListener(v -> {
             sessionManager.logout();
             Intent intent = new Intent(getActivity(), LoginActivity.class);

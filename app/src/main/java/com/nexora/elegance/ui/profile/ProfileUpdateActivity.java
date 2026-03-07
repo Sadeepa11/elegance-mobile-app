@@ -17,6 +17,15 @@ import com.nexora.elegance.models.UserModel;
 
 import java.util.List;
 
+/**
+ * ProfileUpdateActivity allows users to manage their personal and financial
+ * details.
+ * Features:
+ * - Multi-level location selection (Country -> State -> District -> City).
+ * - Personal address and postal code management.
+ * - Bank account information for refunds/payouts.
+ * - Integration with Firestore for real-time profile updates.
+ */
 public class ProfileUpdateActivity extends AppCompatActivity {
 
     private ActivityProfileUpdateBinding binding;
@@ -41,10 +50,16 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         loadUserData();
     }
 
+    /**
+     * Configures the hierarchical spinners for location selection.
+     * Selecting a parent level (e.g., Country) triggers updates for child levels
+     * (e.g., State).
+     */
     private void setupSpinners() {
-        // Init Countries
+        // Initialize Country spinner from data provider
         List<String> countries = LocationDataProvider.getCountries();
-        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(this, com.nexora.elegance.R.layout.spinner_item, countries);
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(this, com.nexora.elegance.R.layout.spinner_item,
+                countries);
         countryAdapter.setDropDownViewResource(com.nexora.elegance.R.layout.spinner_dropdown_item);
         binding.countrySpinner.setAdapter(countryAdapter);
 
@@ -187,6 +202,9 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         binding.saveButton.setOnClickListener(v -> saveUserData());
     }
 
+    /**
+     * Fetches current user profile data from Firestore.
+     */
     private void loadUserData() {
         if (mAuth.getCurrentUser() == null)
             return;
@@ -208,6 +226,9 @@ public class ProfileUpdateActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Fills the UI fields with user data fetched from the database.
+     */
     private void populateFields(UserModel user) {
         binding.emailEdit.setText(user.getEmail() != null ? user.getEmail() : "");
         binding.passwordEdit.setText("***********");
@@ -222,6 +243,9 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Validates and saves the updated profile information to Firestore.
+     */
     private void saveUserData() {
         if (mAuth.getCurrentUser() == null)
             return;
@@ -240,7 +264,7 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         String city = binding.citySpinner.getSelectedItem() != null ? binding.citySpinner.getSelectedItem().toString()
                 : "";
 
-        // Filter out prompt defaults
+        // Filter out prompt defaults to avoid saving placeholder text as data
         if (country.startsWith("Select"))
             country = "";
         if (state.startsWith("Select"))
@@ -250,6 +274,7 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         if (city.startsWith("Select"))
             city = "";
 
+        // Update profile in Firestore
         mFirestore.collection("users").document(uid).update(
                 "postalCode", binding.postalCodeEdit.getText().toString(),
                 "address", binding.addressEdit.getText().toString(),

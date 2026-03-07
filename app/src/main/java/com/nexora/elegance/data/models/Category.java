@@ -1,5 +1,8 @@
 package com.nexora.elegance.data.models;
 
+/**
+ * Category represents a group of products (e.g., "Electronics", "Men's Wear").
+ */
 public class Category {
     private String name;
     private String imageUrl;

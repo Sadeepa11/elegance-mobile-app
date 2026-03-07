@@ -40,6 +40,15 @@ import java.util.UUID;
 import com.nexora.elegance.models.UserModel;
 import com.nexora.elegance.ui.checkout.CheckoutAddressBottomSheet;
 
+/**
+ * CheckoutActivity handles the final purchase flow.
+ * It manages:
+ * - Shipping address selection (via BottomSheet or User Profile).
+ * - Review of items to be purchased.
+ * - Integration with PayHere Payment Gateway.
+ * - Persistence of the order to Firestore.
+ * - Clearing the cart post-purchase.
+ */
 public class CheckoutActivity extends AppCompatActivity {
 
     private static final int PAYHERE_REQUEST = 11001;
@@ -80,6 +89,9 @@ public class CheckoutActivity extends AppCompatActivity {
         loadData();
     }
 
+    /**
+     * Finds and initializes various UI components.
+     */
     private void initViews() {
         checkoutRecyclerView = findViewById(R.id.checkoutRecyclerView);
         checkoutTotalText = findViewById(R.id.checkoutTotalText);
@@ -91,6 +103,9 @@ public class CheckoutActivity extends AppCompatActivity {
         btnAddAddressCard = findViewById(R.id.btnAddAddressCard);
     }
 
+    /**
+     * Configures the RecyclerView for displaying items in the checkout summary.
+     */
     private void setupRecyclerView() {
         adapter = new CheckoutAdapter(this, checkoutList);
         checkoutRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -100,6 +115,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private void setupListeners() {
         btnBack.setOnClickListener(v -> finish());
 
+        // Initialize PayHere payment request
         btnPayHere.setOnClickListener(v -> {
             if (checkoutList.isEmpty()) {
                 Toast.makeText(this, "Your checkout is empty", Toast.LENGTH_SHORT).show();
@@ -119,8 +135,9 @@ public class CheckoutActivity extends AppCompatActivity {
                 total += (item.getPrice() * qty);
             }
 
+            // Prepare InitRequest for PayHere SDK
             InitRequest req = new InitRequest();
-            req.setMerchantId("1234228"); // Sandbox Merchant ID
+            req.setMerchantId("1234228"); // Mock Merchant ID
             req.setCurrency("LKR");
             req.setAmount(total);
             req.setOrderId(UUID.randomUUID().toString());
@@ -128,12 +145,11 @@ public class CheckoutActivity extends AppCompatActivity {
             req.setCustom1("Elegance App Purchase");
             req.setCustom2("");
 
-            // Note: Since we don't have first/last name splitting, using dummy mapping
-            // explicitly.
+            // Map user details to the request
             req.getCustomer().setFirstName("Elegance");
             req.getCustomer().setLastName("Customer");
             req.getCustomer().setEmail(user.getEmail() != null ? user.getEmail() : "customer@elegance.com");
-            req.getCustomer().setPhone("+94770000000"); // Using default explicit numbers mapping
+            req.getCustomer().setPhone("+94770000000");
             req.getCustomer().getAddress().setAddress(currentAddress);
             req.getCustomer().getAddress().setCity(currentCity.isEmpty() ? "Colombo" : currentCity);
             req.getCustomer().getAddress().setCountry(currentCountry.isEmpty() ? "Sri Lanka" : currentCountry);
@@ -167,9 +183,11 @@ public class CheckoutActivity extends AppCompatActivity {
         btnAddAddressCard.setOnClickListener(editAddressListener);
     }
 
+    /**
+     * Clears the user's cart in Firestore after a successful order.
+     */
     private void clearCartAndExit(String uid) {
         if (!getIntent().hasExtra("checkout_list")) {
-            // It was a single product instantly bought; no cart to clear explicitly.
             finish();
             return;
         }
@@ -184,10 +202,12 @@ public class CheckoutActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> finish());
     }
 
+    /**
+     * Loads the items to be checked out from the Intent.
+     * Supports both multi-item cart and single-product "Buy Now".
+     */
     private void loadData() {
         if (getIntent().hasExtra("checkout_list")) {
-            // Load custom checkout list containing explicitly picked sizes, colors, and
-            // qtys
             java.util.List<CartItem> customList = (java.util.List<CartItem>) getIntent()
                     .getSerializableExtra("checkout_list");
             if (customList != null) {
@@ -197,7 +217,6 @@ public class CheckoutActivity extends AppCompatActivity {
                 updateTotal();
             }
         } else if (getIntent().hasExtra("product")) {
-            // Legacy load single product from intent (baseline specs)
             Product product = (Product) getIntent().getSerializableExtra("product");
             if (product != null) {
                 CartItem item = new CartItem();
@@ -310,6 +329,10 @@ public class CheckoutActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Finalizes the order object and saves it to Firestore.
+     * Navigates to OrderDetailsActivity upon completion.
+     */
     private void finalizeOrderPlacement() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null)
@@ -325,6 +348,7 @@ public class CheckoutActivity extends AppCompatActivity {
         String fullAddress = addressDetails.getText().toString();
         long timestamp = System.currentTimeMillis();
 
+        // Create Order model with list of items
         Order newOrder = new Order(
                 orderId,
                 user.getUid(),
@@ -341,7 +365,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
 
-                    // Route user explicitly mapping the newly placed receipt
+                    // Navigate to the Order Detail view for the newly created order
                     Intent intent = new Intent(CheckoutActivity.this, OrderDetailsActivity.class);
                     intent.putExtra("order", newOrder);
                     startActivity(intent);

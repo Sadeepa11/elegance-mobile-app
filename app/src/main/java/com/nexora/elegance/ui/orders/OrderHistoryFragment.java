@@ -26,6 +26,12 @@ import com.nexora.elegance.ui.orders.OrderDetailsActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * OrderHistoryFragment displays a list of all past and current orders for the
+ * authenticated user.
+ * Orders are fetched from Firestore and sorted by timestamp (most recent
+ * first).
+ */
 public class OrderHistoryFragment extends Fragment {
 
     private FragmentOrderHistoryBinding binding;
@@ -53,12 +59,19 @@ public class OrderHistoryFragment extends Fragment {
         fetchOrders();
     }
 
+    /**
+     * Configures the RecyclerView for displaying orders.
+     */
     private void setupRecyclerView() {
         orderAdapter = new OrderAdapter(getContext(), orderList, this::onOrderClicked);
         binding.ordersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.ordersRecyclerView.setAdapter(orderAdapter);
     }
 
+    /**
+     * Fetches the user's order history from Firestore.
+     * Includes real-time listening for status updates.
+     */
     private void fetchOrders() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
@@ -69,6 +82,7 @@ public class OrderHistoryFragment extends Fragment {
 
         binding.progressBar.setVisibility(View.VISIBLE);
 
+        // Query orders collection sorted by timestamp descending
         mFirestore.collection("users").document(user.getUid())
                 .collection("orders")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
@@ -89,6 +103,7 @@ public class OrderHistoryFragment extends Fragment {
                             orderList.add(order);
                         }
 
+                        // Toggle visibility based on data availability
                         if (orderList.isEmpty()) {
                             binding.emptyStateText.setVisibility(View.VISIBLE);
                             binding.ordersRecyclerView.setVisibility(View.GONE);
@@ -101,6 +116,9 @@ public class OrderHistoryFragment extends Fragment {
                 });
     }
 
+    /**
+     * Handles order item clicks by navigating to the detailed view.
+     */
     private void onOrderClicked(Order order) {
         Intent intent = new Intent(getContext(), OrderDetailsActivity.class);
         intent.putExtra("order", order);

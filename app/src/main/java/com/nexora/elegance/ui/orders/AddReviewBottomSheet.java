@@ -13,12 +13,20 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.nexora.elegance.data.models.CartItem;
 import com.nexora.elegance.databinding.BottomSheetAddReviewBinding;
 
+/**
+ * AddReviewBottomSheet allows users to provide a rating and a text review
+ * for a specific item from a completed order.
+ */
 public class AddReviewBottomSheet extends BottomSheetDialogFragment {
 
     private BottomSheetAddReviewBinding binding;
     private final CartItem cartItem;
     private final OnReviewSubmittedListener listener;
 
+    /**
+     * Interface to communicate the submitted review back to the parent
+     * activity/fragment.
+     */
     public interface OnReviewSubmittedListener {
         void onReviewSubmitted(CartItem item, float rating, String reviewText);
     }
@@ -42,6 +50,7 @@ public class AddReviewBottomSheet extends BottomSheetDialogFragment {
 
         binding.reviewTitleText.setText("Rate " + cartItem.getName());
 
+        // Validate and submit the review
         binding.btnSubmitReview.setOnClickListener(v -> {
             float rating = binding.reviewRatingBar.getRating();
             String reviewText = binding.reviewInput.getText() != null ? binding.reviewInput.getText().toString().trim()

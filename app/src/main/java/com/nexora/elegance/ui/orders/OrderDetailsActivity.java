@@ -27,6 +27,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * OrderDetailsActivity displays the full details of a past order.
+ * Key features:
+ * - Order summary (Status, Date, Address, Total).
+ * - List of items purchased with their specific variants.
+ * - PDF Receipt Generation: Creates a professional-looking invoice saved to
+ * local storage.
+ */
 public class OrderDetailsActivity extends AppCompatActivity {
 
     private ActivityOrderDetailsBinding binding;
@@ -39,6 +47,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         binding = ActivityOrderDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Extract Order object from the starting Intent
         currentOrder = (Order) getIntent().getSerializableExtra("order");
         if (currentOrder == null) {
             Toast.makeText(this, "Order not found", Toast.LENGTH_SHORT).show();
@@ -50,13 +59,16 @@ public class OrderDetailsActivity extends AppCompatActivity {
         setupListeners();
     }
 
+    /**
+     * Populates the UI fields with data from the currentOrder object.
+     */
     private void setupUI() {
-        // Top Order Info block
         binding.detailOrderIdText.setText("Order ID: #" + currentOrder.getOrderId());
 
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy 'at' hh:mm a", Locale.getDefault());
         binding.detailDateText.setText("Placed on: " + sdf.format(new Date(currentOrder.getTimestamp())));
 
+        // Display status with color feedback
         binding.detailStatusText.setText(currentOrder.getStatus() != null ? currentOrder.getStatus() : "Processing");
         if (binding.detailStatusText.getText().toString().equalsIgnoreCase("Completed")) {
             binding.detailStatusText.setBackgroundColor(android.graphics.Color.parseColor("#4CAF50")); // Green
@@ -69,8 +81,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         binding.detailTotalAmountText
                 .setText(String.format(Locale.getDefault(), "LKR %.2f", currentOrder.getTotalAmount()));
 
-        // Setup generic items recycler seamlessly pushing the list to adapter mapping
-        // bounds
+        // Bind items to the RecyclerView
         adapter = new OrderDetailsAdapter(this, currentOrder.getItems());
         binding.detailItemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.detailItemsRecyclerView.setAdapter(adapter);
@@ -85,6 +96,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Programmatically generates a PDF invoice for the current order.
+     * Uses Android's PdfDocument and Canvas API to draw the layout.
+     * The file is saved to the public Downloads folder.
+     */
     private void generatePdfSlip() {
         if (currentOrder == null)
             return;
@@ -93,22 +109,22 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Paint paint = new Paint();
         Paint titlePaint = new Paint();
 
-        // Setup page info (A4 size roughly represented)
+        // Standard A4 dimensions (roughly)
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create();
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
         Canvas canvas = page.getCanvas();
 
-        // Draw Title
+        // Render Title/Branding
         titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         titlePaint.setTextSize(24);
-        titlePaint.setColor(Color.parseColor("#E91E63")); // Elegance Primary
+        titlePaint.setColor(Color.parseColor("#E91E63")); // Elegance Accent Color
         canvas.drawText("Elegance - Order Receipt", 40, 60, titlePaint);
 
         paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
         paint.setTextSize(14);
         paint.setColor(Color.parseColor("#333333"));
 
-        // Draw Header Information
+        // Render Header Metadata
         int y = 100;
         canvas.drawText("Order ID: " + currentOrder.getOrderId(), 40, y, paint);
         y += 25;
@@ -121,13 +137,12 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 y, paint);
         y += 40;
 
-        // Draw Items Header
         titlePaint.setTextSize(18);
         titlePaint.setColor(Color.parseColor("#111111"));
         canvas.drawText("Items Purchased:", 40, y, titlePaint);
         y += 25;
 
-        // Draw Items Loop
+        // Populate Table Rows with Items
         for (CartItem item : currentOrder.getItems()) {
             canvas.drawText("- " + item.getName(), 60, y, paint);
             y += 20;
@@ -141,21 +156,21 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 specs += " | Color: " + item.getColor();
             }
 
-            paint.setColor(Color.parseColor("#666666")); // Lighter for specs
+            paint.setColor(Color.parseColor("#666666"));
             paint.setTextSize(12);
             canvas.drawText(specs, 60, y, paint);
 
-            // Reset paint
             paint.setColor(Color.parseColor("#333333"));
             paint.setTextSize(14);
             y += 30;
         }
 
-        // Draw Footer
+        // Horizontal Separator
         y += 20;
         canvas.drawLine(40, y, 555, y, paint);
         y += 30;
 
+        // Order Total
         titlePaint.setTextSize(20);
         titlePaint.setColor(Color.parseColor("#E91E63"));
         canvas.drawText(String.format(Locale.getDefault(), "Total Amount: LKR %.2f", currentOrder.getTotalAmount()), 40,
@@ -163,8 +178,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         pdfDocument.finishPage(page);
 
-        // Save aggressively into external public endpoints without explicitly managing
-        // scope requests natively in 30+
+        // Save file to system Downloads directory
         File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         String fileName = "Elegance_Order_" + currentOrder.getOrderId().substring(0, 8) + ".pdf";
         File file = new File(downloadsDir, fileName);
