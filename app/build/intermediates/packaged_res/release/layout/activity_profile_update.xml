@@ -204,8 +204,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_back"
-                        android:rotation="-90"
+                        android:src="@drawable/ic_arrow_down"
                         app:tint="#000000" />
                 </RelativeLayout>
             </LinearLayout>
@@ -246,8 +245,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_back"
-                        android:rotation="-90"
+                        android:src="@drawable/ic_arrow_down"
                         app:tint="#000000" />
                 </RelativeLayout>
             </LinearLayout>
@@ -288,8 +286,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_back"
-                        android:rotation="-90"
+                        android:src="@drawable/ic_arrow_down"
                         app:tint="#000000" />
                 </RelativeLayout>
             </LinearLayout>
@@ -358,73 +355,6 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="24dp"
                 android:background="#F0F0F0" />
-
-            <!-- Bank Account Details -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Bank Account Details"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Bank Account Number"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/bankAccountEdit"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edittext_outline"
-                android:inputType="number"
-                android:paddingHorizontal="16dp"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Account Holder's Name"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/accountHolderEdit"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edittext_outline"
-                android:inputType="textPersonName"
-                android:paddingHorizontal="16dp"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="IFSC Code"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/ifscCodeEdit"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edittext_outline"
-                android:inputType="text"
-                android:paddingHorizontal="16dp"
-                android:textColor="#000000"
-                android:textSize="14sp" />
 
             <!-- Save Button -->
             <com.google.android.material.button.MaterialButton

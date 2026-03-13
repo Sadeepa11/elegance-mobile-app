@@ -2,6 +2,12 @@ R_DEF: Internal format may change without notice
 local
 anim bounce
 anim fade_in
+anim scale_down
+anim scale_up
+anim slide_in_left
+anim slide_in_right
+anim slide_out_left
+anim slide_out_right
 color background_light
 color black
 color brand_gold
@@ -89,10 +95,12 @@ drawable bg_gradient_button
 drawable bg_search_bar
 drawable bg_slider
 drawable bg_social_button
+drawable bg_spinner
 drawable bg_white_button
 drawable cat_dress
 drawable cat_tops
 drawable ic_apple
+drawable ic_arrow_down
 drawable ic_back
 drawable ic_bill
 drawable ic_cart
@@ -121,7 +129,6 @@ drawable profile_user
 drawable rounded_white_square
 drawable slider_model
 drawable splash_gradient
-id accountHolderEdit
 id addProductButton
 id addToCartButton
 id addToCartButtonCard
@@ -131,7 +138,6 @@ id addressTitle
 id adminTitle
 id appNameText
 id backButton
-id bankAccountEdit
 id bottomBar
 id bottomNavigationContainer
 id bottomTotalText
@@ -200,6 +206,7 @@ id detailTotalAmountText
 id distanceCard
 id distanceText
 id districtSpinner
+id drawerLayout
 id dynamicCategoriesContainer
 id emailEdit
 id emailLayout
@@ -219,7 +226,6 @@ id handleBar
 id headerDivider
 id headerImage
 id headerLayout
-id ifscCodeEdit
 id imageCard
 id inputLayoutAddress
 id inputLayoutCity
@@ -241,11 +247,15 @@ id nameEdit
 id nameLayout
 id nav_cart
 id nav_home
+id nav_notification_toggle
 id nav_order_history
 id nav_search
 id nav_setting
+id nav_theme_toggle
 id nav_wishlist
+id navigationView
 id noDataText
+id notificationSwitch
 id oldPrice
 id orderAmountsText
 id orderDateText
@@ -308,6 +318,7 @@ id supportTitle
 id taglineText
 id termsCheckbox
 id textQty
+id themeSwitch
 id toolbar
 id userEmail
 id userName
@@ -346,9 +357,13 @@ layout item_product
 layout item_product_image_zoom
 layout item_product_search
 layout layout_header
+layout layout_notification_toggle
+layout layout_theme_switch
+layout nav_header
 layout spinner_dropdown_item
 layout spinner_item
 menu bottom_nav_menu
+menu drawer_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 string admin
@@ -374,3 +389,4 @@ style Theme.Elegance
 style Theme.Elegance.NoActionBar
 xml backup_rules
 xml data_extraction_rules
+xml file_paths

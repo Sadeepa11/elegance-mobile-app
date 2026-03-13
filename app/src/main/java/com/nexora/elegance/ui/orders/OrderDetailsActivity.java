@@ -40,6 +40,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     private ActivityOrderDetailsBinding binding;
     private Order currentOrder;
     private OrderDetailsAdapter adapter;
+    private com.google.firebase.firestore.ListenerRegistration orderListener;
+    private android.content.BroadcastReceiver orderUpdateReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +59,55 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         setupUI();
         setupListeners();
+        startRealTimeUpdates();
+        setupBroadcastReceiver();
     }
 
-    /**
-     * Populates the UI fields with data from the currentOrder object.
-     */
+    private void startRealTimeUpdates() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null || currentOrder.getOrderId() == null) return;
+
+        orderListener = FirebaseFirestore.getInstance()
+                .collection("users").document(user.getUid())
+                .collection("orders").document(currentOrder.getOrderId())
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) return;
+                    if (value != null && value.exists()) {
+                        Order updatedOrder = value.toObject(Order.class);
+                        if (updatedOrder != null) {
+                            currentOrder = updatedOrder;
+                            updateStatusUI();
+                        }
+                    }
+                });
+    }
+
+    private void setupBroadcastReceiver() {
+        orderUpdateReceiver = new android.content.BroadcastReceiver() {
+            @Override
+            public void onReceive(android.content.Context context, android.content.Intent intent) {
+                String receivedOrderId = intent.getStringExtra("orderId");
+                if (receivedOrderId == null || receivedOrderId.equals(currentOrder.getOrderId())) {
+                    Toast.makeText(OrderDetailsActivity.this, "Order status updated!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(this)
+                .registerReceiver(orderUpdateReceiver, new android.content.IntentFilter("com.nexora.elegance.ORDER_UPDATED"));
+    }
+
+    private void updateStatusUI() {
+        binding.detailStatusText.setText(currentOrder.getStatus() != null ? currentOrder.getStatus() : "Processing");
+        if (binding.detailStatusText.getText().toString().equalsIgnoreCase("Completed")) {
+            binding.detailStatusText.setBackgroundColor(android.graphics.Color.parseColor("#4CAF50")); // Green
+        } else if (binding.detailStatusText.getText().toString().equalsIgnoreCase("Cancelled")) {
+            binding.detailStatusText.setBackgroundColor(android.graphics.Color.parseColor("#F44336")); // Red
+        } else {
+            // Default background for other statuses
+            binding.detailStatusText.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+        }
+    }
+
     private void setupUI() {
         binding.detailOrderIdText.setText("Order ID: #" + currentOrder.getOrderId());
 
@@ -69,12 +115,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         binding.detailDateText.setText("Placed on: " + sdf.format(new Date(currentOrder.getTimestamp())));
 
         // Display status with color feedback
-        binding.detailStatusText.setText(currentOrder.getStatus() != null ? currentOrder.getStatus() : "Processing");
-        if (binding.detailStatusText.getText().toString().equalsIgnoreCase("Completed")) {
-            binding.detailStatusText.setBackgroundColor(android.graphics.Color.parseColor("#4CAF50")); // Green
-        } else if (binding.detailStatusText.getText().toString().equalsIgnoreCase("Cancelled")) {
-            binding.detailStatusText.setBackgroundColor(android.graphics.Color.parseColor("#F44336")); // Red
-        }
+        updateStatusUI();
 
         binding.detailAddressText.setText(
                 currentOrder.getShippingAddress() != null ? currentOrder.getShippingAddress() : "No address provided");
@@ -94,6 +135,18 @@ public class OrderDetailsActivity extends AppCompatActivity {
             Toast.makeText(this, "Generating PDF Slip...", Toast.LENGTH_SHORT).show();
             generatePdfSlip();
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (orderListener != null) {
+            orderListener.remove();
+        }
+        if (orderUpdateReceiver != null) {
+            androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(this)
+                    .unregisterReceiver(orderUpdateReceiver);
+        }
     }
 
     /**

@@ -25,16 +25,10 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final EditText accountHolderEdit;
-
-  @NonNull
   public final EditText addressEdit;
 
   @NonNull
   public final ImageView backButton;
-
-  @NonNull
-  public final EditText bankAccountEdit;
 
   @NonNull
   public final TextView changePasswordText;
@@ -64,9 +58,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
   public final EditText emailEdit;
 
   @NonNull
-  public final EditText ifscCodeEdit;
-
-  @NonNull
   public final EditText passwordEdit;
 
   @NonNull
@@ -82,20 +73,17 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
   public final Spinner stateSpinner;
 
   private ActivityProfileUpdateBinding(@NonNull LinearLayout rootView,
-      @NonNull EditText accountHolderEdit, @NonNull EditText addressEdit,
-      @NonNull ImageView backButton, @NonNull EditText bankAccountEdit,
+      @NonNull EditText addressEdit, @NonNull ImageView backButton,
       @NonNull TextView changePasswordText, @NonNull Spinner citySpinner,
       @NonNull LinearLayout containerCity, @NonNull LinearLayout containerCountry,
       @NonNull LinearLayout containerDistrict, @NonNull LinearLayout containerState,
       @NonNull Spinner countrySpinner, @NonNull Spinner districtSpinner,
-      @NonNull EditText emailEdit, @NonNull EditText ifscCodeEdit, @NonNull EditText passwordEdit,
-      @NonNull EditText postalCodeEdit, @NonNull ShapeableImageView profileImage,
-      @NonNull MaterialButton saveButton, @NonNull Spinner stateSpinner) {
+      @NonNull EditText emailEdit, @NonNull EditText passwordEdit, @NonNull EditText postalCodeEdit,
+      @NonNull ShapeableImageView profileImage, @NonNull MaterialButton saveButton,
+      @NonNull Spinner stateSpinner) {
     this.rootView = rootView;
-    this.accountHolderEdit = accountHolderEdit;
     this.addressEdit = addressEdit;
     this.backButton = backButton;
-    this.bankAccountEdit = bankAccountEdit;
     this.changePasswordText = changePasswordText;
     this.citySpinner = citySpinner;
     this.containerCity = containerCity;
@@ -105,7 +93,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
     this.countrySpinner = countrySpinner;
     this.districtSpinner = districtSpinner;
     this.emailEdit = emailEdit;
-    this.ifscCodeEdit = ifscCodeEdit;
     this.passwordEdit = passwordEdit;
     this.postalCodeEdit = postalCodeEdit;
     this.profileImage = profileImage;
@@ -140,12 +127,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.accountHolderEdit;
-      EditText accountHolderEdit = ViewBindings.findChildViewById(rootView, id);
-      if (accountHolderEdit == null) {
-        break missingId;
-      }
-
       id = R.id.addressEdit;
       EditText addressEdit = ViewBindings.findChildViewById(rootView, id);
       if (addressEdit == null) {
@@ -155,12 +136,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
       id = R.id.backButton;
       ImageView backButton = ViewBindings.findChildViewById(rootView, id);
       if (backButton == null) {
-        break missingId;
-      }
-
-      id = R.id.bankAccountEdit;
-      EditText bankAccountEdit = ViewBindings.findChildViewById(rootView, id);
-      if (bankAccountEdit == null) {
         break missingId;
       }
 
@@ -218,12 +193,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.ifscCodeEdit;
-      EditText ifscCodeEdit = ViewBindings.findChildViewById(rootView, id);
-      if (ifscCodeEdit == null) {
-        break missingId;
-      }
-
       id = R.id.passwordEdit;
       EditText passwordEdit = ViewBindings.findChildViewById(rootView, id);
       if (passwordEdit == null) {
@@ -254,11 +223,10 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityProfileUpdateBinding((LinearLayout) rootView, accountHolderEdit,
-          addressEdit, backButton, bankAccountEdit, changePasswordText, citySpinner, containerCity,
-          containerCountry, containerDistrict, containerState, countrySpinner, districtSpinner,
-          emailEdit, ifscCodeEdit, passwordEdit, postalCodeEdit, profileImage, saveButton,
-          stateSpinner);
+      return new ActivityProfileUpdateBinding((LinearLayout) rootView, addressEdit, backButton,
+          changePasswordText, citySpinner, containerCity, containerCountry, containerDistrict,
+          containerState, countrySpinner, districtSpinner, emailEdit, passwordEdit, postalCodeEdit,
+          profileImage, saveButton, stateSpinner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

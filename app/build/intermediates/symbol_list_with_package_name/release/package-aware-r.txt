@@ -45,6 +45,12 @@ anim m3_side_sheet_exit_to_right
 anim mtrl_bottom_sheet_slide_in
 anim mtrl_bottom_sheet_slide_out
 anim mtrl_card_lowers_interpolator
+anim scale_down
+anim scale_up
+anim slide_in_left
+anim slide_in_right
+anim slide_out_left
+anim slide_out_right
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -3101,6 +3107,7 @@ drawable bg_gradient_button
 drawable bg_search_bar
 drawable bg_slider
 drawable bg_social_button
+drawable bg_spinner
 drawable bg_white_button
 drawable bottom_sheet_background
 drawable btn_checkbox_checked_mtrl
@@ -3150,6 +3157,7 @@ drawable helapay_method_image
 drawable hnb
 drawable ic_apple
 drawable ic_arrow_back_black_24
+drawable ic_arrow_down
 drawable ic_back
 drawable ic_bill
 drawable ic_cart
@@ -3329,7 +3337,6 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
-id accountHolderEdit
 id actionDown
 id actionDownUp
 id actionUp
@@ -3380,7 +3387,6 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id backButton
-id bankAccountEdit
 id bank_account_subtitle_txt
 id barrier
 id baseline
@@ -3541,6 +3547,7 @@ id dragLeft
 id dragRight
 id dragStart
 id dragUp
+id drawerLayout
 id dropdown_menu
 id dynamicCategoriesContainer
 id easeIn
@@ -3615,7 +3622,6 @@ id icon
 id icon_group
 id icon_only
 id ifRoom
-id ifscCodeEdit
 id ignore
 id ignoreRequest
 id image
@@ -3727,10 +3733,13 @@ id nameEdit
 id nameLayout
 id nav_cart
 id nav_home
+id nav_notification_toggle
 id nav_order_history
 id nav_search
 id nav_setting
+id nav_theme_toggle
 id nav_wishlist
+id navigationView
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -3747,6 +3756,7 @@ id noState
 id none
 id normal
 id north
+id notificationSwitch
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -3962,6 +3972,7 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id themeSwitch
 id time
 id title
 id titleDividerNoCustom
@@ -4179,6 +4190,8 @@ layout item_product
 layout item_product_image_zoom
 layout item_product_search
 layout layout_header
+layout layout_notification_toggle
+layout layout_theme_switch
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -4230,6 +4243,7 @@ layout mtrl_picker_text_input_date
 layout mtrl_picker_text_input_date_range
 layout mtrl_search_bar
 layout mtrl_search_view
+layout nav_header
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big
@@ -4248,6 +4262,7 @@ layout spinner_dropdown_item
 layout spinner_item
 layout support_simple_spinner_dropdown_item
 menu bottom_nav_menu
+menu drawer_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
@@ -5755,4 +5770,5 @@ styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration
 styleable include constraintSet
 xml backup_rules
 xml data_extraction_rules
+xml file_paths
 xml image_share_filepaths

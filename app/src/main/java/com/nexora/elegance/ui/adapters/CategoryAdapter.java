@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.nexora.elegance.R;
 import com.nexora.elegance.data.models.Category;
+import com.nexora.elegance.utils.AnimationHelper;
+
 import java.util.List;
 
 /**
@@ -44,9 +46,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         com.bumptech.glide.Glide.with(holder.itemView.getContext())
                 .load(category.getImageUrl())
                 .placeholder(R.drawable.cat_dress)
-                .error(R.drawable.cat_dress)
                 .into(holder.image);
 
+        AnimationHelper.addPressAnimation(holder.itemView);
         holder.itemView.setOnClickListener(v -> listener.onCategoryClick(category));
     }
 

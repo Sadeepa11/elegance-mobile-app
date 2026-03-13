@@ -1,21 +1,38 @@
 package com.nexora.elegance.ui.profile;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nexora.elegance.data.LocationDataProvider;
 import com.nexora.elegance.databinding.ActivityProfileUpdateBinding;
 import com.nexora.elegance.models.UserModel;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * ProfileUpdateActivity allows users to manage their personal and financial
@@ -36,6 +53,13 @@ public class ProfileUpdateActivity extends AppCompatActivity {
     private boolean isInitialLoad = true;
     private UserModel loadedUser = null;
 
+    private Uri photoUri;
+    private String currentPhotoPath;
+
+    private ActivityResultLauncher<Intent> pickImageLauncher;
+    private ActivityResultLauncher<Uri> takePhotoLauncher;
+    private ActivityResultLauncher<String> requestPermissionLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +68,8 @@ public class ProfileUpdateActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
-
+        
+        initLaunchers();
         setupListeners();
         setupSpinners();
         loadUserData();
@@ -195,6 +220,8 @@ public class ProfileUpdateActivity extends AppCompatActivity {
     private void setupListeners() {
         binding.backButton.setOnClickListener(v -> finish());
 
+        binding.profileImage.setOnClickListener(v -> showImagePickerOptions());
+
         binding.changePasswordText.setOnClickListener(v -> {
             Toast.makeText(this, "Reset Password link sent to your email.", Toast.LENGTH_SHORT).show();
         });
@@ -234,9 +261,10 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         binding.passwordEdit.setText("***********");
         binding.postalCodeEdit.setText(user.getPostalCode() != null ? user.getPostalCode() : "");
         binding.addressEdit.setText(user.getAddress() != null ? user.getAddress() : "");
-        binding.bankAccountEdit.setText(user.getBankAccountNumber() != null ? user.getBankAccountNumber() : "");
-        binding.accountHolderEdit.setText(user.getAccountHolderName() != null ? user.getAccountHolderName() : "");
-        binding.ifscCodeEdit.setText(user.getIfscCode() != null ? user.getIfscCode() : "");
+
+        if (user.getProfileImageUrl() != null && !user.getProfileImageUrl().isEmpty()) {
+            Glide.with(this).load(user.getProfileImageUrl()).into(binding.profileImage);
+        }
 
         if (user.getCountry() != null && !user.getCountry().isEmpty()) {
             setSpinnerToValue(binding.countrySpinner, user.getCountry());
@@ -281,14 +309,93 @@ public class ProfileUpdateActivity extends AppCompatActivity {
                 "city", city,
                 "state", state,
                 "district", district,
-                "country", country,
-                "bankAccountNumber", binding.bankAccountEdit.getText().toString(),
-                "accountHolderName", binding.accountHolderEdit.getText().toString(),
-                "ifscCode", binding.ifscCodeEdit.getText().toString()).addOnSuccessListener(aVoid -> {
+                "country", country).addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
                     finish();
                 }).addOnFailureListener(e -> {
                     Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void initLaunchers() {
+        pickImageLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        photoUri = result.getData().getData();
+                        Glide.with(this).load(photoUri).into(binding.profileImage);
+                    }
+                }
+        );
+
+        takePhotoLauncher = registerForActivityResult(
+                new ActivityResultContracts.TakePicture(),
+                success -> {
+                    if (success) {
+                        Glide.with(this).load(photoUri).into(binding.profileImage);
+                    }
+                }
+        );
+
+        requestPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                isGranted -> {
+                    if (isGranted) {
+                        captureImage();
+                    } else {
+                        Toast.makeText(this, "Camera permission is required to take photos", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+    }
+
+    private void showImagePickerOptions() {
+        String[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Update Profile Photo");
+        builder.setItems(options, (dialog, which) -> {
+            if (which == 0) {
+                checkCameraPermission();
+            } else if (which == 1) {
+                openGallery();
+            }
+        });
+        builder.show();
+    }
+
+    private void checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            captureImage();
+        } else {
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA);
+        }
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickImageLauncher.launch(intent);
+    }
+
+    private void captureImage() {
+        try {
+            File photoFile = createImageFile();
+            if (photoFile != null) {
+                photoUri = FileProvider.getUriForFile(this,
+                        getApplicationContext().getPackageName() + ".fileprovider",
+                        photoFile);
+                takePhotoLauncher.launch(photoUri);
+            }
+        } catch (IOException ex) {
+            Toast.makeText(this, "Error occurred while creating file", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 }

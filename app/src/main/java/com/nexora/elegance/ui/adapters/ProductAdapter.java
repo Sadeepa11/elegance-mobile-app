@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.HashSet;
 import android.graphics.Color;
+import com.nexora.elegance.utils.AnimationHelper;
 
 /**
  * ProductAdapter manages the grid display of products on Home and Category
@@ -74,15 +75,29 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             holder.binding.wishlistIcon.setColorFilter(Color.parseColor("#1A1A1A"));
         }
 
+        AnimationHelper.addPressAnimation(holder.binding.getRoot());
         holder.binding.getRoot().setOnClickListener(v -> onProductClick.onProductClick(product));
+
+        AnimationHelper.addPressAnimation(holder.binding.addToCartButton);
         holder.binding.addToCartButton.setOnClickListener(v -> onAddToCartClick.onAddToCartClick(product));
         if (holder.binding.wishlistButton != null) {
+            AnimationHelper.addPressAnimation(holder.binding.wishlistButton);
             holder.binding.wishlistButton.setOnClickListener(v -> {
                 if (onWishlistClick != null) {
                     onWishlistClick.onWishlistClick(product);
                 }
             });
         }
+
+        // Entrance Animation
+        holder.binding.getRoot().setAlpha(0f);
+        holder.binding.getRoot().setTranslationY(100f);
+        holder.binding.getRoot().animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(400)
+                .setStartDelay(position * 50L) // Subtle staggered effect
+                .start();
     }
 
     @Override

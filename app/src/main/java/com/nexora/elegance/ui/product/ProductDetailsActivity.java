@@ -1,6 +1,7 @@
 package com.nexora.elegance.ui.product;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.nexora.elegance.R;
 import com.nexora.elegance.data.models.Product;
 import com.nexora.elegance.ui.adapters.ProductImageAdapter;
+import com.nexora.elegance.utils.AnimationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -301,8 +303,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
+        AnimationHelper.addPressAnimation(btnBack);
         btnBack.setOnClickListener(v -> finish());
 
+        AnimationHelper.addPressAnimation(btnQtyMinus);
         btnQtyMinus.setOnClickListener(v -> {
             if (currentQty > 1) {
                 currentQty--;
@@ -310,6 +314,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
+        AnimationHelper.addPressAnimation(btnQtyPlus);
         btnQtyPlus.setOnClickListener(v -> {
             int maxStock = (currentlySelectedSize != null) ? currentlySelectedSize.getQuantity() : 1;
             if (currentQty < maxStock) {
@@ -320,7 +325,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btnAddToCart).setOnClickListener(v -> {
+        View btnAddToCart = findViewById(R.id.btnAddToCart);
+        AnimationHelper.addPressAnimation(btnAddToCart);
+        btnAddToCart.setOnClickListener(v -> {
             if (product != null) {
                 // Determine color explicitly
                 String colorStr = "";
@@ -348,7 +355,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btnBuyNow).setOnClickListener(v -> {
+        View btnBuyNow = findViewById(R.id.btnBuyNow);
+        AnimationHelper.addPressAnimation(btnBuyNow);
+        btnBuyNow.setOnClickListener(v -> {
             if (product != null) {
                 int maxStock = (currentlySelectedSize != null) ? currentlySelectedSize.getQuantity() : 0;
                 if (maxStock == 0) {

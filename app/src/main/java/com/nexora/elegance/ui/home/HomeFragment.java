@@ -66,6 +66,16 @@ public class HomeFragment extends Fragment {
                 fetchCategories();
                 fetchProducts();
                 fetchWishlistIds();
+
+                // Setup Sidebar Toggle
+                View menuIcon = binding.getRoot().findViewById(R.id.menuIcon);
+                if (menuIcon != null) {
+                        menuIcon.setOnClickListener(v -> {
+                                if (getActivity() instanceof com.nexora.elegance.MainActivity) {
+                                        ((com.nexora.elegance.MainActivity) getActivity()).openDrawer();
+                                }
+                        });
+                }
         }
 
         /**

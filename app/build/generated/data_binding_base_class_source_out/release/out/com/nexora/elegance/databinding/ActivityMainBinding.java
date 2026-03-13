@@ -10,9 +10,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.navigation.NavigationView;
 import com.nexora.elegance.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,13 +21,16 @@ import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final DrawerLayout rootView;
 
   @NonNull
   public final LinearLayout bottomNavigationContainer;
 
   @NonNull
   public final TextView cartBadge;
+
+  @NonNull
+  public final DrawerLayout drawerLayout;
 
   @NonNull
   public final FrameLayout fragmentContainer;
@@ -47,29 +51,35 @@ public final class ActivityMainBinding implements ViewBinding {
   public final LinearLayout navWishlist;
 
   @NonNull
+  public final NavigationView navigationView;
+
+  @NonNull
   public final TextView wishlistBadge;
 
-  private ActivityMainBinding(@NonNull ConstraintLayout rootView,
+  private ActivityMainBinding(@NonNull DrawerLayout rootView,
       @NonNull LinearLayout bottomNavigationContainer, @NonNull TextView cartBadge,
-      @NonNull FrameLayout fragmentContainer, @NonNull RelativeLayout navCart,
-      @NonNull LinearLayout navHome, @NonNull LinearLayout navOrderHistory,
-      @NonNull LinearLayout navSearch, @NonNull LinearLayout navWishlist,
+      @NonNull DrawerLayout drawerLayout, @NonNull FrameLayout fragmentContainer,
+      @NonNull RelativeLayout navCart, @NonNull LinearLayout navHome,
+      @NonNull LinearLayout navOrderHistory, @NonNull LinearLayout navSearch,
+      @NonNull LinearLayout navWishlist, @NonNull NavigationView navigationView,
       @NonNull TextView wishlistBadge) {
     this.rootView = rootView;
     this.bottomNavigationContainer = bottomNavigationContainer;
     this.cartBadge = cartBadge;
+    this.drawerLayout = drawerLayout;
     this.fragmentContainer = fragmentContainer;
     this.navCart = navCart;
     this.navHome = navHome;
     this.navOrderHistory = navOrderHistory;
     this.navSearch = navSearch;
     this.navWishlist = navWishlist;
+    this.navigationView = navigationView;
     this.wishlistBadge = wishlistBadge;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public DrawerLayout getRoot() {
     return rootView;
   }
 
@@ -105,6 +115,8 @@ public final class ActivityMainBinding implements ViewBinding {
       if (cartBadge == null) {
         break missingId;
       }
+
+      DrawerLayout drawerLayout = (DrawerLayout) rootView;
 
       id = R.id.fragmentContainer;
       FrameLayout fragmentContainer = ViewBindings.findChildViewById(rootView, id);
@@ -142,15 +154,21 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.navigationView;
+      NavigationView navigationView = ViewBindings.findChildViewById(rootView, id);
+      if (navigationView == null) {
+        break missingId;
+      }
+
       id = R.id.wishlistBadge;
       TextView wishlistBadge = ViewBindings.findChildViewById(rootView, id);
       if (wishlistBadge == null) {
         break missingId;
       }
 
-      return new ActivityMainBinding((ConstraintLayout) rootView, bottomNavigationContainer,
-          cartBadge, fragmentContainer, navCart, navHome, navOrderHistory, navSearch, navWishlist,
-          wishlistBadge);
+      return new ActivityMainBinding((DrawerLayout) rootView, bottomNavigationContainer, cartBadge,
+          drawerLayout, fragmentContainer, navCart, navHome, navOrderHistory, navSearch,
+          navWishlist, navigationView, wishlistBadge);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

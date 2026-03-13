@@ -14,9 +14,7 @@ public class UserModel {
     private String district;
     private String country;
 
-    private String bankAccountNumber;
-    private String accountHolderName;
-    private String ifscCode;
+    private String profileImageUrl;
 
     public UserModel() {
         // Required for Firestore
@@ -109,27 +107,11 @@ public class UserModel {
         this.country = country;
     }
 
-    public String getBankAccountNumber() {
-        return bankAccountNumber;
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
-    public void setBankAccountNumber(String bankAccountNumber) {
-        this.bankAccountNumber = bankAccountNumber;
-    }
-
-    public String getAccountHolderName() {
-        return accountHolderName;
-    }
-
-    public void setAccountHolderName(String accountHolderName) {
-        this.accountHolderName = accountHolderName;
-    }
-
-    public String getIfscCode() {
-        return ifscCode;
-    }
-
-    public void setIfscCode(String ifscCode) {
-        this.ifscCode = ifscCode;
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

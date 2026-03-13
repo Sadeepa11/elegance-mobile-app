@@ -99,7 +99,7 @@
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_marginStart="4dp"
-                android:src="@drawable/ic_search"
+                android:src="@drawable/ic_arrow_down"
                 app:tint="#666666" />
         </LinearLayout>
 
@@ -129,7 +129,7 @@
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_marginStart="4dp"
-                android:src="@drawable/ic_search"
+                android:src="@drawable/ic_arrow_down"
                 app:tint="#666666" />
         </LinearLayout>
     </LinearLayout>

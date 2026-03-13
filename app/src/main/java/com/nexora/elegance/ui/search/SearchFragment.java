@@ -61,6 +61,16 @@ public class SearchFragment extends Fragment {
         setupButtons();
         fetchProducts();
         fetchCategories();
+
+        // Setup Sidebar Toggle
+        View headerView = binding.getRoot().findViewById(R.id.menuIcon);
+        if (headerView != null) {
+            headerView.setOnClickListener(v -> {
+                if (getActivity() instanceof com.nexora.elegance.MainActivity) {
+                    ((com.nexora.elegance.MainActivity) getActivity()).openDrawer();
+                }
+            });
+        }
     }
 
     private void setupButtons() {
