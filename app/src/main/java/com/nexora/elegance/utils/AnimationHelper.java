@@ -1,0 +1,46 @@
+package com.nexora.elegance.utils;
+
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import com.nexora.elegance.R;
+
+public class AnimationHelper {
+
+    /**
+     * Adds a subtle scale animation on touch to provide visual feedback for clicks.
+     * @param view The view to apply the animation to.
+     */
+    public static void addPressAnimation(View view) {
+        view.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    Animation scaleDown = AnimationUtils.loadAnimation(v.getContext(), R.anim.scale_down);
+                    scaleDown.setFillAfter(true);
+                    v.startAnimation(scaleDown);
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    Animation scaleUp = AnimationUtils.loadAnimation(v.getContext(), R.anim.scale_up);
+                    scaleUp.setFillAfter(true);
+                    v.startAnimation(scaleUp);
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        v.performClick();
+                    }
+                    break;
+            }
+            return true;
+        });
+    }
+
+    /**
+     * Applies a fade-in animation to a view.
+     */
+    public static void fadeIn(View view) {
+        if (view == null) return;
+        view.setVisibility(View.VISIBLE);
+        Animation fadeIn = AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_in);
+        view.startAnimation(fadeIn);
+    }
+}
