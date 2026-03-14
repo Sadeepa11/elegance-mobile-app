@@ -24,7 +24,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_MAPS_API_KEY" />
+            android:value="AIzaSyDKn_LinOJ-29JuMb4mH7lgjqwgotRkdRU" />
 
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -39,6 +39,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.map.MapActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Elegance.NoActionBar" />
 
         <activity
             android:name=".ui.auth.LoginActivity"
@@ -78,7 +83,7 @@
 
         <!-- Firebase Cloud Messaging Service -->
         <service
-            android:name=".fcm.MyFirebaseMessagingService"
+            android:name=".services.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

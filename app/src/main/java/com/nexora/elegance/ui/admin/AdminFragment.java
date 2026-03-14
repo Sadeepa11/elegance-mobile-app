@@ -8,7 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.nexora.elegance.data.models.Product;
+import com.nexora.elegance.models.Product;
 import com.nexora.elegance.databinding.FragmentAdminBinding;
 
 public class AdminFragment extends Fragment {

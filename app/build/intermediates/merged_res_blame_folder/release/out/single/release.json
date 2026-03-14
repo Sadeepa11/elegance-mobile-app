@@ -120,10 +120,6 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\anim\\scale_down.xml"
     },
     {
-        "merged": "com.nexora.elegance.app-merged_res-45:/menu_drawer_menu.xml.flat",
-        "source": "com.nexora.elegance.app-main-46:/menu/drawer_menu.xml"
-    },
-    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_bg_white_button.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\bg_white_button.xml"
     },
@@ -184,12 +180,12 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_product_details.xml"
     },
     {
-        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_bottom_sheet_sort.xml.flat",
-        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\bottom_sheet_sort.xml"
-    },
-    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_bill.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_bill.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_bottom_sheet_sort.xml.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\bottom_sheet_sort.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_activity_main.xml.flat",
@@ -210,6 +206,10 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_fragment_wishlist.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\fragment_wishlist.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_activity_map.xml.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_map.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_cart.xml.flat",
@@ -304,6 +304,10 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "com.nexora.elegance.app-merged_res-45:/layout_activity_map.xml.flat",
+        "source": "com.nexora.elegance.app-main-46:/layout/activity_map.xml"
+    },
+    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_item_product_search.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\item_product_search.xml"
     },
@@ -318,6 +322,10 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_launcher_foreground.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_layout_notification_toggle.xml.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\layout_notification_toggle.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\menu_drawer_menu.xml.flat",
@@ -374,10 +382,6 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_location.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_location.xml"
-    },
-    {
-        "merged": "com.nexora.elegance.app-merged_res-45:/layout_layout_notification_toggle.xml.flat",
-        "source": "com.nexora.elegance.app-main-46:/layout/layout_notification_toggle.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_bg_gradient_button.xml.flat",

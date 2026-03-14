@@ -22,10 +22,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import com.nexora.elegance.R;
-import com.nexora.elegance.data.models.Category;
-import com.nexora.elegance.data.models.Product;
+import com.nexora.elegance.models.Category;
+import com.nexora.elegance.models.Product;
 import com.nexora.elegance.databinding.FragmentSearchBinding;
-import com.nexora.elegance.ui.adapters.SearchAdapter;
+import com.nexora.elegance.adapters.SearchAdapter;
 import com.nexora.elegance.ui.product.ProductDetailsActivity;
 
 import java.util.ArrayList;

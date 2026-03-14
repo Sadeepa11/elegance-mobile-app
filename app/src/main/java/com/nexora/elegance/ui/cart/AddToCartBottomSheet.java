@@ -23,8 +23,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nexora.elegance.R;
-import com.nexora.elegance.data.models.CartItem;
-import com.nexora.elegance.data.models.Product;
+import com.nexora.elegance.models.CartItem;
+import com.nexora.elegance.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;

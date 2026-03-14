@@ -92,6 +92,18 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.nav_theme_toggle || id == R.id.nav_notification_toggle) {
                 // Return false to prevent item selection background
                 return false;
+            } else if (id == R.id.nav_shop_rathmalana) {
+                android.content.Intent intent = new android.content.Intent(MainActivity.this, com.nexora.elegance.ui.map.MapActivity.class);
+                intent.putExtra("shopName", "Rathmalana");
+                intent.putExtra("lat", 6.823653);
+                intent.putExtra("lng", 79.886595);
+                startActivity(intent);
+            } else if (id == R.id.nav_shop_kohuwala) {
+                android.content.Intent intent = new android.content.Intent(MainActivity.this, com.nexora.elegance.ui.map.MapActivity.class);
+                intent.putExtra("shopName", "Kohuwala");
+                intent.putExtra("lat", 6.862040);
+                intent.putExtra("lng", 79.888064);
+                startActivity(intent);
             }
             binding.drawerLayout.closeDrawer(GravityCompat.START);
             return true;

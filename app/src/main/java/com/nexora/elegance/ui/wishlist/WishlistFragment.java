@@ -18,9 +18,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import com.nexora.elegance.data.models.Product;
+import com.nexora.elegance.models.Product;
 import com.nexora.elegance.databinding.FragmentWishlistBinding;
-import com.nexora.elegance.ui.adapters.ProductAdapter;
+import com.nexora.elegance.adapters.ProductAdapter;
 import com.nexora.elegance.ui.product.ProductDetailsActivity;
 
 import java.util.ArrayList;

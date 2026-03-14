@@ -19,9 +19,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import com.nexora.elegance.data.models.Order;
+import com.nexora.elegance.models.Order;
 import com.nexora.elegance.databinding.FragmentOrderHistoryBinding;
-import com.nexora.elegance.ui.adapters.OrderAdapter;
+import com.nexora.elegance.adapters.OrderAdapter;
 import com.nexora.elegance.ui.orders.OrderDetailsActivity;
 
 import java.util.ArrayList;

@@ -15,9 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.nexora.elegance.data.models.CartItem;
+import com.nexora.elegance.models.CartItem;
 import com.nexora.elegance.databinding.FragmentCartBinding;
-import com.nexora.elegance.ui.adapters.CartAdapter;
+import com.nexora.elegance.adapters.CartAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

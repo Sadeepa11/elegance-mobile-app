@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.nexora.elegance.data.models.CartItem;
-import com.nexora.elegance.data.models.Order;
+import com.nexora.elegance.models.CartItem;
+import com.nexora.elegance.models.Order;
 import com.nexora.elegance.databinding.ActivityOrderDetailsBinding;
-import com.nexora.elegance.ui.adapters.OrderDetailsAdapter;
+import com.nexora.elegance.adapters.OrderDetailsAdapter;
 
 import java.io.File;
 import java.io.FileOutputStream;

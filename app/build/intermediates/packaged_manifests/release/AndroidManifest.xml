@@ -54,7 +54,7 @@
         android:theme="@style/Theme.Elegance" >
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_MAPS_API_KEY" />
+            android:value="AIzaSyDKn_LinOJ-29JuMb4mH7lgjqwgotRkdRU" />
 
         <activity
             android:name="com.nexora.elegance.ui.splash.SplashActivity"
@@ -69,6 +69,10 @@
         <activity
             android:name="com.nexora.elegance.MainActivity"
             android:exported="false" />
+        <activity
+            android:name="com.nexora.elegance.ui.map.MapActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Elegance.NoActionBar" />
         <activity
             android:name="com.nexora.elegance.ui.auth.LoginActivity"
             android:exported="false"
@@ -102,7 +106,7 @@
 
         <!-- Firebase Cloud Messaging Service -->
         <service
-            android:name="com.nexora.elegance.fcm.MyFirebaseMessagingService"
+            android:name="com.nexora.elegance.services.MyFirebaseMessagingService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

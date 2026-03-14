@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.nexora.elegance.R;
-import com.nexora.elegance.data.models.Product;
-import com.nexora.elegance.ui.adapters.ProductImageAdapter;
+import com.nexora.elegance.models.Product;
+import com.nexora.elegance.adapters.ProductImageAdapter;
 import com.nexora.elegance.utils.AnimationHelper;
 
 import java.util.ArrayList;
@@ -387,7 +387,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     }
                 }
 
-                com.nexora.elegance.data.models.CartItem activeItem = new com.nexora.elegance.data.models.CartItem(
+                com.nexora.elegance.models.CartItem activeItem = new com.nexora.elegance.models.CartItem(
                         product.getId(),
                         product.getId(),
                         product.getName(),
@@ -401,7 +401,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         availableColors,
                         stockMap);
 
-                java.util.List<com.nexora.elegance.data.models.CartItem> customCartList = new java.util.ArrayList<>();
+                java.util.List<com.nexora.elegance.models.CartItem> customCartList = new java.util.ArrayList<>();
                 customCartList.add(activeItem);
 
                 android.content.Intent intent = new android.content.Intent(this,
@@ -451,7 +451,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
 
         // Create Cart Item and persist to Firestore
-        com.nexora.elegance.data.models.CartItem cartItem = new com.nexora.elegance.data.models.CartItem(
+        com.nexora.elegance.models.CartItem cartItem = new com.nexora.elegance.models.CartItem(
                 product.getId() + "_" + System.currentTimeMillis(),
                 product.getId(),
                 product.getName(),

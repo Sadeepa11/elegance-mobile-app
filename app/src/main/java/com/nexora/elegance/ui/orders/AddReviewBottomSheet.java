@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.nexora.elegance.data.models.CartItem;
+import com.nexora.elegance.models.CartItem;
 import com.nexora.elegance.databinding.BottomSheetAddReviewBinding;
 
 /**
