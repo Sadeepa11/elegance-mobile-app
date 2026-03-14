@@ -26,6 +26,14 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nexora.elegance.R;
 
+/**
+ * MapActivity handles the interactive map where users find shops and get directions.
+ * Key Features for Beginners:
+ * - GoogleMap Integration: Using ‘OnMapReadyCallback’ to know when the map is ready to use.
+ * - Dynamic Direction Routing: Uses Google Directions API to draw paths on the map.
+ * - Custom Bitmaps: Generates ‘modern’ marker pins using Java Canvas drawing.
+ * - Real-time Location: Fetches the user's current GPS position.
+ */
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -47,6 +55,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        // Setup the top Toolbar with a back (home) button
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -55,30 +64,38 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
+        // Initialize UI text fields for shop name and travel details
         tvShopName = findViewById(R.id.tvShopName);
         tvTravelTime = findViewById(R.id.tvTravelTime);
         tvDistance = findViewById(R.id.tvDistance);
         modeToggleGroup = findViewById(R.id.modeToggleGroup);
 
+        // Listener for transport mode switches (Driving, Walking, Cycling)
         modeToggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (isChecked) {
                 if (checkedId == R.id.btnDriving) currentTransportMode = "driving";
                 else if (checkedId == R.id.btnWalking) currentTransportMode = "walking";
                 else if (checkedId == R.id.btnCycling) currentTransportMode = "bicycling";
+                // Request a new route whenever the mode changes
                 drawRouteToShop();
             }
         });
 
+        // Initialize the fragment that actually contains the Google Map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
         if (mapFragment != null) {
+            // This starts the asynchronous process of loading the map
             mapFragment.getMapAsync(this);
         }
 
+        // Setup the client that allows us to find the user's GPS coordinates
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        // Setup Quick-action buttons (Floating Action Buttons)
         findViewById(R.id.fabMyLocation).setOnClickListener(v -> getUserLocation());
         findViewById(R.id.fabDrawRoute).setOnClickListener(v -> drawRouteToShop());
 
+        // Read specific shop details passed from the sidebar or product screens
         handleIntentData(getIntent());
     }
 
@@ -122,6 +139,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         getUserLocation();
     }
 
+    /**
+     * This method renders a modern looking PIN marker on the map using pure Java code (Canvas).
+     * @param iconResId The resource ID of the logo image to put in the circle
+     * @param colorHex The color of the pin (e.g., "#E91E63" for shops)
+     */
     private com.google.android.gms.maps.model.BitmapDescriptor getModernMarker(int iconResId, String colorHex) {
         int width = 120;
         int height = 160;
@@ -130,7 +152,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         android.graphics.Paint paint = new android.graphics.Paint();
         paint.setAntiAlias(true);
 
-        // Draw Pin Shape
+        // 1. Draw the teardrop/pin shape manually using a Path
         android.graphics.Path path = new android.graphics.Path();
         path.moveTo(width / 2f, height);
         path.cubicTo(width / 2f, height, 0, height * 0.6f, 0, width / 2f);
@@ -141,11 +163,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         paint.setColor(android.graphics.Color.parseColor(colorHex));
         canvas.drawPath(path, paint);
 
-        // Draw inner white circle
+        // 2. Draw a white inner circle where the icon will sit
         paint.setColor(android.graphics.Color.WHITE);
         canvas.drawCircle(width / 2f, width / 2f, (width / 2f) - 10, paint);
 
-        // Draw Icon/Logo
+        // 3. Draw the actual logo on top of the white circle
         android.graphics.drawable.Drawable drawable = androidx.core.content.ContextCompat.getDrawable(this, iconResId);
         if (drawable != null) {
             int padding = 20;
@@ -153,6 +175,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             drawable.draw(canvas);
         }
 
+        // Convert the rendered Java Bitmap into a format Google Maps can use as an icon
         return com.google.android.gms.maps.model.BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 

@@ -43,6 +43,15 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * MainActivity is the core entry point and coordinator for the Elegance mobile app.
+ * It manages:
+ * - The primary sidebar navigation (DrawerLayout).
+ * - The custom bottom navigation bar for quick access to Home, Wishlist, Cart, etc.
+ * - Fragment switching (swapping different screens into the main container).
+ * - App-wide listeners like real-time Firestore updates for cart and wishlist badges.
+ * - Background synchronization services.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -57,21 +66,30 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Apply theme before super.onCreate
+        // First, check and apply the user's theme preference (Dark or Light mode)
         applySettingsTheme();
         
         super.onCreate(savedInstanceState);
+        
+        // Inflate the layout using ViewBinding for easier access to UI elements
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Initialize background tasks and setup UI components
+        // Initialize background tasks to keep data fresh
         scheduleBackgroundSync();
+        
+        // Load the initial screen (Home) so the app doesn't start empty
         loadFragment(new HomeFragment());
-        setupNavigation();
-        setupSidebar();
+        
+        // Setup all our navigation components
+        setupNavigation(); // Bottom tabs
+        setupSidebar();    // Left drawer
+        
+        // Initialize the badges that show counts on top of icons (e.g., number of items in cart)
         setupWishlistBadge();
         setupCartBadge();
         
+        // Check for Android 13+ notification permissions and get FCM token for push notifications
         checkNotificationPermission();
         getFcmToken();
     }
@@ -86,25 +104,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Configures the Left Sidebar (Navigation Drawer).
+     * This menu handles choosing specific shops or toggling settings like Dark Mode.
+     */
     private void setupSidebar() {
         binding.navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
+            
+            // Check which sidebar item was clicked
             if (id == R.id.nav_theme_toggle || id == R.id.nav_notification_toggle) {
-                // Return false to prevent item selection background
+                // Return false to prevent item selection background for switches
                 return false;
             } else if (id == R.id.nav_shop_rathmalana) {
+                // Open the Map focused on the Rathmalana Shop
                 android.content.Intent intent = new android.content.Intent(MainActivity.this, com.nexora.elegance.ui.map.MapActivity.class);
                 intent.putExtra("shopName", "Rathmalana");
                 intent.putExtra("lat", 6.823653);
                 intent.putExtra("lng", 79.886595);
                 startActivity(intent);
             } else if (id == R.id.nav_shop_kohuwala) {
+                // Open the Map focused on the Kohuwala Shop
                 android.content.Intent intent = new android.content.Intent(MainActivity.this, com.nexora.elegance.ui.map.MapActivity.class);
                 intent.putExtra("shopName", "Kohuwala");
                 intent.putExtra("lat", 6.862040);
                 intent.putExtra("lng", 79.888064);
                 startActivity(intent);
             }
+            // Close the drawer automatically after making a selection
             binding.drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });

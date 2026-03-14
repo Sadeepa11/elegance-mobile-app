@@ -1,12 +1,19 @@
 package com.nexora.elegance.models;
 
+/**
+ * UserModel represents a User in the Elegance system.
+ * This class is a "POJO" (Plain Old Java Object) used to transfer user data
+ * between the Firebase Firestore database and the App's UI.
+ */
 public class UserModel {
+    // Unique ID from Firebase Authentication
     private String uid;
     private String name;
     private String email;
-    private String role; // "buyer" or "seller"
+    // defines if the user is a customer ("buyer") or a shop owner ("seller")
+    private String role; 
 
-    // New fields from Profile mock
+    // Location details for shipping and profile management
     private String postalCode;
     private String address;
     private String city;
@@ -14,10 +21,14 @@ public class UserModel {
     private String district;
     private String country;
 
+    // Link to the user's profile picture stored in the cloud
     private String profileImageUrl;
 
+    /**
+     * Empty constructor required by Firebase Firestore to convert 
+     * database documents into Java Objects.
+     */
     public UserModel() {
-        // Required for Firestore
     }
 
     public UserModel(String uid, String name, String email, String role) {
