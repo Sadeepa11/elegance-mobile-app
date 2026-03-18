@@ -38,11 +38,11 @@ com.nexora.elegance.app-glide-4.16.0-36 C:\Users\stf\.gradle\caches\transforms-4
 com.nexora.elegance.app-drawerlayout-1.1.1-37 C:\Users\stf\.gradle\caches\transforms-4\f71a229c61de5f2f1c0824447da91ef0\transformed\drawerlayout-1.1.1\res
 com.nexora.elegance.app-profileinstaller-1.3.0-38 C:\Users\stf\.gradle\caches\transforms-4\fcd10b6088c362fc89e1dc3c5a245ca9\transformed\profileinstaller-1.3.0\res
 com.nexora.elegance.app-lifecycle-livedata-core-2.6.2-39 C:\Users\stf\.gradle\caches\transforms-4\fde11ff0f544acb583d0b16223abd05c\transformed\lifecycle-livedata-core-2.6.2\res
-com.nexora.elegance.app-google-services-40 D:\Elegance\app\build\generated\res\google-services\release
-com.nexora.elegance.app-pngs-41 D:\Elegance\app\build\generated\res\pngs\release
-com.nexora.elegance.app-resValues-42 D:\Elegance\app\build\generated\res\resValues\release
-com.nexora.elegance.app-packageReleaseResources-43 D:\Elegance\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
-com.nexora.elegance.app-packageReleaseResources-44 D:\Elegance\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
-com.nexora.elegance.app-merged_res-45 D:\Elegance\app\build\intermediates\merged_res\release
-com.nexora.elegance.app-main-46 D:\Elegance\app\src\main\res
-com.nexora.elegance.app-release-47 D:\Elegance\app\src\release\res
+com.nexora.elegance.app-google-services-40 D:\Elegance full\Elegance\app\build\generated\res\google-services\release
+com.nexora.elegance.app-pngs-41 D:\Elegance full\Elegance\app\build\generated\res\pngs\release
+com.nexora.elegance.app-resValues-42 D:\Elegance full\Elegance\app\build\generated\res\resValues\release
+com.nexora.elegance.app-packageReleaseResources-43 D:\Elegance full\Elegance\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.nexora.elegance.app-packageReleaseResources-44 D:\Elegance full\Elegance\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.nexora.elegance.app-merged_res-45 D:\Elegance full\Elegance\app\build\intermediates\merged_res\release
+com.nexora.elegance.app-main-46 D:\Elegance full\Elegance\app\src\main\res
+com.nexora.elegance.app-release-47 D:\Elegance full\Elegance\app\src\release\res

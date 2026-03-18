@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -26,6 +27,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDKn_LinOJ-29JuMb4mH7lgjqwgotRkdRU" />
 
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="EleganceChannel" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_logo" />
+
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
@@ -35,6 +44,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.splash.NoInternetActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Elegance.NoActionBar" />
 
         <activity
             android:name=".MainActivity"
@@ -61,6 +75,11 @@
             android:theme="@style/Theme.Elegance.NoActionBar" />
 
         <activity
+            android:name=".ui.product.CategoryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Elegance.NoActionBar" />
+
+        <activity
             android:name=".ui.profile.ProfileUpdateActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"
@@ -80,6 +99,15 @@
             android:name=".receivers.NotificationReceiver"
             android:enabled="true"
             android:exported="false" />
+
+        <receiver
+            android:name=".receivers.NotificationActionReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.nexora.elegance.ACTION_MARK_AS_READ" />
+            </intent-filter>
+        </receiver>
 
         <!-- Firebase Cloud Messaging Service -->
         <service

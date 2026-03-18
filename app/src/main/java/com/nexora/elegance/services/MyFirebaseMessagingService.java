@@ -39,10 +39,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String title = remoteMessage.getData().get("title");
             String body = remoteMessage.getData().get("body");
             String orderId = remoteMessage.getData().get("orderId");
+            String itemsJson = remoteMessage.getData().get("items");
             
-            if (title != null && body != null) {
-                NotificationHelper.showNotification(this, title, body);
-            }
+            if (title == null) title = "Order Status Update";
+            if (body == null) body = "Your order status has been updated.";
+
+            // Show notification using our enhanced helper
+            NotificationHelper.showOrderNotification(this, title, body, orderId, itemsJson);
 
             // Send local broadcast to refresh UI if needed
             Intent intent = new Intent("com.nexora.elegance.ORDER_UPDATED");

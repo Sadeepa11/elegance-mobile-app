@@ -13,6 +13,8 @@ import com.nexora.elegance.R;
 import com.nexora.elegance.data.SessionManager;
 import com.nexora.elegance.databinding.ActivitySplashBinding;
 import com.nexora.elegance.ui.auth.LoginActivity;
+import com.nexora.elegance.utils.NetworkUtils;
+import com.nexora.elegance.ui.splash.NoInternetActivity;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -36,6 +38,13 @@ public class SplashActivity extends AppCompatActivity {
 
         // Delay and navigate
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            // Check for internet connection
+            if (!NetworkUtils.isNetworkAvailable(this)) {
+                startActivity(new Intent(SplashActivity.this, NoInternetActivity.class));
+                finish();
+                return;
+            }
+
             SessionManager sessionManager = new SessionManager(this);
             Intent intent;
             if (sessionManager.isLoggedIn()) {

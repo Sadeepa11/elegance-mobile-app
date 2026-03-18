@@ -1,6 +1,6 @@
 <lint-module
     format="1"
-    dir="D:\Elegance\app"
+    dir="D:\Elegance full\Elegance\app"
     name=":app"
     type="APP"
     maven="Elegance:app:"

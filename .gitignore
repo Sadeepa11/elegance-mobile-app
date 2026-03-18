@@ -1,0 +1,44 @@
+# Gradle files
+.gradle/
+build/
+
+# Android Studio files
+.idea/
+*.iml
+local.properties
+.cxx/
+captures/
+
+# Built artifacts
+*.apk
+*.aar
+*.ap_
+*.dex
+
+# Other
+*.log
+*.txt
+keystore.properties
+!last_build.txt
+!build_error.txt
+!build_error2.txt
+!build_error3.txt
+!build_output.txt
+!gradlew_output.txt
+!out.txt
+!out8.txt
+!assemble_log.txt
+!compile_log.txt
+!compile_log2.txt
+!android_build.log
+!android_build2.log
+!android_build3.log
+!android_build4.log
+!android_build5.log
+!android_build6.log
+!error.log
+!output.log
+!build.log
+!check.log
+!build_error.log
+!last_build.txt

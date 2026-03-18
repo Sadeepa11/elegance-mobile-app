@@ -3176,6 +3176,7 @@ drawable ic_launcher_foreground
 drawable ic_location
 drawable ic_lock
 drawable ic_logo
+drawable ic_logout
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
@@ -3447,6 +3448,7 @@ id cartRecyclerView
 id categoryImage
 id categoryName
 id categoryRecyclerView
+id categoryTitle
 id center
 id centerCrop
 id centerInside
@@ -3484,6 +3486,7 @@ id compress
 id confirmPasswordEdit
 id confirmPasswordLayout
 id confirm_button
+id connectingProgressBar
 id constraint
 id container
 id containerCity
@@ -3667,6 +3670,7 @@ id loginButton
 id loginLink
 id logoImage
 id logoutButton
+id logoutContainer
 id m3_side_sheet
 id main_back
 id mapFragment
@@ -3698,6 +3702,7 @@ id material_value_index
 id matrix
 id menuIcon
 id message
+id messageText
 id method_icon_image
 id middle
 id mini
@@ -3853,6 +3858,7 @@ id rectangles
 id registerButton
 id registerLink
 id report_drawn
+id retryButton
 id retry_btn
 id reverseSawtooth
 id reviewInput
@@ -3986,6 +3992,7 @@ id themeSwitch
 id time
 id title
 id titleDividerNoCustom
+id titleText
 id title_template
 id toggle
 id toolbar
@@ -4152,10 +4159,12 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_category
 layout activity_checkout
 layout activity_login
 layout activity_main
 layout activity_map
+layout activity_no_internet
 layout activity_order_details
 layout activity_product_details
 layout activity_profile_update

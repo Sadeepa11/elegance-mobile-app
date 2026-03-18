@@ -116,6 +116,7 @@ drawable ic_launcher_foreground
 drawable ic_location
 drawable ic_lock
 drawable ic_logo
+drawable ic_logout
 drawable ic_menu
 drawable ic_mic
 drawable ic_minus
@@ -171,6 +172,7 @@ id cartRecyclerView
 id categoryImage
 id categoryName
 id categoryRecyclerView
+id categoryTitle
 id changePasswordText
 id checkoutOrderQtyText
 id checkoutOrderTotalText
@@ -188,6 +190,7 @@ id citySpinner
 id colorsSection
 id confirmPasswordEdit
 id confirmPasswordLayout
+id connectingProgressBar
 id containerCity
 id containerCountry
 id containerDistrict
@@ -243,9 +246,11 @@ id loginButton
 id loginLink
 id logoImage
 id logoutButton
+id logoutContainer
 id mapFragment
 id mapView
 id menuIcon
+id messageText
 id modalProductImage
 id modalProductName
 id modalProductPrice
@@ -301,6 +306,7 @@ id qtyLayout
 id qtySection
 id registerButton
 id registerLink
+id retryButton
 id reviewInput
 id reviewRatingBar
 id reviewTitleText
@@ -329,6 +335,7 @@ id taglineText
 id termsCheckbox
 id textQty
 id themeSwitch
+id titleText
 id toolbar
 id tvDistance
 id tvShopName
@@ -339,10 +346,12 @@ id wishlistBadge
 id wishlistButton
 id wishlistIcon
 id wishlistRecyclerView
+layout activity_category
 layout activity_checkout
 layout activity_login
 layout activity_main
 layout activity_map
+layout activity_no_internet
 layout activity_order_details
 layout activity_product_details
 layout activity_profile_update

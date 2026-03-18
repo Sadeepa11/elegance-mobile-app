@@ -51,16 +51,55 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         // Extract Order object from the starting Intent
         currentOrder = (Order) getIntent().getSerializableExtra("order");
-        if (currentOrder == null) {
+        String orderId = getIntent().getStringExtra("orderId");
+
+        if (currentOrder == null && orderId != null) {
+            fetchOrderDetails(orderId);
+        } else if (currentOrder == null) {
             Toast.makeText(this, "Order not found", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        } else {
+            setupUI();
+            setupListeners();
+            startRealTimeUpdates();
+            setupBroadcastReceiver();
+        }
+    }
+
+    private void fetchOrderDetails(String orderId) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Toast.makeText(this, "Please login to view order details", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
-        setupUI();
-        setupListeners();
-        startRealTimeUpdates();
-        setupBroadcastReceiver();
+        FirebaseFirestore.getInstance()
+                .collection("users").document(user.getUid())
+                .collection("orders").document(orderId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        currentOrder = documentSnapshot.toObject(Order.class);
+                        if (currentOrder != null) {
+                            setupUI();
+                            setupListeners();
+                            startRealTimeUpdates();
+                            setupBroadcastReceiver();
+                        } else {
+                            Toast.makeText(this, "Failed to parse order details", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    } else {
+                        Toast.makeText(this, "Order not found", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error fetching order: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
+                });
     }
 
     private void startRealTimeUpdates() {

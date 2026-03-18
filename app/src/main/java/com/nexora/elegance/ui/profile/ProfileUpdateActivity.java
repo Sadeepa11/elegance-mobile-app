@@ -303,18 +303,57 @@ public class ProfileUpdateActivity extends AppCompatActivity {
             city = "";
 
         // Update profile in Firestore
-        mFirestore.collection("users").document(uid).update(
-                "postalCode", binding.postalCodeEdit.getText().toString(),
-                "address", binding.addressEdit.getText().toString(),
-                "city", city,
-                "state", state,
-                "district", district,
-                "country", country).addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
-                    finish();
-                }).addOnFailureListener(e -> {
-                    Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show();
-                });
+        java.util.Map<String, Object> updates = new java.util.HashMap<>();
+        updates.put("postalCode", binding.postalCodeEdit.getText().toString());
+        updates.put("address", binding.addressEdit.getText().toString());
+        updates.put("city", city);
+        updates.put("state", state);
+        updates.put("district", district);
+        updates.put("country", country);
+
+        if (photoUri != null) {
+            String base64Image = convertImageToBase64(photoUri);
+            if (base64Image != null) {
+                updates.put("profileImageUrl", base64Image);
+            }
+        }
+
+        mFirestore.collection("users").document(uid).update(updates).addOnSuccessListener(aVoid -> {
+            Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+            finish();
+        }).addOnFailureListener(e -> {
+            Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    /**
+     * Converts an image from a Uri into a Base64 encoded string.
+     * Includes compression to ensure it fits within Firestore's 1MB limit.
+     */
+    private String convertImageToBase64(Uri uri) {
+        try {
+            android.graphics.Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+            // Resize image to a reasonable size (max 400x400) to keep Base64 string small
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            float bitmapRatio = (float) width / (float) height;
+            if (bitmapRatio > 1) {
+                width = 400;
+                height = (int) (width / bitmapRatio);
+            } else {
+                height = 400;
+                width = (int) (height * bitmapRatio);
+            }
+            android.graphics.Bitmap scaledBitmap = android.graphics.Bitmap.createScaledBitmap(bitmap, width, height, true);
+            
+            java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+            scaledBitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 70, baos);
+            byte[] byteArray = baos.toByteArray();
+            return "data:image/jpeg;base64," + android.util.Base64.encodeToString(byteArray, android.util.Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private void initLaunchers() {

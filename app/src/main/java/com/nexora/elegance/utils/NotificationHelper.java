@@ -19,6 +19,10 @@ public class NotificationHelper {
     private static final String CHANNEL_NAME = "Order Updates";
 
     public static void showNotification(Context context, String title, String message) {
+        showOrderNotification(context, title, message, null, null);
+    }
+
+    public static void showOrderNotification(Context context, String title, String message, String orderId, String itemsJson) {
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -29,13 +33,35 @@ public class NotificationHelper {
                 channel.setDescription("Notifications for order status changes");
                 channel.enableLights(true);
                 channel.enableVibration(true);
+                channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC);
                 notificationManager.createNotificationChannel(channel);
             }
 
-            Intent intent = new Intent(context, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 
-                    PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
+            int notificationId = (int) System.currentTimeMillis();
+
+            // View Action
+            Intent viewIntent = new Intent(context, com.nexora.elegance.ui.orders.OrderDetailsActivity.class);
+            if (orderId != null) {
+                viewIntent.putExtra("orderId", orderId);
+            }
+            viewIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            
+            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                flags |= PendingIntent.FLAG_IMMUTABLE;
+            }
+            PendingIntent viewPendingIntent = PendingIntent.getActivity(context, notificationId + 1, viewIntent, flags);
+
+            // Mark as Read Action
+            Intent markAsReadIntent = new Intent(context, com.nexora.elegance.receivers.NotificationActionReceiver.class);
+            markAsReadIntent.setAction(com.nexora.elegance.receivers.NotificationActionReceiver.ACTION_MARK_AS_READ);
+            markAsReadIntent.putExtra(com.nexora.elegance.receivers.NotificationActionReceiver.EXTRA_NOTIFICATION_ID, notificationId);
+            
+            int broadcastFlags = PendingIntent.FLAG_UPDATE_CURRENT;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                broadcastFlags |= PendingIntent.FLAG_IMMUTABLE;
+            }
+            PendingIntent markAsReadPendingIntent = PendingIntent.getBroadcast(context, notificationId + 2, markAsReadIntent, broadcastFlags);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_logo)
@@ -43,10 +69,13 @@ public class NotificationHelper {
                     .setContentText(message)
                     .setAutoCancel(true)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                     .setDefaults(NotificationCompat.DEFAULT_ALL)
-                    .setContentIntent(pendingIntent);
+                    .setContentIntent(viewPendingIntent)
+                    .addAction(0, "View", viewPendingIntent)
+                    .addAction(0, "Mark as Read", markAsReadPendingIntent);
 
-            notificationManager.notify((int) System.currentTimeMillis(), builder.build());
+            notificationManager.notify(notificationId, builder.build());
         }
     }
 }

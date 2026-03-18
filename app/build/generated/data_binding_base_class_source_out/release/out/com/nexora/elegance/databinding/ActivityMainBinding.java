@@ -36,6 +36,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final FrameLayout fragmentContainer;
 
   @NonNull
+  public final LinearLayout logoutContainer;
+
+  @NonNull
   public final RelativeLayout navCart;
 
   @NonNull
@@ -59,15 +62,16 @@ public final class ActivityMainBinding implements ViewBinding {
   private ActivityMainBinding(@NonNull DrawerLayout rootView,
       @NonNull LinearLayout bottomNavigationContainer, @NonNull TextView cartBadge,
       @NonNull DrawerLayout drawerLayout, @NonNull FrameLayout fragmentContainer,
-      @NonNull RelativeLayout navCart, @NonNull LinearLayout navHome,
-      @NonNull LinearLayout navOrderHistory, @NonNull LinearLayout navSearch,
-      @NonNull LinearLayout navWishlist, @NonNull NavigationView navigationView,
-      @NonNull TextView wishlistBadge) {
+      @NonNull LinearLayout logoutContainer, @NonNull RelativeLayout navCart,
+      @NonNull LinearLayout navHome, @NonNull LinearLayout navOrderHistory,
+      @NonNull LinearLayout navSearch, @NonNull LinearLayout navWishlist,
+      @NonNull NavigationView navigationView, @NonNull TextView wishlistBadge) {
     this.rootView = rootView;
     this.bottomNavigationContainer = bottomNavigationContainer;
     this.cartBadge = cartBadge;
     this.drawerLayout = drawerLayout;
     this.fragmentContainer = fragmentContainer;
+    this.logoutContainer = logoutContainer;
     this.navCart = navCart;
     this.navHome = navHome;
     this.navOrderHistory = navOrderHistory;
@@ -124,6 +128,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.logoutContainer;
+      LinearLayout logoutContainer = ViewBindings.findChildViewById(rootView, id);
+      if (logoutContainer == null) {
+        break missingId;
+      }
+
       id = R.id.nav_cart;
       RelativeLayout navCart = ViewBindings.findChildViewById(rootView, id);
       if (navCart == null) {
@@ -167,8 +177,8 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((DrawerLayout) rootView, bottomNavigationContainer, cartBadge,
-          drawerLayout, fragmentContainer, navCart, navHome, navOrderHistory, navSearch,
-          navWishlist, navigationView, wishlistBadge);
+          drawerLayout, fragmentContainer, logoutContainer, navCart, navHome, navOrderHistory,
+          navSearch, navWishlist, navigationView, wishlistBadge);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

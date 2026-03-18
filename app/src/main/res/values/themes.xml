@@ -17,6 +17,9 @@
         <item name="colorTertiaryContainer">@color/md_theme_light_tertiaryContainer</item>
         <item name="colorOnTertiaryContainer">@color/md_theme_light_onTertiaryContainer</item>
 
+        <item name="colorError">@color/md_theme_light_error</item>
+        <item name="colorOutlineVariant">@color/md_theme_light_outlineVariant</item>
+
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorSurface</item>
     </style>

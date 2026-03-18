@@ -73,8 +73,7 @@
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_marginStart="4dp"
-                android:src="@drawable/ic_back"
-                android:rotation="-90"
+                android:src="@drawable/ic_arrow_down"
                 app:tint="#1A1A1A" />
         </LinearLayout>
     </LinearLayout>

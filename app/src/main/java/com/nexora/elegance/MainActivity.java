@@ -40,6 +40,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.nexora.elegance.data.SessionManager;
+import androidx.appcompat.app.AlertDialog;
+import android.content.Intent;
+import com.nexora.elegance.ui.auth.LoginActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -58,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     private View currentSelected = null;
     private ListenerRegistration wishlistListener;
     private ListenerRegistration cartListener;
+    private ListenerRegistration profileListener;
+    private SessionManager sessionManager;
 
     private static final int REQUEST_CODE_NOTIFICATION = 1001;
     private static final int COLOR_INACTIVE = Color.parseColor("#999999");
@@ -88,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
         // Initialize the badges that show counts on top of icons (e.g., number of items in cart)
         setupWishlistBadge();
         setupCartBadge();
+        setupProfileImageListener();
+
+        sessionManager = new SessionManager(this);
         
         // Check for Android 13+ notification permissions and get FCM token for push notifications
         checkNotificationPermission();
@@ -180,6 +189,38 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
+
+        // Logout logic
+        View logoutBtn = findViewById(R.id.logoutContainer);
+        if (logoutBtn != null) {
+            logoutBtn.setOnClickListener(v -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                showLogoutDialog();
+            });
+        }
+    }
+
+    private void showLogoutDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Logout", (dialog, which) -> performLogout())
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void performLogout() {
+        // Sign out from Firebase
+        FirebaseAuth.getInstance().signOut();
+        
+        // Clear session data
+        sessionManager.logout();
+        
+        // Redirect to LoginActivity
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void syncNotificationSwitch(androidx.appcompat.widget.SwitchCompat notificationSwitch) {
@@ -280,6 +321,36 @@ public class MainActivity extends AppCompatActivity {
         }
         if (cartListener != null) {
             cartListener.remove();
+        }
+        if (profileListener != null) {
+            profileListener.remove();
+        }
+    }
+
+    private void setupProfileImageListener() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
+        profileListener = FirebaseFirestore.getInstance()
+                .collection("users").document(user.getUid())
+                .addSnapshotListener((snapshot, error) -> {
+                    if (error != null || snapshot == null || !snapshot.exists()) return;
+
+                    String imageUrl = snapshot.getString("profileImageUrl");
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        updateHeaderProfileImage(imageUrl);
+                    }
+                });
+    }
+
+    private void updateHeaderProfileImage(String imageUrl) {
+        // Find profile image in the current layout (could be in any fragment)
+        View profileImageView = findViewById(R.id.profileImage);
+        if (profileImageView instanceof ImageView) {
+            com.bumptech.glide.Glide.with(this)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.profile_user)
+                    .into((ImageView) profileImageView);
         }
     }
 

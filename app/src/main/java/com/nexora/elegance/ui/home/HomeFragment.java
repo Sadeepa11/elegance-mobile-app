@@ -112,8 +112,13 @@ public class HomeFragment extends Fragment {
          * Configures the Horizontal RecyclerView for Categories.
          */
         private void setupCategories() {
-                categoryAdapter = new CategoryAdapter(categoryList, category -> Toast
-                                .makeText(getContext(), "Category: " + category.getName(), Toast.LENGTH_SHORT).show());
+                categoryAdapter = new CategoryAdapter(categoryList, category -> {
+                        if (getContext() != null) {
+                                Intent intent = new Intent(getContext(), com.nexora.elegance.ui.product.CategoryActivity.class);
+                                intent.putExtra("category_name", category.getName());
+                                startActivity(intent);
+                        }
+                });
 
                 binding.categoryRecyclerView.setLayoutManager(
                                 new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
