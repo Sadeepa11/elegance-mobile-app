@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Customer Support"
-        android:textColor="@color/brand_pink"
+        android:textColor="?attr/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="48dp"
-        android:backgroundTint="@color/brand_pink"
+        android:backgroundTint="?attr/colorPrimary"
         android:text="Call Elegance Support"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/sensorStatus" />

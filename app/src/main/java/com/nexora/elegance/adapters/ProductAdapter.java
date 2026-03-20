@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.HashSet;
 import android.graphics.Color;
 import com.nexora.elegance.utils.AnimationHelper;
+import com.google.android.material.color.MaterialColors;
 
 /**
  * ProductAdapter manages the grid display of products on Home and Category
@@ -70,9 +71,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 .into(holder.binding.productImage);
 
         if (wishlistedIds.contains(product.getId())) {
-            holder.binding.wishlistIcon.setColorFilter(Color.parseColor("#E91E63"));
+            holder.binding.wishlistButton.setColorFilter(MaterialColors.getColor(holder.binding.getRoot(), com.google.android.material.R.attr.colorPrimary));
         } else {
-            holder.binding.wishlistIcon.setColorFilter(Color.parseColor("#1A1A1A"));
+            holder.binding.wishlistButton.setColorFilter(MaterialColors.getColor(holder.binding.getRoot(), com.google.android.material.R.attr.colorOnSurface));
         }
 
         AnimationHelper.addPressAnimation(holder.binding.getRoot());

@@ -39,19 +39,6 @@ public class NotificationHelper {
 
             int notificationId = (int) System.currentTimeMillis();
 
-            // View Action
-            Intent viewIntent = new Intent(context, com.nexora.elegance.ui.orders.OrderDetailsActivity.class);
-            if (orderId != null) {
-                viewIntent.putExtra("orderId", orderId);
-            }
-            viewIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            
-            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                flags |= PendingIntent.FLAG_IMMUTABLE;
-            }
-            PendingIntent viewPendingIntent = PendingIntent.getActivity(context, notificationId + 1, viewIntent, flags);
-
             // Mark as Read Action
             Intent markAsReadIntent = new Intent(context, com.nexora.elegance.receivers.NotificationActionReceiver.class);
             markAsReadIntent.setAction(com.nexora.elegance.receivers.NotificationActionReceiver.ACTION_MARK_AS_READ);
@@ -68,12 +55,36 @@ public class NotificationHelper {
                     .setContentTitle(title)
                     .setContentText(message)
                     .setAutoCancel(true)
+                    .setColor(android.graphics.Color.parseColor("#FF4D6D"))
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                     .setDefaults(NotificationCompat.DEFAULT_ALL)
-                    .setContentIntent(viewPendingIntent)
-                    .addAction(0, "View", viewPendingIntent)
                     .addAction(0, "Mark as Read", markAsReadPendingIntent);
+
+            if (orderId != null) {
+                // View Action - Only for orders
+                Intent viewIntent = new Intent(context, com.nexora.elegance.ui.orders.OrderDetailsActivity.class);
+                viewIntent.putExtra("orderId", orderId);
+                viewIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                
+                int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    flags |= PendingIntent.FLAG_IMMUTABLE;
+                }
+                PendingIntent viewPendingIntent = PendingIntent.getActivity(context, notificationId + 1, viewIntent, flags);
+                
+                builder.setContentIntent(viewPendingIntent);
+                builder.addAction(0, "View", viewPendingIntent);
+            } else {
+                // Category Sync or General Notification - No specific activity
+                Intent mainIntent = new Intent(context, MainActivity.class);
+                int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    flags |= PendingIntent.FLAG_IMMUTABLE;
+                }
+                PendingIntent mainPendingIntent = PendingIntent.getActivity(context, notificationId, mainIntent, flags);
+                builder.setContentIntent(mainPendingIntent);
+            }
 
             notificationManager.notify(notificationId, builder.build());
         }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="?android:attr/colorBackground"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-60dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardElevation="8dp"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.Elegance.TopRoundedCard"
             app:strokeWidth="0dp"
@@ -72,7 +72,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="Join Elegance"
                     android:textAlignment="center"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
@@ -82,7 +82,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Create your account to start shopping"
                     android:textAlignment="center"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp" />
 
                 <!-- Name Input -->
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="Full Name"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -106,10 +106,10 @@
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusTopStart="12dp"
                     app:startIconDrawable="@drawable/ic_person"
-                    app:startIconTint="#1A1A1A"
-                    app:hintTextColor="#1A1A1A"
-                    app:boxStrokeColor="#1A1A1A"
-                    android:textColorHint="#1A1A1A">
+                    app:startIconTint="?attr/colorOnSurface"
+    app:hintTextColor="?attr/colorOnSurface"
+    app:boxStrokeColor="?attr/colorOnSurface"
+    android:textColorHint="?attr/colorOnSurface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nameEdit"
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Jane Doe"
                         android:inputType="textPersonName"
-                        android:textColor="#1A1A1A" />
+                        android:textColor="?attr/colorOnSurface" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Email -->
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Email"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -141,10 +141,10 @@
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusTopStart="12dp"
                     app:startIconDrawable="@drawable/ic_email"
-                    app:startIconTint="#1A1A1A"
-                    app:hintTextColor="#1A1A1A"
-                    app:boxStrokeColor="#1A1A1A"
-                    android:textColorHint="#1A1A1A">
+                    app:startIconTint="?attr/colorOnSurface"
+    app:hintTextColor="?attr/colorOnSurface"
+    app:boxStrokeColor="?attr/colorOnSurface"
+    android:textColorHint="?attr/colorOnSurface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/emailEdit"
@@ -152,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:hint="your.email@example.com"
                         android:inputType="textEmailAddress"
-                        android:textColor="#1A1A1A" />
+                        android:textColor="?attr/colorOnSurface" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Password -->
@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Password"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -177,11 +177,11 @@
                     app:boxCornerRadiusTopStart="12dp"
                     app:endIconMode="password_toggle"
                     app:startIconDrawable="@drawable/ic_lock"
-                    app:startIconTint="#1A1A1A"
-                    app:hintTextColor="#1A1A1A"
-                    app:boxStrokeColor="#1A1A1A"
-                    app:endIconTint="#1A1A1A"
-                    android:textColorHint="#1A1A1A">
+                    app:startIconTint="?attr/colorOnSurface"
+    app:hintTextColor="?attr/colorOnSurface"
+    app:boxStrokeColor="?attr/colorOnSurface"
+    app:endIconTint="?attr/colorOnSurface"
+    android:textColorHint="?attr/colorOnSurface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordEdit"
@@ -189,15 +189,15 @@
                         android:layout_height="wrap_content"
                         android:hint="Create a password"
                         android:inputType="textPassword"
-                        android:textColor="#1A1A1A" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:textColor="?attr/colorOnSurface" />
+               </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Must be at least 8 characters"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="12sp" />
 
                 <!-- Confirm Password -->
@@ -206,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Confirm Password"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -222,11 +222,11 @@
                     app:boxCornerRadiusTopStart="12dp"
                     app:endIconMode="password_toggle"
                     app:startIconDrawable="@drawable/ic_lock"
-                    app:startIconTint="#1A1A1A"
-                    app:hintTextColor="#1A1A1A"
-                    app:boxStrokeColor="#1A1A1A"
-                    app:endIconTint="#1A1A1A"
-                    android:textColorHint="#1A1A1A">
+                    app:startIconTint="?attr/colorOnSurface"
+    app:hintTextColor="?attr/colorOnSurface"
+    app:boxStrokeColor="?attr/colorOnSurface"
+    app:endIconTint="?attr/colorOnSurface"
+    android:textColorHint="?attr/colorOnSurface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/confirmPasswordEdit"
@@ -234,7 +234,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Confirm your password"
                         android:inputType="textPassword"
-                        android:textColor="#1A1A1A" />
+                        android:textColor="?attr/colorOnSurface" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Terms and Conditions -->
@@ -249,14 +249,14 @@
                         android:id="@+id/termsCheckbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:buttonTint="#9C4258"
-                        app:buttonIconTint="@color/white" />
+                        app:buttonTint="?attr/colorPrimary"
+                        app:buttonIconTint="?attr/colorOnPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="I agree to the Terms &amp; Conditions and Privacy Policy"
-                        android:textColor="#1A1A1A"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -287,14 +287,14 @@
                         android:layout_width="0dp"
                         android:layout_height="1dp"
                         android:layout_weight="1"
-                        android:background="#E0E0E0" />
+                        android:background="?attr/colorOutlineVariant" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="16dp"
                         android:text="OR"
-                        android:textColor="#1A1A1A"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="12sp" />
 
                     <View
@@ -314,7 +314,7 @@
                     android:background="@drawable/bg_social_button"
                     android:text="Continue with Google"
                     android:textAllCaps="false"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:icon="@drawable/ic_google"
@@ -331,7 +331,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="16dp"
                     android:text="Already have an account? Sign In"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp" />
 
             </LinearLayout>

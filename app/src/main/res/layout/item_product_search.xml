@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#FFFFFF">
+        android:background="?attr/colorSurface">
 
         <ImageView
             android:id="@+id/productImage"
@@ -35,7 +35,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="Product Name"
-                android:textColor="#1A1A1A"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="Product description goes here and can take up to two lines."
-                android:textColor="#757575"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="10sp" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="LKR499"
-                android:textColor="#1A1A1A"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:src="@android:drawable/star_on"
-                    app:tint="#E0E0E0" />
+                    app:tint="?attr/colorOutlineVariant" />
 
                 <TextView
                     android:id="@+id/productReviews"
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:text="4,990"
-                    android:textColor="#999999"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>

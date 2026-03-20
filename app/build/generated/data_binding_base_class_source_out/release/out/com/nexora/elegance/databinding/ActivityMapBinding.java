@@ -28,9 +28,6 @@ public final class ActivityMapBinding implements ViewBinding {
   public final FrameLayout bottomSheet;
 
   @NonNull
-  public final MaterialButton btnCycling;
-
-  @NonNull
   public final MaterialButton btnDriving;
 
   @NonNull
@@ -38,9 +35,6 @@ public final class ActivityMapBinding implements ViewBinding {
 
   @NonNull
   public final FloatingActionButton fabDrawRoute;
-
-  @NonNull
-  public final FloatingActionButton fabMyLocation;
 
   @NonNull
   public final MaterialButtonToggleGroup modeToggleGroup;
@@ -58,18 +52,15 @@ public final class ActivityMapBinding implements ViewBinding {
   public final TextView tvTravelTime;
 
   private ActivityMapBinding(@NonNull CoordinatorLayout rootView, @NonNull FrameLayout bottomSheet,
-      @NonNull MaterialButton btnCycling, @NonNull MaterialButton btnDriving,
-      @NonNull MaterialButton btnWalking, @NonNull FloatingActionButton fabDrawRoute,
-      @NonNull FloatingActionButton fabMyLocation,
+      @NonNull MaterialButton btnDriving, @NonNull MaterialButton btnWalking,
+      @NonNull FloatingActionButton fabDrawRoute,
       @NonNull MaterialButtonToggleGroup modeToggleGroup, @NonNull Toolbar toolbar,
       @NonNull TextView tvDistance, @NonNull TextView tvShopName, @NonNull TextView tvTravelTime) {
     this.rootView = rootView;
     this.bottomSheet = bottomSheet;
-    this.btnCycling = btnCycling;
     this.btnDriving = btnDriving;
     this.btnWalking = btnWalking;
     this.fabDrawRoute = fabDrawRoute;
-    this.fabMyLocation = fabMyLocation;
     this.modeToggleGroup = modeToggleGroup;
     this.toolbar = toolbar;
     this.tvDistance = tvDistance;
@@ -110,12 +101,6 @@ public final class ActivityMapBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btnCycling;
-      MaterialButton btnCycling = ViewBindings.findChildViewById(rootView, id);
-      if (btnCycling == null) {
-        break missingId;
-      }
-
       id = R.id.btnDriving;
       MaterialButton btnDriving = ViewBindings.findChildViewById(rootView, id);
       if (btnDriving == null) {
@@ -131,12 +116,6 @@ public final class ActivityMapBinding implements ViewBinding {
       id = R.id.fabDrawRoute;
       FloatingActionButton fabDrawRoute = ViewBindings.findChildViewById(rootView, id);
       if (fabDrawRoute == null) {
-        break missingId;
-      }
-
-      id = R.id.fabMyLocation;
-      FloatingActionButton fabMyLocation = ViewBindings.findChildViewById(rootView, id);
-      if (fabMyLocation == null) {
         break missingId;
       }
 
@@ -170,9 +149,8 @@ public final class ActivityMapBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMapBinding((CoordinatorLayout) rootView, bottomSheet, btnCycling,
-          btnDriving, btnWalking, fabDrawRoute, fabMyLocation, modeToggleGroup, toolbar, tvDistance,
-          tvShopName, tvTravelTime);
+      return new ActivityMapBinding((CoordinatorLayout) rootView, bottomSheet, btnDriving,
+          btnWalking, fabDrawRoute, modeToggleGroup, toolbar, tvDistance, tvShopName, tvTravelTime);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

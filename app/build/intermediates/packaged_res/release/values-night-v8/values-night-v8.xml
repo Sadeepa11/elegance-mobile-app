@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background_light">#1E1E1E</color>
+    <color name="black">#FFFFFF</color>
+    <color name="color_outline_themed">@color/md_theme_dark_outline</color>
+    <color name="color_surface_themed">@color/md_theme_dark_surface</color>
+    <color name="primary_text">#F8F8F8</color>
+    <color name="secondary_text">#BDBDBD</color>
+    <color name="white">#121212</color>
     <style name="Theme.Elegance" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
@@ -16,9 +23,13 @@
         <item name="colorTertiaryContainer">@color/md_theme_dark_tertiaryContainer</item>
         <item name="colorOnTertiaryContainer">@color/md_theme_dark_onTertiaryContainer</item>
 
+        <item name="colorSurface">@color/md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
+        <item name="android:windowBackground">@color/md_theme_dark_background</item>
+
         <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="android:windowBackground">?attr/colorSurface</item>
     </style>
     <style name="Theme.Elegance.NoActionBar" parent="Theme.Elegance">
         <item name="windowActionBar">false</item>

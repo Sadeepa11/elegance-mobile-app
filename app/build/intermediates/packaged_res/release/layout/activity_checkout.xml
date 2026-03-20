@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="?android:attr/colorBackground">
 
     <!-- Header -->
     <LinearLayout
@@ -22,7 +21,7 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_back"
             android:padding="6dp"
-            app:tint="#1A1A1A" />
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:layout_width="0dp"
@@ -30,7 +29,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Checkout"
-            android:textColor="#1A1A1A"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="20sp"
             android:layout_marginEnd="32dp"
             android:fontFamily="sans-serif-medium" />
@@ -41,7 +40,7 @@
         android:id="@+id/headerDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#EFEFEF"
+        android:background="?attr/colorOutlineVariant"
         app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
     <!-- Content -->
@@ -70,14 +69,14 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:src="@drawable/ic_location"
-                    app:tint="#1A1A1A" />
+                    app:tint="?attr/colorOnSurface" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Delivery Address"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -98,7 +97,7 @@
                     android:layout_marginEnd="12dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="?attr/colorSurface"
                     app:strokeWidth="0dp">
 
                     <RelativeLayout
@@ -111,7 +110,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Address :"
-                            android:textColor="#1A1A1A"
+                            android:textColor="?attr/colorOnSurface"
                             android:textSize="14sp" />
 
                         <ImageView
@@ -120,7 +119,7 @@
                             android:layout_height="16dp"
                             android:layout_alignParentEnd="true"
                             android:src="@drawable/ic_edit"
-                            app:tint="#666666" />
+                            app:tint="?attr/colorOnSurfaceVariant" />
 
                         <TextView
                             android:id="@+id/addressDetails"
@@ -130,7 +129,7 @@
                             android:layout_marginTop="8dp"
                             android:lineSpacingExtra="2dp"
                             android:text="216 St Paul's Rd, London N1 2LL, UK\nContact : +44-784232"
-                            android:textColor="#424242"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:textSize="12sp" />
                     </RelativeLayout>
 
@@ -142,7 +141,7 @@
                     android:layout_height="match_parent"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="?attr/colorSurface"
                     app:strokeWidth="0dp">
 
                     <ImageView
@@ -150,7 +149,7 @@
                         android:layout_height="32dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_plus"
-                        app:tint="#1A1A1A" />
+                        app:tint="?attr/colorOnSurface" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
@@ -161,7 +160,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="32dp"
                 android:text="Shopping List"
-                android:textColor="#1A1A1A"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -203,7 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total:"
-                android:textColor="#666666"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="14sp" />
 
             <TextView
@@ -211,9 +210,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LKR 0.00"
-                android:textColor="#1A1A1A"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
         <Button

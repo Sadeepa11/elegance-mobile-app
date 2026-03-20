@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -158,10 +159,10 @@ public class SearchFragment extends Fragment {
             return;
         boolean isSelected = isSort ? currentSort.equals(value) : currentCategory.equals(value);
         if (isSelected) {
-            textView.setTextColor(Color.parseColor("#9C4258"));
+            textView.setTextColor(ContextCompat.getColor(getContext(), R.color.brand_pink));
             textView.setTypeface(null, Typeface.BOLD);
         } else {
-            textView.setTextColor(Color.parseColor("#1A1A1A"));
+            textView.setTextColor(ContextCompat.getColor(getContext(), R.color.primary_text));
             textView.setTypeface(null, Typeface.NORMAL);
         }
 

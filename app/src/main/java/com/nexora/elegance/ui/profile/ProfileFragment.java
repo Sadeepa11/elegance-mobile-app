@@ -11,6 +11,11 @@ import androidx.fragment.app.Fragment;
 import com.nexora.elegance.data.SessionManager;
 import com.nexora.elegance.databinding.FragmentProfileBinding;
 import com.nexora.elegance.ui.auth.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.bumptech.glide.Glide;
+import com.nexora.elegance.R;
 
 /**
  * ProfileFragment displays high-level user information and provides access
@@ -34,9 +39,28 @@ public class ProfileFragment extends Fragment {
 
         // Load user session details
         SessionManager sessionManager = new SessionManager(requireContext());
-        binding.userName.setText("Elegance User");
-        String email = sessionManager.getUserEmail();
-        binding.userEmail.setText(email != null ? email : "user@elegance.com");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        
+        if (user != null) {
+            binding.userEmail.setText(user.getEmail());
+            
+            // Fetch real-time updates from Firestore
+            FirebaseFirestore.getInstance().collection("users").document(user.getUid())
+                .addSnapshotListener((snapshot, e) -> {
+                    if (e != null || snapshot == null || !snapshot.exists()) return;
+                    
+                    String name = snapshot.getString("name");
+                    String imageUrl = snapshot.getString("profileImageUrl");
+                    
+                    if (name != null) binding.userName.setText(name);
+                    if (imageUrl != null && !imageUrl.isEmpty() && isAdded()) {
+                        Glide.with(this)
+                            .load(imageUrl)
+                            .placeholder(R.drawable.profile_user)
+                            .into(binding.profileImage);
+                    }
+                });
+        }
 
         // Handle Logout
         binding.logoutButton.setOnClickListener(v -> {

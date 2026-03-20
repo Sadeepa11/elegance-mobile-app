@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private ListenerRegistration cartListener;
     private ListenerRegistration profileListener;
     private SessionManager sessionManager;
+    private String currentProfileImageUrl;
 
     private static final int REQUEST_CODE_NOTIFICATION = 1001;
     private static final int COLOR_INACTIVE = Color.parseColor("#999999");
@@ -338,6 +339,7 @@ public class MainActivity extends AppCompatActivity {
 
                     String imageUrl = snapshot.getString("profileImageUrl");
                     if (imageUrl != null && !imageUrl.isEmpty()) {
+                        currentProfileImageUrl = imageUrl;
                         updateHeaderProfileImage(imageUrl);
                     }
                 });
@@ -381,6 +383,14 @@ public class MainActivity extends AppCompatActivity {
             loadFragment(new com.nexora.elegance.ui.search.SearchFragment());
         else if (id == R.id.nav_order_history)
             loadFragment(new OrderHistoryFragment());
+
+        // Ensure fragment transaction is completed before updating the header
+        getSupportFragmentManager().executePendingTransactions();
+
+        // Re-apply profile image to the new fragment's header
+        if (currentProfileImageUrl != null) {
+            updateHeaderProfileImage(currentProfileImageUrl);
+        }
     }
 
     private void tintNavItem(View view, boolean active) {

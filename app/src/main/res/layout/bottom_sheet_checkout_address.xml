@@ -11,7 +11,7 @@
         android:id="@+id/handleBar"
         android:layout_width="40dp"
         android:layout_height="4dp"
-        android:background="#EFEFEF"
+        android:background="?attr/colorOutlineVariant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Shipping Address"
-        android:textColor="#1A1A1A"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="No, Street, Village"
-        app:boxStrokeColor="#CCCCCC"
-        app:hintTextColor="#666666"
+        app:boxStrokeColor="?attr/colorOutline"
+        app:hintTextColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintTop_toBottomOf="@+id/modalTitle">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
-            android:textColor="#1A1A1A" />
+            android:textColor="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -54,8 +54,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="City"
-        app:boxStrokeColor="#CCCCCC"
-        app:hintTextColor="#666666"
+        app:boxStrokeColor="?attr/colorOutline"
+        app:hintTextColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintTop_toBottomOf="@+id/inputLayoutAddress">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
-            android:textColor="#1A1A1A" />
+            android:textColor="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -73,8 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="District"
-        app:boxStrokeColor="#CCCCCC"
-        app:hintTextColor="#666666"
+        app:boxStrokeColor="?attr/colorOutline"
+        app:hintTextColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintTop_toBottomOf="@+id/inputLayoutCity">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
-            android:textColor="#1A1A1A" />
+            android:textColor="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -92,8 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="State / Province"
-        app:boxStrokeColor="#CCCCCC"
-        app:hintTextColor="#666666"
+        app:boxStrokeColor="?attr/colorOutline"
+        app:hintTextColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintTop_toBottomOf="@+id/inputLayoutDistrict">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
-            android:textColor="#1A1A1A" />
+            android:textColor="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -111,8 +111,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Country"
-        app:boxStrokeColor="#CCCCCC"
-        app:hintTextColor="#666666"
+        app:boxStrokeColor="?attr/colorOutline"
+        app:hintTextColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintTop_toBottomOf="@+id/inputLayoutProvince">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -120,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
-            android:textColor="#1A1A1A" />
+            android:textColor="?attr/colorOnSurface" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -130,7 +130,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="24dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="?attr/colorPrimary"
         android:text="Use This Address"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"

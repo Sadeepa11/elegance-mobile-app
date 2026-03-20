@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="?android:attr/colorBackground">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FAFAFA"
+        android:background="?android:attr/colorBackground"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
@@ -29,7 +29,7 @@
                     android:layout_centerVertical="true"
                     android:padding="4dp"
                     android:src="@drawable/ic_back"
-                    app:tint="#1A1A1A" />
+                    app:tint="?attr/colorOnSurface" />
 
                 <FrameLayout
                     android:layout_width="36dp"
@@ -43,7 +43,7 @@
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_cart"
-                        app:tint="#1A1A1A" />
+                        app:tint="?attr/colorOnSurface" />
                 </FrameLayout>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -95,7 +95,7 @@
                         android:layout_gravity="center"
                         android:src="@drawable/ic_back"
                         android:rotation="180"
-                        app:tint="#1A1A1A" />
+                        app:tint="?attr/colorOnSurface" />
                 </FrameLayout>
             </RelativeLayout>
 
@@ -123,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select Color"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -156,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select Size"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text=""
-                    android:textColor="#757575"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="12sp" />
 
                 <HorizontalScrollView
@@ -196,7 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Quantity"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -218,7 +218,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:padding="4dp"
                         android:src="@drawable/ic_minus"
-                        app:tint="#1A1A1A" />
+                        app:tint="?attr/colorOnSurface" />
 
                     <TextView
                         android:id="@+id/textQty"
@@ -226,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="1"
-                        android:textColor="#1A1A1A"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -237,7 +237,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:padding="4dp"
                         android:src="@drawable/ic_plus"
-                        app:tint="#1A1A1A" />
+                        app:tint="?attr/colorOnSurface" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -254,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nike Sneakers"
-                    android:textColor="#1A1A1A"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -264,7 +264,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Short Description Hook"
-                    android:textColor="#424242"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="12sp" />
 
                 <!-- Ratings -->
@@ -275,18 +275,18 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="#FFC107" />
-                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="#FFC107" />
-                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="#FFC107" />
-                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="#FFC107" />
-                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="#E0E0E0" />
+                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="?attr/colorPrimary" />
+                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="?attr/colorPrimary" />
+                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="?attr/colorPrimary" />
+                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="?attr/colorPrimary" />
+                    <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@android:drawable/star_on" app:tint="?attr/colorOutlineVariant" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="56,890"
-                        android:textColor="#999999"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -303,7 +303,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="LKR2,999"
-                        android:textColor="#999999"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="12sp" />
 
                     <TextView
@@ -312,7 +312,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="LKR1,500"
-                        android:textColor="#1A1A1A"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -321,7 +321,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="50% Off"
-                        android:textColor="#FD6E8A"
+                        android:textColor="@color/md_theme_light_primary"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -341,7 +341,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Full Product Description..."
-                    android:textColor="#424242"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="12sp"
                     android:lineSpacingExtra="2dp" /> -->
 
@@ -370,7 +370,7 @@
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/bg_active_indicator"
-                        android:backgroundTint="#2666F6">
+                        android:backgroundTint="?attr/colorPrimary">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -383,14 +383,14 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_cart"
-                                app:tint="#FFFFFF" />
+                                app:tint="?attr/colorOnPrimary" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:text="Go to cart"
-                                android:textColor="#FFFFFF"
+                                android:textColor="?attr/colorOnPrimary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -403,7 +403,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="8dp"
                         android:background="@drawable/bg_active_indicator"
-                        android:backgroundTint="#48D176">
+                        android:backgroundTint="?attr/colorSecondary">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -416,14 +416,14 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_check_white"
-                                app:tint="#FFFFFF" />
+                                app:tint="?attr/colorOnSecondary" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:text="Proceed to Checkout"
-                                android:textColor="#FFFFFF"
+                                android:textColor="?attr/colorOnSecondary"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -436,7 +436,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_active_indicator"
-                    android:backgroundTint="#FFD6E0"
+                    android:backgroundTint="?attr/colorSecondaryContainer"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -444,7 +444,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Delivery in"
-                        android:textColor="#1A1A1A"
+                        android:textColor="?attr/colorOnSecondaryContainer"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -452,7 +452,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3 - 10 Days"
-                        android:textColor="#1A1A1A"
+                        android:textColor="?attr/colorOnSecondaryContainer"
                         android:textSize="22sp"
                         android:textStyle="bold" />
                 </LinearLayout>

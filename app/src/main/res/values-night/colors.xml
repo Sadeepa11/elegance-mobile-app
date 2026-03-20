@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_text">#F8F8F8</color>
+    <color name="secondary_text">#BDBDBD</color>
+    <color name="white">#121212</color>
+    <color name="black">#FFFFFF</color>
+    <color name="background_light">#1E1E1E</color>
+    <color name="color_surface_themed">@color/md_theme_dark_surface</color>
+    <color name="color_outline_themed">@color/md_theme_dark_outline</color>
+</resources>

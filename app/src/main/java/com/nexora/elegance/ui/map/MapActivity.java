@@ -70,12 +70,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         tvDistance = findViewById(R.id.tvDistance);
         modeToggleGroup = findViewById(R.id.modeToggleGroup);
 
-        // Listener for transport mode switches (Driving, Walking, Cycling)
+        // Listener for transport mode switches (Driving, Walking)
         modeToggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (isChecked) {
                 if (checkedId == R.id.btnDriving) currentTransportMode = "driving";
                 else if (checkedId == R.id.btnWalking) currentTransportMode = "walking";
-                else if (checkedId == R.id.btnCycling) currentTransportMode = "bicycling";
                 // Request a new route whenever the mode changes
                 drawRouteToShop();
             }
@@ -91,8 +90,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // Setup the client that allows us to find the user's GPS coordinates
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Setup Quick-action buttons (Floating Action Buttons)
-        findViewById(R.id.fabMyLocation).setOnClickListener(v -> getUserLocation());
+        // Setup Quick-action button (Floating Action Button)
         findViewById(R.id.fabDrawRoute).setOnClickListener(v -> drawRouteToShop());
 
         // Read specific shop details passed from the sidebar or product screens

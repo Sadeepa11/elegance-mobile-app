@@ -120,20 +120,8 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\anim\\scale_down.xml"
     },
     {
-        "merged": "com.nexora.elegance.app-merged_res-45:/layout_activity_login.xml.flat",
-        "source": "com.nexora.elegance.app-main-46:/layout/activity_login.xml"
-    },
-    {
-        "merged": "com.nexora.elegance.app-merged_res-45:/layout_activity_main.xml.flat",
-        "source": "com.nexora.elegance.app-main-46:/layout/activity_main.xml"
-    },
-    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_bg_white_button.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\bg_white_button.xml"
-    },
-    {
-        "merged": "com.nexora.elegance.app-merged_res-45:/layout_activity_no_internet.xml.flat",
-        "source": "com.nexora.elegance.app-main-46:/layout/activity_no_internet.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\menu_bottom_nav_menu.xml.flat",
@@ -188,6 +176,14 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\banner_heels.png"
     },
     {
+        "merged": "com.nexora.elegance.app-merged_res-45:/drawable_ic_car.xml.flat",
+        "source": "com.nexora.elegance.app-main-46:/drawable/ic_car.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_walking.xml.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_walking.xml"
+    },
+    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_activity_product_details.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_product_details.xml"
     },
@@ -208,6 +204,10 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\bg_edittext_outline.xml"
     },
     {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_banner_sponsored_new.png.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\banner_sponsored_new.png"
+    },
+    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_minus.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_minus.xml"
     },
@@ -218,6 +218,10 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_fragment_wishlist.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\fragment_wishlist.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_logout.xml.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_logout.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_activity_map.xml.flat",
@@ -284,10 +288,6 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "com.nexora.elegance.app-merged_res-45:/drawable_ic_logout.xml.flat",
-        "source": "com.nexora.elegance.app-main-46:/drawable/ic_logout.xml"
-    },
-    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_bg_deal_banner.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\bg_deal_banner.xml"
     },
@@ -348,6 +348,10 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\item_cart_product.xml"
     },
     {
+        "merged": "com.nexora.elegance.app-merged_res-45:/drawable_ic_walking.xml.flat",
+        "source": "com.nexora.elegance.app-main-46:/drawable/ic_walking.xml"
+    },
+    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_bg_bottom_sheet.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\bg_bottom_sheet.xml"
     },
@@ -362,6 +366,10 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_menu.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_directions.xml.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_directions.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_item_checkout_product.xml.flat",
@@ -400,6 +408,10 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_location.xml"
     },
     {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_car.xml.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_car.xml"
+    },
+    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_bg_gradient_button.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\bg_gradient_button.xml"
     },
@@ -418,6 +430,10 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_activity_login.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_activity_no_internet.xml.flat",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_no_internet.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\anim_slide_out_left.xml.flat",

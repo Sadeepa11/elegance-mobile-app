@@ -44,6 +44,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             if (title == null) title = "Order Status Update";
             if (body == null) body = "Your order status has been updated.";
 
+            // If it's a category sync, we don't want an order ID
+            if ("category_sync".equals(remoteMessage.getData().get("type"))) {
+                orderId = null;
+            }
+
             // Show notification using our enhanced helper
             NotificationHelper.showOrderNotification(this, title, body, orderId, itemsJson);
 
@@ -60,6 +65,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
         Log.d(TAG, "Refreshed token: " + token);
-        // Here you would typically send the token to your server to track the device
+        
+        // Save token to Firestore if user is logged in
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                    .collection("users")
+                    .document(user.getUid())
+                    .update("fcmToken", token)
+                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Token updated in Firestore"))
+                    .addOnFailureListener(e -> Log.e(TAG, "Failed to update token", e));
+        }
     }
 }

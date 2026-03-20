@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/md_theme_light_background">
+    android:background="?android:attr/colorBackground">
 
     <include layout="@layout/layout_header" />
 
@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:text="You haven't placed any orders yet."
             android:textSize="16sp"
-            android:textColor="#666666"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:visibility="gone" />
 
         <ProgressBar
@@ -34,6 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/md_theme_light_primary" />
+            android:indeterminateTint="?attr/colorPrimary" />
     </FrameLayout>
 </LinearLayout>

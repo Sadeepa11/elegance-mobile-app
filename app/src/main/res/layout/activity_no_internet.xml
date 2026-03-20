@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="?android:attr/colorBackground">
 
     <!-- Background Gradient (Subtle) -->
     <View
@@ -35,7 +35,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-medium"
         android:text="Connecting..."
-        android:textColor="#1A1A1A"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Please check your internet connection and try again."
-        android:textColor="#666666"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginTop="32dp"
-        android:indeterminateTint="@color/md_theme_light_primary"
+        android:indeterminateTint="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/messageText" />
@@ -74,9 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:text="Retry"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorOnPrimary"
         android:textStyle="bold"
-        app:backgroundTint="@color/md_theme_light_primary"
+        app:backgroundTint="?attr/colorPrimary"
         app:cornerRadius="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

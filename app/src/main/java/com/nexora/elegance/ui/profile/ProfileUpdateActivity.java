@@ -220,12 +220,6 @@ public class ProfileUpdateActivity extends AppCompatActivity {
     private void setupListeners() {
         binding.backButton.setOnClickListener(v -> finish());
 
-        binding.profileImage.setOnClickListener(v -> showImagePickerOptions());
-
-        binding.changePasswordText.setOnClickListener(v -> {
-            Toast.makeText(this, "Reset Password link sent to your email.", Toast.LENGTH_SHORT).show();
-        });
-
         binding.saveButton.setOnClickListener(v -> saveUserData());
     }
 
@@ -258,7 +252,6 @@ public class ProfileUpdateActivity extends AppCompatActivity {
      */
     private void populateFields(UserModel user) {
         binding.emailEdit.setText(user.getEmail() != null ? user.getEmail() : "");
-        binding.passwordEdit.setText("***********");
         binding.postalCodeEdit.setText(user.getPostalCode() != null ? user.getPostalCode() : "");
         binding.addressEdit.setText(user.getAddress() != null ? user.getAddress() : "");
 

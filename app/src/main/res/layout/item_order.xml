@@ -7,7 +7,7 @@
     android:layout_marginVertical="6dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="@color/md_theme_light_surface">
+    app:cardBackgroundColor="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_bill" 
-                app:tint="@color/md_theme_light_primary" />
+                app:tint="?attr/colorPrimary" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:text="Date"
                     android:textSize="14sp"
-                    android:textColor="#666666" />
+                    android:textColor="?attr/colorOnSurfaceVariant" />
 
                 <TextView
                     android:id="@+id/orderIdText"
@@ -49,7 +49,7 @@
                     android:layout_marginTop="2dp"
                     android:text="Order #1234..."
                     android:textSize="12sp"
-                    android:textColor="#999999"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:singleLine="true"
                     android:ellipsize="end" />
             </LinearLayout>
@@ -72,7 +72,7 @@
             android:layout_height="1dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:background="#EEEEEE" />
+            android:background="?attr/colorOutlineVariant" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                 android:layout_weight="1"
                 android:text="3 Items"
                 android:textSize="14sp"
-                android:textColor="#333333" />
+                android:textColor="?attr/colorOnSurfaceVariant" />
 
             <TextView
                 android:id="@+id/orderTotalText"
@@ -96,7 +96,7 @@
                 android:text="LKR 4500.00"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/md_theme_light_primary" />
+                android:textColor="?attr/colorPrimary" />
         </LinearLayout>
 
     </LinearLayout>

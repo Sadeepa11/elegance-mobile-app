@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -217,10 +218,10 @@ public class CategoryActivity extends AppCompatActivity {
         boolean isSelected = isSort ? currentSort.equals(value) : selectedCategory.equalsIgnoreCase(value);
         
         if (isSelected) {
-            textView.setTextColor(Color.parseColor("#9C4258"));
+            textView.setTextColor(ContextCompat.getColor(this, R.color.brand_pink));
             textView.setTypeface(null, Typeface.BOLD);
         } else {
-            textView.setTextColor(Color.parseColor("#1A1A1A"));
+            textView.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
             textView.setTypeface(null, Typeface.NORMAL);
         }
 

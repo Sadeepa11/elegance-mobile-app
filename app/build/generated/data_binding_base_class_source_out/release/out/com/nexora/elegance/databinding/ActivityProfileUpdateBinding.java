@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -29,9 +28,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
 
   @NonNull
   public final ImageView backButton;
-
-  @NonNull
-  public final TextView changePasswordText;
 
   @NonNull
   public final Spinner citySpinner;
@@ -58,9 +54,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
   public final EditText emailEdit;
 
   @NonNull
-  public final EditText passwordEdit;
-
-  @NonNull
   public final EditText postalCodeEdit;
 
   @NonNull
@@ -73,18 +66,16 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
   public final Spinner stateSpinner;
 
   private ActivityProfileUpdateBinding(@NonNull LinearLayout rootView,
-      @NonNull EditText addressEdit, @NonNull ImageView backButton,
-      @NonNull TextView changePasswordText, @NonNull Spinner citySpinner,
+      @NonNull EditText addressEdit, @NonNull ImageView backButton, @NonNull Spinner citySpinner,
       @NonNull LinearLayout containerCity, @NonNull LinearLayout containerCountry,
       @NonNull LinearLayout containerDistrict, @NonNull LinearLayout containerState,
       @NonNull Spinner countrySpinner, @NonNull Spinner districtSpinner,
-      @NonNull EditText emailEdit, @NonNull EditText passwordEdit, @NonNull EditText postalCodeEdit,
+      @NonNull EditText emailEdit, @NonNull EditText postalCodeEdit,
       @NonNull ShapeableImageView profileImage, @NonNull MaterialButton saveButton,
       @NonNull Spinner stateSpinner) {
     this.rootView = rootView;
     this.addressEdit = addressEdit;
     this.backButton = backButton;
-    this.changePasswordText = changePasswordText;
     this.citySpinner = citySpinner;
     this.containerCity = containerCity;
     this.containerCountry = containerCountry;
@@ -93,7 +84,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
     this.countrySpinner = countrySpinner;
     this.districtSpinner = districtSpinner;
     this.emailEdit = emailEdit;
-    this.passwordEdit = passwordEdit;
     this.postalCodeEdit = postalCodeEdit;
     this.profileImage = profileImage;
     this.saveButton = saveButton;
@@ -136,12 +126,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
       id = R.id.backButton;
       ImageView backButton = ViewBindings.findChildViewById(rootView, id);
       if (backButton == null) {
-        break missingId;
-      }
-
-      id = R.id.changePasswordText;
-      TextView changePasswordText = ViewBindings.findChildViewById(rootView, id);
-      if (changePasswordText == null) {
         break missingId;
       }
 
@@ -193,12 +177,6 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.passwordEdit;
-      EditText passwordEdit = ViewBindings.findChildViewById(rootView, id);
-      if (passwordEdit == null) {
-        break missingId;
-      }
-
       id = R.id.postalCodeEdit;
       EditText postalCodeEdit = ViewBindings.findChildViewById(rootView, id);
       if (postalCodeEdit == null) {
@@ -224,9 +202,9 @@ public final class ActivityProfileUpdateBinding implements ViewBinding {
       }
 
       return new ActivityProfileUpdateBinding((LinearLayout) rootView, addressEdit, backButton,
-          changePasswordText, citySpinner, containerCity, containerCountry, containerDistrict,
-          containerState, countrySpinner, districtSpinner, emailEdit, passwordEdit, postalCodeEdit,
-          profileImage, saveButton, stateSpinner);
+          citySpinner, containerCity, containerCountry, containerDistrict, containerState,
+          countrySpinner, districtSpinner, emailEdit, postalCodeEdit, profileImage, saveButton,
+          stateSpinner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

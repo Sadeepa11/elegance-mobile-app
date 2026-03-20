@@ -4,12 +4,14 @@ package com.nexora.elegance.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.nexora.elegance.R;
 import java.lang.NullPointerException;
@@ -21,10 +23,7 @@ public final class ItemProductBinding implements ViewBinding {
   private final MaterialCardView rootView;
 
   @NonNull
-  public final ImageView addToCartButton;
-
-  @NonNull
-  public final MaterialCardView addToCartButtonCard;
+  public final MaterialButton addToCartButton;
 
   @NonNull
   public final TextView productCategory;
@@ -39,25 +38,19 @@ public final class ItemProductBinding implements ViewBinding {
   public final TextView productPrice;
 
   @NonNull
-  public final MaterialCardView wishlistButton;
+  public final ImageButton wishlistButton;
 
-  @NonNull
-  public final ImageView wishlistIcon;
-
-  private ItemProductBinding(@NonNull MaterialCardView rootView, @NonNull ImageView addToCartButton,
-      @NonNull MaterialCardView addToCartButtonCard, @NonNull TextView productCategory,
+  private ItemProductBinding(@NonNull MaterialCardView rootView,
+      @NonNull MaterialButton addToCartButton, @NonNull TextView productCategory,
       @NonNull ImageView productImage, @NonNull TextView productName,
-      @NonNull TextView productPrice, @NonNull MaterialCardView wishlistButton,
-      @NonNull ImageView wishlistIcon) {
+      @NonNull TextView productPrice, @NonNull ImageButton wishlistButton) {
     this.rootView = rootView;
     this.addToCartButton = addToCartButton;
-    this.addToCartButtonCard = addToCartButtonCard;
     this.productCategory = productCategory;
     this.productImage = productImage;
     this.productName = productName;
     this.productPrice = productPrice;
     this.wishlistButton = wishlistButton;
-    this.wishlistIcon = wishlistIcon;
   }
 
   @Override
@@ -88,14 +81,8 @@ public final class ItemProductBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.addToCartButton;
-      ImageView addToCartButton = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton addToCartButton = ViewBindings.findChildViewById(rootView, id);
       if (addToCartButton == null) {
-        break missingId;
-      }
-
-      id = R.id.addToCartButtonCard;
-      MaterialCardView addToCartButtonCard = ViewBindings.findChildViewById(rootView, id);
-      if (addToCartButtonCard == null) {
         break missingId;
       }
 
@@ -124,20 +111,13 @@ public final class ItemProductBinding implements ViewBinding {
       }
 
       id = R.id.wishlistButton;
-      MaterialCardView wishlistButton = ViewBindings.findChildViewById(rootView, id);
+      ImageButton wishlistButton = ViewBindings.findChildViewById(rootView, id);
       if (wishlistButton == null) {
         break missingId;
       }
 
-      id = R.id.wishlistIcon;
-      ImageView wishlistIcon = ViewBindings.findChildViewById(rootView, id);
-      if (wishlistIcon == null) {
-        break missingId;
-      }
-
-      return new ItemProductBinding((MaterialCardView) rootView, addToCartButton,
-          addToCartButtonCard, productCategory, productImage, productName, productPrice,
-          wishlistButton, wishlistIcon);
+      return new ItemProductBinding((MaterialCardView) rootView, addToCartButton, productCategory,
+          productImage, productName, productPrice, wishlistButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

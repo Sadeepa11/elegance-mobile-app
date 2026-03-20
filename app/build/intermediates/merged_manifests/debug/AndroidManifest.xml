@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nexora.elegance"
+    android:installLocation="auto"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -52,10 +53,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/Theme.Elegance" >
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDKn_LinOJ-29JuMb4mH7lgjqwgotRkdRU" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="EleganceChannel" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_logo" />
 
         <activity
             android:name="com.nexora.elegance.ui.splash.SplashActivity"
@@ -67,6 +75,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.nexora.elegance.ui.splash.NoInternetActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Elegance.NoActionBar" />
         <activity
             android:name="com.nexora.elegance.MainActivity"
             android:exported="false" />
@@ -87,6 +99,10 @@
             android:exported="false"
             android:theme="@style/Theme.Elegance.NoActionBar" />
         <activity
+            android:name="com.nexora.elegance.ui.product.CategoryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Elegance.NoActionBar" />
+        <activity
             android:name="com.nexora.elegance.ui.profile.ProfileUpdateActivity"
             android:exported="false"
             android:theme="@style/Theme.Elegance.NoActionBar"
@@ -104,6 +120,14 @@
             android:name="com.nexora.elegance.receivers.NotificationReceiver"
             android:enabled="true"
             android:exported="false" />
+        <receiver
+            android:name="com.nexora.elegance.receivers.NotificationActionReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.nexora.elegance.ACTION_MARK_AS_READ" />
+            </intent-filter>
+        </receiver>
 
         <!-- Firebase Cloud Messaging Service -->
         <service
