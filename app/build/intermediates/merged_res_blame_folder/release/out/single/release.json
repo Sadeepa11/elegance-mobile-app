@@ -88,6 +88,10 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\ic_wishlist.xml"
     },
     {
+        "merged": "com.nexora.elegance.app-merged_res-45:/layout_fragment_profile.xml.flat",
+        "source": "com.nexora.elegance.app-main-46:/layout/fragment_profile.xml"
+    },
+    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_activity_checkout.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_checkout.xml"
     },
@@ -174,10 +178,6 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_banner_heels.png.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\drawable\\banner_heels.png"
-    },
-    {
-        "merged": "com.nexora.elegance.app-merged_res-45:/drawable_ic_car.xml.flat",
-        "source": "com.nexora.elegance.app-main-46:/drawable/ic_car.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_ic_walking.xml.flat",
@@ -346,10 +346,6 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\layout_item_cart_product.xml.flat",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\item_cart_product.xml"
-    },
-    {
-        "merged": "com.nexora.elegance.app-merged_res-45:/drawable_ic_walking.xml.flat",
-        "source": "com.nexora.elegance.app-main-46:/drawable/ic_walking.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-merged_res-45:\\drawable_bg_bottom_sheet.xml.flat",

@@ -301,6 +301,7 @@ id productReviews
 id productShortDesc
 id productSizesContainer
 id productStockText
+id profileFragmentImage
 id profileImage
 id progressBar
 id qtyLayout

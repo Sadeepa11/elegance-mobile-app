@@ -76,16 +76,16 @@
     <string name="cart">Cart</string>
     <string name="email">Email</string>
     <string name="fashion_tagline">Women\'s Fashion Boutique</string>
-    <string name="gcm_defaultSenderId" translatable="false">227820709837</string>
-    <string name="google_api_key" translatable="false">AIzaSyD-ageda12OpJgtb-sjUPWQS6dIV3Lrk3U</string>
-    <string name="google_app_id" translatable="false">1:227820709837:android:02051779caba40f5ee4684</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD-ageda12OpJgtb-sjUPWQS6dIV3Lrk3U</string>
-    <string name="google_storage_bucket" translatable="false">elegance-9d812.firebasestorage.app</string>
+    <string name="gcm_defaultSenderId" translatable="false">608776197551</string>
+    <string name="google_api_key" translatable="false">AIzaSyAA8-IaslcoxsCJkW7iTb-gfHHhbJWbIXw</string>
+    <string name="google_app_id" translatable="false">1:608776197551:android:b757ca004d5a9b05ad4b5a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAA8-IaslcoxsCJkW7iTb-gfHHhbJWbIXw</string>
+    <string name="google_storage_bucket" translatable="false">elegancenew-64a67.firebasestorage.app</string>
     <string name="home">Home</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="profile">Profile</string>
-    <string name="project_id" translatable="false">elegance-9d812</string>
+    <string name="project_id" translatable="false">elegancenew-64a67</string>
     <string name="signup">Sign Up</string>
     <string name="welcome_message">Welcome to Elegance</string>
     <style name="ShapeAppearance.Elegance.Medium" parent="ShapeAppearance.Material3.MediumComponent">

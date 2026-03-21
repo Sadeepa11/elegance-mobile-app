@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\activity_login.xml",
-        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_login.xml"
-    },
-    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\activity_register.xml",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_login.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\fragment_cart.xml",
@@ -56,12 +56,12 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\item_category.xml"
     },
     {
-        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_main.xml"
-    },
-    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\fragment_support.xml",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\fragment_support.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\bottom_sheet_add_to_cart.xml",
@@ -92,12 +92,12 @@
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\nav_header.xml"
     },
     {
-        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\activity_profile_update.xml",
-        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_profile_update.xml"
-    },
-    {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\item_product.xml",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\item_product.xml"
+    },
+    {
+        "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\activity_profile_update.xml",
+        "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_profile_update.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\layout_theme_switch.xml",
@@ -110,10 +110,6 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\activity_checkout.xml",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\activity_checkout.xml"
-    },
-    {
-        "merged": "com.nexora.elegance.app-mergeReleaseResources-44:/layout/activity_map.xml",
-        "source": "com.nexora.elegance.app-main-46:/layout/activity_map.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\fragment_order_history.xml",
@@ -142,6 +138,10 @@
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\item_product_search.xml",
         "source": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-main-46:\\layout\\item_product_search.xml"
+    },
+    {
+        "merged": "com.nexora.elegance.app-mergeReleaseResources-44:/layout/fragment_profile.xml",
+        "source": "com.nexora.elegance.app-main-46:/layout/fragment_profile.xml"
     },
     {
         "merged": "C:\\Users\\stf\\.gradle\\daemon\\8.7\\com.nexora.elegance.app-mergeReleaseResources-44:\\layout\\layout_header.xml",

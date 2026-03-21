@@ -25,7 +25,7 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final Button logoutButton;
 
   @NonNull
-  public final ImageView profileImage;
+  public final ImageView profileFragmentImage;
 
   @NonNull
   public final TextView userEmail;
@@ -34,10 +34,11 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView userName;
 
   private FragmentProfileBinding(@NonNull ConstraintLayout rootView, @NonNull Button logoutButton,
-      @NonNull ImageView profileImage, @NonNull TextView userEmail, @NonNull TextView userName) {
+      @NonNull ImageView profileFragmentImage, @NonNull TextView userEmail,
+      @NonNull TextView userName) {
     this.rootView = rootView;
     this.logoutButton = logoutButton;
-    this.profileImage = profileImage;
+    this.profileFragmentImage = profileFragmentImage;
     this.userEmail = userEmail;
     this.userName = userName;
   }
@@ -75,9 +76,9 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.profileImage;
-      ImageView profileImage = ViewBindings.findChildViewById(rootView, id);
-      if (profileImage == null) {
+      id = R.id.profileFragmentImage;
+      ImageView profileFragmentImage = ViewBindings.findChildViewById(rootView, id);
+      if (profileFragmentImage == null) {
         break missingId;
       }
 
@@ -93,8 +94,8 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProfileBinding((ConstraintLayout) rootView, logoutButton, profileImage,
-          userEmail, userName);
+      return new FragmentProfileBinding((ConstraintLayout) rootView, logoutButton,
+          profileFragmentImage, userEmail, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

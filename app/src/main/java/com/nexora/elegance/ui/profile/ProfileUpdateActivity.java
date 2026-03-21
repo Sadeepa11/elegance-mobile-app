@@ -221,6 +221,12 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         binding.backButton.setOnClickListener(v -> finish());
 
         binding.saveButton.setOnClickListener(v -> saveUserData());
+        
+        // Handle Profile Image Click - opening gallery directly as per user request to avoid "picker"
+        binding.profileImage.setOnClickListener(v -> {
+            Toast.makeText(this, "Opening Gallery...", Toast.LENGTH_SHORT).show();
+            openGallery();
+        });
     }
 
     /**
@@ -356,6 +362,7 @@ public class ProfileUpdateActivity extends AppCompatActivity {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         photoUri = result.getData().getData();
                         Glide.with(this).load(photoUri).into(binding.profileImage);
+                        updateProfileImageInFirestore(photoUri);
                     }
                 }
         );
@@ -429,5 +436,16 @@ public class ProfileUpdateActivity extends AppCompatActivity {
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
         currentPhotoPath = image.getAbsolutePath();
         return image;
+    }
+ 
+    private void updateProfileImageInFirestore(Uri uri) {
+        String base64Image = convertImageToBase64(uri);
+        if (base64Image != null && mAuth.getCurrentUser() != null) {
+            String uid = mAuth.getCurrentUser().getUid();
+            mFirestore.collection("users").document(uid)
+                .update("profileImageUrl", base64Image)
+                .addOnSuccessListener(aVoid -> Toast.makeText(this, "Profile image updated!", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(this, "Failed to update image: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        }
     }
 }
