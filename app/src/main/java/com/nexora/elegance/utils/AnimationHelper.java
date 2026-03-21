@@ -19,18 +19,20 @@ public class AnimationHelper {
                     Animation scaleDown = AnimationUtils.loadAnimation(v.getContext(), R.anim.scale_down);
                     scaleDown.setFillAfter(true);
                     v.startAnimation(scaleDown);
-                    break;
+                    return true;
                 case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
                     Animation scaleUp = AnimationUtils.loadAnimation(v.getContext(), R.anim.scale_up);
                     scaleUp.setFillAfter(true);
                     v.startAnimation(scaleUp);
-                    if (event.getAction() == MotionEvent.ACTION_UP) {
-                        v.performClick();
-                    }
-                    break;
+                    v.performClick();
+                    return true;
+                case MotionEvent.ACTION_CANCEL:
+                    Animation scaleUpCancel = AnimationUtils.loadAnimation(v.getContext(), R.anim.scale_up);
+                    scaleUpCancel.setFillAfter(true);
+                    v.startAnimation(scaleUpCancel);
+                    return true;
             }
-            return true;
+            return false;
         });
     }
 

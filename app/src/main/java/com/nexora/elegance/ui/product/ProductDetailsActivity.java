@@ -69,6 +69,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
             product = (Product) getIntent().getSerializableExtra("product");
         }
 
+        if (product == null) {
+            Toast.makeText(this, "Product data is missing", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
         initViews();
         setupData();
         setupListeners();
