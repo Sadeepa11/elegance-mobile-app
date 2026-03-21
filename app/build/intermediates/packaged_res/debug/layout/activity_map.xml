@@ -29,32 +29,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Action Buttons -->
-    <LinearLayout
+    <!-- Get Directions Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabDrawRoute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="160dp"
-        android:orientation="vertical">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabMyLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_location"
-            app:backgroundTint="?attr/colorSurface"
-            app:tint="?attr/colorPrimary" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabDrawRoute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_search"
-            app:backgroundTint="?attr/colorPrimary"
-            app:tint="?attr/colorOnPrimary" />
-    </LinearLayout>
+        android:src="@drawable/ic_directions"
+        app:backgroundTint="?attr/colorPrimary"
+        app:tint="?attr/colorOnPrimary" />
 
     <!-- Bottom Sheet showing travel time -->
     <FrameLayout
@@ -78,7 +63,7 @@
                 android:layout_height="4dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="16dp"
-                android:background="#E0E0E0" />
+                android:background="?attr/colorOutlineVariant" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/modeToggleGroup"
@@ -96,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="Driving"
                     android:textSize="12sp"
-                    app:icon="@drawable/ic_search" />
+                    app:icon="@drawable/ic_car" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnWalking"
@@ -105,16 +90,7 @@
                     android:layout_height="wrap_content"
                     android:text="Walking"
                     android:textSize="12sp"
-                    app:icon="@drawable/ic_location" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCycling"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cycling"
-                    android:textSize="12sp"
-                    app:icon="@drawable/ic_search" />
+                    app:icon="@drawable/ic_walking" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <TextView
@@ -147,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Distance: --"
-                    android:textColor="#999999"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

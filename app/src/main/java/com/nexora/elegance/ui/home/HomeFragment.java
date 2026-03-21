@@ -160,7 +160,7 @@ public class HomeFragment extends Fragment {
                                         // On Click: Open Product Details
                                         if (getContext() != null) {
                                                 Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                                                intent.putExtra("product", product);
+                                                intent.putExtra("productId", product.getId());
                                                 startActivity(intent);
                                         }
                                 },

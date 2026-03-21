@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="?android:attr/colorBackground">
 
     <!-- Header -->
     <LinearLayout
@@ -22,7 +22,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_back"
-            app:tint="#000000" />
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:layout_width="0dp"
@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Cart"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -39,7 +39,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_wishlist"
-            app:tint="#000000" />
+            app:tint="?attr/colorOnSurface" />
     </LinearLayout>
 
     <!-- Content inside ScrollView -->
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="16dp"
-                android:background="#E0E0E0" />
+                android:background="?attr/colorOutlineVariant" />
 
             <!-- Coupon -->
             <LinearLayout
@@ -85,7 +85,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_search"
-                    app:tint="#333333" />
+                    app:tint="?attr/colorOnSurfaceVariant" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -93,14 +93,14 @@
                     android:layout_marginStart="12dp"
                     android:layout_weight="1"
                     android:text="Apply Coupons"
-                    android:textColor="#000000"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select"
-                    android:textColor="@color/brand_pink"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="16dp"
-                android:background="#E0E0E0" />
+                android:background="?attr/colorOutlineVariant" />
 
             <!-- Payment Details -->
             <LinearLayout
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
                     android:text="Order Payment Details"
-                    android:textColor="#000000"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Order Amounts"
-                        android:textColor="#333333"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="14sp" />
                     <TextView
                         android:id="@+id/orderAmountsText"
@@ -143,7 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:text="LKR 0.00"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -161,13 +161,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Convenience "
-                            android:textColor="#333333"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:textSize="14sp" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Know More"
-                            android:textColor="@color/brand_pink"
+                            android:textColor="?attr/colorPrimary"
                             android:textSize="10sp"
                             android:layout_gravity="center_vertical" />
                     </LinearLayout>
@@ -177,7 +177,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:text="Apply Coupon"
-                        android:textColor="@color/brand_pink"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -190,14 +190,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Delivery Fee"
-                        android:textColor="#333333"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="14sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:text="Free"
-                        android:textColor="@color/brand_pink"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -206,7 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginBottom="24dp"
-                    android:background="#E0E0E0" />
+                    android:background="?attr/colorOutlineVariant" />
 
                 <!-- Total -->
                 <RelativeLayout
@@ -218,7 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Order Total"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -228,7 +228,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:text="LKR 0.00"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -241,13 +241,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="EMI Available "
-                        android:textColor="#333333"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="14sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Details"
-                        android:textColor="@color/brand_pink"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="10sp"
                         android:layout_gravity="center_vertical" />
                 </LinearLayout>
@@ -280,31 +280,31 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/bottomTotalText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LKR 0.00"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View Details"
-                android:textColor="@color/brand_pink"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/bottomTotalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LKR 0.00"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Details"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btnProceed"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:backgroundTint="@color/brand_pink"
+            android:backgroundTint="?attr/colorPrimary"
             android:paddingHorizontal="24dp"
             android:text="Proceed to Checkout"
-            android:textColor="#FFFFFF"
+            android:textColor="?attr/colorOnPrimary"
             android:textAllCaps="false"
             android:textSize="14sp"
             app:cornerRadius="8dp" />

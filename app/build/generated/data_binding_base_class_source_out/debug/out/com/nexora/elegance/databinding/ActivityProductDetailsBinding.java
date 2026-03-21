@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import androidx.viewpager2.widget.ViewPager2;
@@ -46,6 +48,9 @@ public final class ActivityProductDetailsBinding implements ViewBinding {
   public final TextView currentPrice;
 
   @NonNull
+  public final NestedScrollView mainContent;
+
+  @NonNull
   public final TextView oldPrice;
 
   @NonNull
@@ -68,6 +73,9 @@ public final class ActivityProductDetailsBinding implements ViewBinding {
 
   @NonNull
   public final TextView productStockText;
+
+  @NonNull
+  public final ProgressBar progressBar;
 
   @NonNull
   public final LinearLayout qtySection;
@@ -94,10 +102,11 @@ public final class ActivityProductDetailsBinding implements ViewBinding {
       @NonNull FrameLayout btnAddToCart, @NonNull ImageView btnBack, @NonNull FrameLayout btnBuyNow,
       @NonNull ImageView btnQtyMinus, @NonNull ImageView btnQtyPlus,
       @NonNull LinearLayout colorsSection, @NonNull TextView currentPrice,
-      @NonNull TextView oldPrice, @NonNull LinearLayout productColorsContainer,
-      @NonNull LinearLayout productFeaturesContainer, @NonNull ViewPager2 productImageSlider,
-      @NonNull TextView productName, @NonNull TextView productShortDesc,
-      @NonNull LinearLayout productSizesContainer, @NonNull TextView productStockText,
+      @NonNull NestedScrollView mainContent, @NonNull TextView oldPrice,
+      @NonNull LinearLayout productColorsContainer, @NonNull LinearLayout productFeaturesContainer,
+      @NonNull ViewPager2 productImageSlider, @NonNull TextView productName,
+      @NonNull TextView productShortDesc, @NonNull LinearLayout productSizesContainer,
+      @NonNull TextView productStockText, @NonNull ProgressBar progressBar,
       @NonNull LinearLayout qtySection, @NonNull TextView selectedColorText,
       @NonNull TextView selectedSizeText, @NonNull LinearLayout sizesSection,
       @NonNull LinearLayout sliderDotsContainer, @NonNull TextView textQty,
@@ -110,6 +119,7 @@ public final class ActivityProductDetailsBinding implements ViewBinding {
     this.btnQtyPlus = btnQtyPlus;
     this.colorsSection = colorsSection;
     this.currentPrice = currentPrice;
+    this.mainContent = mainContent;
     this.oldPrice = oldPrice;
     this.productColorsContainer = productColorsContainer;
     this.productFeaturesContainer = productFeaturesContainer;
@@ -118,6 +128,7 @@ public final class ActivityProductDetailsBinding implements ViewBinding {
     this.productShortDesc = productShortDesc;
     this.productSizesContainer = productSizesContainer;
     this.productStockText = productStockText;
+    this.progressBar = progressBar;
     this.qtySection = qtySection;
     this.selectedColorText = selectedColorText;
     this.selectedSizeText = selectedSizeText;
@@ -196,6 +207,12 @@ public final class ActivityProductDetailsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.mainContent;
+      NestedScrollView mainContent = ViewBindings.findChildViewById(rootView, id);
+      if (mainContent == null) {
+        break missingId;
+      }
+
       id = R.id.oldPrice;
       TextView oldPrice = ViewBindings.findChildViewById(rootView, id);
       if (oldPrice == null) {
@@ -244,6 +261,12 @@ public final class ActivityProductDetailsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.qtySection;
       LinearLayout qtySection = ViewBindings.findChildViewById(rootView, id);
       if (qtySection == null) {
@@ -287,10 +310,10 @@ public final class ActivityProductDetailsBinding implements ViewBinding {
       }
 
       return new ActivityProductDetailsBinding((CoordinatorLayout) rootView, btnAddToCart, btnBack,
-          btnBuyNow, btnQtyMinus, btnQtyPlus, colorsSection, currentPrice, oldPrice,
+          btnBuyNow, btnQtyMinus, btnQtyPlus, colorsSection, currentPrice, mainContent, oldPrice,
           productColorsContainer, productFeaturesContainer, productImageSlider, productName,
-          productShortDesc, productSizesContainer, productStockText, qtySection, selectedColorText,
-          selectedSizeText, sizesSection, sliderDotsContainer, textQty, toolbar);
+          productShortDesc, productSizesContainer, productStockText, progressBar, qtySection,
+          selectedColorText, selectedSizeText, sizesSection, sliderDotsContainer, textQty, toolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -11,7 +11,7 @@
         android:layout_width="40dp"
         android:layout_height="4dp"
         android:layout_gravity="center_horizontal"
-        android:background="#E0E0E0"
+        android:background="?attr/colorOutlineVariant"
         android:layout_marginBottom="16dp" />
 
     <TextView
@@ -21,14 +21,14 @@
         android:text="Rate Product Name"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#333333" />
+        android:textColor="?attr/colorOnSurface" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Your Rating"
-        android:textColor="#666666" />
+        android:textColor="?attr/colorOnSurfaceVariant" />
 
     <RatingBar
         android:id="@+id/reviewRatingBar"
@@ -39,7 +39,7 @@
         android:stepSize="1.0"
         android:rating="5.0"
         android:theme="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:progressTint="@color/md_theme_light_primary" />
+        android:progressTint="?attr/colorPrimary" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:backgroundTint="@color/md_theme_light_primary"
+        android:backgroundTint="?attr/colorPrimary"
         android:layout_marginTop="24dp"
         app:cornerRadius="8dp" />
 </LinearLayout>

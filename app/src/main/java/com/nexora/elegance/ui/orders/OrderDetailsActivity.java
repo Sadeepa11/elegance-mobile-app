@@ -50,7 +50,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Extract Order object from the starting Intent
-        currentOrder = (Order) getIntent().getSerializableExtra("order");
+        if (getIntent().hasExtra("order")) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                currentOrder = getIntent().getSerializableExtra("order", com.nexora.elegance.models.Order.class);
+            } else {
+                currentOrder = (com.nexora.elegance.models.Order) getIntent().getSerializableExtra("order");
+            }
+        }
         String orderId = getIntent().getStringExtra("orderId");
 
         if (currentOrder == null && orderId != null) {

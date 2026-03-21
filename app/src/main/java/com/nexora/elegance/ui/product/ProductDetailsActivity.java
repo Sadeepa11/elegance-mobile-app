@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,6 +57,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ImageView btnQtyMinus, btnQtyPlus;
     private TextView textQty;
 
+    private ProgressBar progressBar;
+    private View mainContent;
+
     private Product.VariantColor currentlySelectedColor;
     private Product.VariantSize currentlySelectedSize;
     private int currentQty = 1;
@@ -64,20 +69,71 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        // Retrieve product object passed via Intent
-        if (getIntent().hasExtra("product")) {
-            product = (Product) getIntent().getSerializableExtra("product");
-        }
+        // Initialize early to avoid null pointers
+        progressBar = findViewById(R.id.progressBar);
+        mainContent = findViewById(R.id.mainContent);
 
-        if (product == null) {
+        // Retrieve product data or ID passed via Intent
+        if (getIntent().hasExtra("product")) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                product = getIntent().getSerializableExtra("product", com.nexora.elegance.models.Product.class);
+            } else {
+                product = (com.nexora.elegance.models.Product) getIntent().getSerializableExtra("product");
+            }
+        }
+        
+        String productId = getIntent().getStringExtra("productId");
+
+        if (product == null && productId != null) {
+            fetchProductDetails(productId);
+        } else if (product == null) {
+            android.util.Log.e("ProductDetails", "Intent is missing 'product' data or 'productId'.");
             Toast.makeText(this, "Product data is missing", Toast.LENGTH_SHORT).show();
             finish();
             return;
+        } else {
+            initViews();
+            setupData();
+            setupListeners();
+            showContent();
         }
+    }
 
-        initViews();
-        setupData();
-        setupListeners();
+    private void fetchProductDetails(String productId) {
+        if (progressBar != null) progressBar.setVisibility(View.VISIBLE);
+        if (mainContent != null) mainContent.setVisibility(View.GONE);
+
+        com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                .collection("products")
+                .document(productId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        product = documentSnapshot.toObject(com.nexora.elegance.models.Product.class);
+                        if (product != null) {
+                            product.setId(documentSnapshot.getId());
+                            initViews();
+                            setupData();
+                            setupListeners();
+                            showContent();
+                        } else {
+                            Toast.makeText(this, "Failed to parse product details", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    } else {
+                        Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error fetching product: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
+                });
+    }
+
+    private void showContent() {
+        if (progressBar != null) progressBar.setVisibility(View.GONE);
+        if (mainContent != null) mainContent.setVisibility(View.VISIBLE);
     }
 
     private void initViews() {

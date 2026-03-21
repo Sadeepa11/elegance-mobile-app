@@ -3673,6 +3673,7 @@ id logoImage
 id logoutButton
 id logoutContainer
 id m3_side_sheet
+id mainContent
 id main_back
 id mapFragment
 id mapView

@@ -6,11 +6,14 @@
     android:padding="24dp">
 
     <ImageView
-        android:id="@+id/profileImage"
+        android:id="@+id/profileFragmentImage"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="48dp"
         android:src="@drawable/ic_logo"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,12 +24,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Zoe Volerent"
-        android:textColor="@color/primary_text"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+        app:layout_constraintTop_toBottomOf="@+id/profileFragmentImage" />
 
     <TextView
         android:id="@+id/userEmail"
@@ -34,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="zoe@elegance.com"
-        android:textColor="@color/secondary_text"
+        android:textColor="?attr/colorOnSurfaceVariant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
@@ -46,8 +49,9 @@
         android:layout_height="56dp"
         android:layout_marginTop="48dp"
         android:text="Logout"
-        android:textColor="@color/brand_pink"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintTop_toBottomOf="@+id/userEmail"
-        app:strokeColor="@color/brand_pink" />
+        app:strokeColor="?attr/colorOnSurface"
+        app:cornerRadius="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

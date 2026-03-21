@@ -68,7 +68,7 @@ public class WishlistFragment extends Fragment {
                 product -> {
                     if (getContext() != null) {
                         Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                        intent.putExtra("product", product);
+                        intent.putExtra("productId", product.getId());
                         startActivity(intent);
                     }
                 },

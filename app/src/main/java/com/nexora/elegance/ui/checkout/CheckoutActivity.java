@@ -208,16 +208,28 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     private void loadData() {
         if (getIntent().hasExtra("checkout_list")) {
-            java.util.List<CartItem> customList = (java.util.List<CartItem>) getIntent()
-                    .getSerializableExtra("checkout_list");
-            if (customList != null) {
-                checkoutList.clear();
-                checkoutList.addAll(customList);
-                adapter.notifyDataSetChanged();
-                updateTotal();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                java.util.List<com.nexora.elegance.models.CartItem> customList = getIntent().getSerializableExtra("checkout_list", java.util.ArrayList.class);
+                if (customList != null) {
+                    checkoutList.clear();
+                    checkoutList.addAll(customList);
+                }
+            } else {
+                java.util.List<com.nexora.elegance.models.CartItem> customList = (java.util.List<com.nexora.elegance.models.CartItem>) getIntent().getSerializableExtra("checkout_list");
+                if (customList != null) {
+                    checkoutList.clear();
+                    checkoutList.addAll(customList);
+                }
             }
+            adapter.notifyDataSetChanged();
+            updateTotal();
         } else if (getIntent().hasExtra("product")) {
-            Product product = (Product) getIntent().getSerializableExtra("product");
+            Product product;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                product = getIntent().getSerializableExtra("product", Product.class);
+            } else {
+                product = (Product) getIntent().getSerializableExtra("product");
+            }
             if (product != null) {
                 CartItem item = new CartItem();
                 item.setProductId(product.getId());

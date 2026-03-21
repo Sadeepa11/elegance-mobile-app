@@ -10,10 +10,11 @@ anim slide_out_left
 anim slide_out_right
 color background_light
 color black
-color brand_gold
 color brand_pink
-color brand_pink_dark
 color brand_pink_light
+color color_outline_themed
+color color_surface_themed
+color dark_background
 color md_theme_dark_background
 color md_theme_dark_error
 color md_theme_dark_errorContainer
@@ -80,6 +81,7 @@ color seed
 color white
 drawable banner_heels
 drawable banner_sponsored
+drawable banner_sponsored_new
 drawable banner_summer_sale
 drawable bg_active_indicator
 drawable bg_bottom_nav
@@ -103,9 +105,11 @@ drawable ic_apple
 drawable ic_arrow_down
 drawable ic_back
 drawable ic_bill
+drawable ic_car
 drawable ic_cart
 drawable ic_check_white
 drawable ic_close
+drawable ic_directions
 drawable ic_download
 drawable ic_edit
 drawable ic_email
@@ -124,6 +128,7 @@ drawable ic_person
 drawable ic_plus
 drawable ic_search
 drawable ic_setting
+drawable ic_walking
 drawable ic_wishlist
 drawable login_header
 drawable profile_user
@@ -132,7 +137,6 @@ drawable slider_model
 drawable splash_gradient
 id addProductButton
 id addToCartButton
-id addToCartButtonCard
 id addressDetails
 id addressEdit
 id addressTitle
@@ -148,7 +152,6 @@ id btnAddToCart
 id btnBack
 id btnBuyNow
 id btnConfirmAddToCart
-id btnCycling
 id btnDownloadPdf
 id btnDriving
 id btnEditAddress
@@ -173,7 +176,6 @@ id categoryImage
 id categoryName
 id categoryRecyclerView
 id categoryTitle
-id changePasswordText
 id checkoutOrderQtyText
 id checkoutOrderTotalText
 id checkoutProductColor
@@ -225,7 +227,6 @@ id etDistrict
 id etModalQty
 id etProvince
 id fabDrawRoute
-id fabMyLocation
 id filterAll
 id filterButton
 id forgotPassword
@@ -247,6 +248,7 @@ id loginLink
 id logoImage
 id logoutButton
 id logoutContainer
+id mainContent
 id mapFragment
 id mapView
 id menuIcon
@@ -300,6 +302,7 @@ id productReviews
 id productShortDesc
 id productSizesContainer
 id productStockText
+id profileFragmentImage
 id profileImage
 id progressBar
 id qtyLayout
@@ -344,7 +347,6 @@ id userEmail
 id userName
 id wishlistBadge
 id wishlistButton
-id wishlistIcon
 id wishlistRecyclerView
 layout activity_category
 layout activity_checkout
@@ -407,6 +409,8 @@ string project_id
 string signup
 string welcome_message
 style ShapeAppearanceOverlay.App.CornerSize50Percent
+style ShapeAppearance.Elegance.Medium
+style ShapeAppearance.Elegance.Small
 style ShapeAppearance.Elegance.TopRoundedCard
 style Theme.Elegance
 style Theme.Elegance.NoActionBar

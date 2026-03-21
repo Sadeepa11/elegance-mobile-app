@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/md_theme_light_background">
+    android:background="?android:attr/colorBackground">
 
     <!-- Header Section -->
     <LinearLayout
@@ -13,7 +12,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:padding="20dp"
-        android:background="@color/md_theme_light_surface"
+        android:background="?attr/colorSurface"
         android:elevation="4dp">
 
         <ImageView
@@ -22,6 +21,8 @@
             android:layout_height="28dp"
             android:src="@drawable/ic_back"
             android:layout_marginEnd="12dp"
+
+            app:tint="?attr/colorOnSurface"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
         <TextView
@@ -31,14 +32,14 @@
             android:text="Order Details"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="#333333" />
+            android:textColor="?attr/colorOnSurface" />
 
         <ImageView
             android:id="@+id/btnDownloadPdf"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_download"
-            app:tint="@color/md_theme_light_primary"
+            app:tint="?attr/colorPrimary"
             android:background="?attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
 
@@ -53,14 +54,16 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+
             <!-- Summary Card -->
             <com.google.android.material.card.MaterialCardView
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/md_theme_light_surface">
+                app:cardBackgroundColor="?attr/colorSurface">
                 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,20 +73,22 @@
 
                     <TextView
                         android:id="@+id/detailOrderIdText"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Order ID: #..."
                         android:textSize="14sp"
-                        android:textColor="#666666" />
+                        android:textColor="?attr/colorOnSurfaceVariant" />
 
                     <TextView
                         android:id="@+id/detailDateText"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Placed on: "
                         android:textSize="14sp"
-                        android:textColor="#666666" />
+                        android:textColor="?attr/colorOnSurfaceVariant" />
                         
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -98,11 +103,12 @@
                             android:text="Status: "
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:textColor="#333333" />
+                            android:textColor="?attr/colorOnSurface" />
 
                         <TextView
                             android:id="@+id/detailStatusText"
                             android:layout_width="wrap_content"
+
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:paddingHorizontal="12dp"
@@ -123,11 +129,12 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/md_theme_light_surface">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -137,7 +144,7 @@
                         android:text="Shipping Details"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="#333333" />
+                        android:textColor="?attr/colorOnSurface" />
 
                     <TextView
                         android:id="@+id/detailAddressText"
@@ -146,7 +153,7 @@
                         android:layout_marginTop="8dp"
                         android:text="Address..."
                         android:textSize="14sp"
-                        android:textColor="#666666" />
+                        android:textColor="?attr/colorOnSurfaceVariant" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -156,7 +163,7 @@
                 android:text="Purchased Items"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#333333"
+                android:textColor="?attr/colorOnSurface"
                 android:layout_marginBottom="8dp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -172,9 +179,10 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp"
+
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="32dp"
-                app:cardBackgroundColor="@color/md_theme_light_surface">
+                app:cardBackgroundColor="?attr/colorSurface">
                 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -189,7 +197,7 @@
                         android:layout_weight="1"
                         android:text="Total Amount"
                         android:textSize="16sp"
-                        android:textColor="#333333" />
+                        android:textColor="?attr/colorOnSurface" />
 
                     <TextView
                         android:id="@+id/detailTotalAmountText"
@@ -198,9 +206,10 @@
                         android:text="LKR 00.00"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="@color/md_theme_light_primary" />
+                        android:textColor="?attr/colorPrimary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

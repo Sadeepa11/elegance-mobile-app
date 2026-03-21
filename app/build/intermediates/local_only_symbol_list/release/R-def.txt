@@ -248,6 +248,7 @@ id loginLink
 id logoImage
 id logoutButton
 id logoutContainer
+id mainContent
 id mapFragment
 id mapView
 id menuIcon

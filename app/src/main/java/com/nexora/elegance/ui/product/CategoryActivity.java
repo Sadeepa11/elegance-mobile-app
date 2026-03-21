@@ -68,8 +68,8 @@ public class CategoryActivity extends AppCompatActivity {
     private void setupRecyclerView() {
         productAdapter = new ProductAdapter(displayedProductList,
                 product -> {
-                    Intent intent = new Intent(this, ProductDetailsActivity.class);
-                    intent.putExtra("product", product);
+                    Intent intent = new Intent(CategoryActivity.this, ProductDetailsActivity.class);
+                    intent.putExtra("productId", product.getId());
                     startActivity(intent);
                 },
                 product -> {

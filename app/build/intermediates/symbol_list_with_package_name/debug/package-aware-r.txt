@@ -1400,9 +1400,7 @@ color background_material_light
 color black
 color bottom_sheet_back
 color bottom_sheet_title_back
-color brand_gold
 color brand_pink
-color brand_pink_dark
 color brand_pink_light
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
@@ -1420,7 +1418,9 @@ color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
+color color_outline_themed
 color color_red
+color color_surface_themed
 color common_google_signin_btn_text_dark
 color common_google_signin_btn_text_dark_default
 color common_google_signin_btn_text_dark_disabled
@@ -1432,6 +1432,7 @@ color common_google_signin_btn_text_light_disabled
 color common_google_signin_btn_text_light_focused
 color common_google_signin_btn_text_light_pressed
 color common_google_signin_btn_tint
+color dark_background
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -3092,6 +3093,7 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable banner_heels
 drawable banner_sponsored
+drawable banner_sponsored_new
 drawable banner_summer_sale
 drawable bg_active_indicator
 drawable bg_bottom_nav
@@ -3160,11 +3162,13 @@ drawable ic_arrow_back_black_24
 drawable ic_arrow_down
 drawable ic_back
 drawable ic_bill
+drawable ic_car
 drawable ic_cart
 drawable ic_check_white
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_close
+drawable ic_directions
 drawable ic_download
 drawable ic_edit
 drawable ic_email
@@ -3192,6 +3196,7 @@ drawable ic_plus
 drawable ic_search
 drawable ic_search_black_24
 drawable ic_setting
+drawable ic_walking
 drawable ic_wishlist
 drawable left
 drawable lock
@@ -3363,7 +3368,6 @@ id activity_chooser_view_content
 id add
 id addProductButton
 id addToCartButton
-id addToCartButtonCard
 id addressDetails
 id addressEdit
 id addressTitle
@@ -3417,7 +3421,6 @@ id btnAddToCart
 id btnBack
 id btnBuyNow
 id btnConfirmAddToCart
-id btnCycling
 id btnDownloadPdf
 id btnDriving
 id btnEditAddress
@@ -3457,7 +3460,6 @@ id center_vertical
 id chain
 id chain2
 id chains
-id changePasswordText
 id checkbox
 id checked
 id checkoutOrderQtyText
@@ -3582,7 +3584,6 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fabDrawRoute
-id fabMyLocation
 id fade
 id fill
 id fill_horizontal
@@ -3672,6 +3673,7 @@ id logoImage
 id logoutButton
 id logoutContainer
 id m3_side_sheet
+id mainContent
 id main_back
 id mapFragment
 id mapView
@@ -3845,6 +3847,7 @@ id productReviews
 id productShortDesc
 id productSizesContainer
 id productStockText
+id profileFragmentImage
 id profileImage
 id progressBar
 id progress_circular
@@ -4034,7 +4037,6 @@ id west
 id wide
 id wishlistBadge
 id wishlistButton
-id wishlistIcon
 id wishlistRecyclerView
 id withText
 id with_icon
@@ -4854,6 +4856,8 @@ style RtlOverlay_Widget_AppCompat_Search_DropDown_Text
 style RtlOverlay_Widget_AppCompat_SearchView_MagIcon
 style RtlUnderlay_Widget_AppCompat_ActionButton
 style RtlUnderlay_Widget_AppCompat_ActionButton_Overflow
+style ShapeAppearance_Elegance_Medium
+style ShapeAppearance_Elegance_Small
 style ShapeAppearance_Elegance_TopRoundedCard
 style ShapeAppearance_M3_Comp_Badge_Large_Shape
 style ShapeAppearance_M3_Comp_Badge_Shape

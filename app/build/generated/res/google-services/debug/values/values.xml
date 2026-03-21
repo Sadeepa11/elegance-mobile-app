@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="gcm_defaultSenderId" translatable="false">227820709837</string>
-    <string name="google_api_key" translatable="false">AIzaSyD-ageda12OpJgtb-sjUPWQS6dIV3Lrk3U</string>
-    <string name="google_app_id" translatable="false">1:227820709837:android:02051779caba40f5ee4684</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD-ageda12OpJgtb-sjUPWQS6dIV3Lrk3U</string>
-    <string name="google_storage_bucket" translatable="false">elegance-9d812.firebasestorage.app</string>
-    <string name="project_id" translatable="false">elegance-9d812</string>
+    <string name="gcm_defaultSenderId" translatable="false">608776197551</string>
+    <string name="google_api_key" translatable="false">AIzaSyAA8-IaslcoxsCJkW7iTb-gfHHhbJWbIXw</string>
+    <string name="google_app_id" translatable="false">1:608776197551:android:b757ca004d5a9b05ad4b5a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAA8-IaslcoxsCJkW7iTb-gfHHhbJWbIXw</string>
+    <string name="google_storage_bucket" translatable="false">elegancenew-64a67.firebasestorage.app</string>
+    <string name="project_id" translatable="false">elegancenew-64a67</string>
 </resources>

@@ -181,7 +181,7 @@ public class SearchFragment extends Fragment {
         searchAdapter = new SearchAdapter(displayedProductList, product -> {
             if (getContext() != null) {
                 Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
-                intent.putExtra("product", product);
+                intent.putExtra("productId", product.getId());
                 startActivity(intent);
             }
         });
