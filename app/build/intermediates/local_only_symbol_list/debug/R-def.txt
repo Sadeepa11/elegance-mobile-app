@@ -231,6 +231,7 @@ id filterAll
 id filterButton
 id forgotPassword
 id fragmentContainer
+id googleProgress
 id googleSignIn
 id handleBar
 id headerDivider
@@ -245,6 +246,7 @@ id inputLayoutProvince
 id itemsCountText
 id loginButton
 id loginLink
+id loginProgress
 id logoImage
 id logoutButton
 id logoutContainer
@@ -394,6 +396,7 @@ mipmap ic_launcher_round
 string admin
 string app_name
 string cart
+string default_web_client_id
 string email
 string fashion_tagline
 string gcm_defaultSenderId

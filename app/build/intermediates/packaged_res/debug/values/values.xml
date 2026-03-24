@@ -74,6 +74,7 @@
     <string name="admin">Admin</string>
     <string name="app_name">Elegance</string>
     <string name="cart">Cart</string>
+    <string name="default_web_client_id" translatable="false">608776197551-24bfjlgrois7dn8n869qgkblqm4erbab.apps.googleusercontent.com</string>
     <string name="email">Email</string>
     <string name="fashion_tagline">Women\'s Fashion Boutique</string>
     <string name="gcm_defaultSenderId" translatable="false">608776197551</string>

@@ -160,6 +160,16 @@
                     android:textStyle="bold"
                     app:backgroundTint="@null"
                     app:cornerRadius="12dp" />
+                
+                <ProgressBar
+                    android:id="@+id/loginProgress"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-44dp"
+                    android:elevation="10dp"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -206,6 +216,16 @@
                     app:iconGravity="textStart"
                     app:iconSize="28dp"
                     app:iconTint="@null" />
+
+                <ProgressBar
+                    android:id="@+id/googleProgress"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-44dp"
+                    android:elevation="10dp"
+                    android:indeterminateTint="?attr/colorPrimary"
+                    android:visibility="gone" />
 
 
                 <TextView

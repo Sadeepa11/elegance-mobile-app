@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,9 @@ public final class ActivityLoginBinding implements ViewBinding {
   public final TextView forgotPassword;
 
   @NonNull
+  public final ProgressBar googleProgress;
+
+  @NonNull
   public final MaterialButton googleSignIn;
 
   @NonNull
@@ -40,6 +44,9 @@ public final class ActivityLoginBinding implements ViewBinding {
 
   @NonNull
   public final MaterialButton loginButton;
+
+  @NonNull
+  public final ProgressBar loginProgress;
 
   @NonNull
   public final TextInputEditText passwordEdit;
@@ -52,17 +59,20 @@ public final class ActivityLoginBinding implements ViewBinding {
 
   private ActivityLoginBinding(@NonNull NestedScrollView rootView,
       @NonNull TextInputEditText emailEdit, @NonNull TextInputLayout emailLayout,
-      @NonNull TextView forgotPassword, @NonNull MaterialButton googleSignIn,
-      @NonNull ImageView headerImage, @NonNull MaterialButton loginButton,
+      @NonNull TextView forgotPassword, @NonNull ProgressBar googleProgress,
+      @NonNull MaterialButton googleSignIn, @NonNull ImageView headerImage,
+      @NonNull MaterialButton loginButton, @NonNull ProgressBar loginProgress,
       @NonNull TextInputEditText passwordEdit, @NonNull TextInputLayout passwordLayout,
       @NonNull TextView registerLink) {
     this.rootView = rootView;
     this.emailEdit = emailEdit;
     this.emailLayout = emailLayout;
     this.forgotPassword = forgotPassword;
+    this.googleProgress = googleProgress;
     this.googleSignIn = googleSignIn;
     this.headerImage = headerImage;
     this.loginButton = loginButton;
+    this.loginProgress = loginProgress;
     this.passwordEdit = passwordEdit;
     this.passwordLayout = passwordLayout;
     this.registerLink = registerLink;
@@ -113,6 +123,12 @@ public final class ActivityLoginBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.googleProgress;
+      ProgressBar googleProgress = ViewBindings.findChildViewById(rootView, id);
+      if (googleProgress == null) {
+        break missingId;
+      }
+
       id = R.id.googleSignIn;
       MaterialButton googleSignIn = ViewBindings.findChildViewById(rootView, id);
       if (googleSignIn == null) {
@@ -128,6 +144,12 @@ public final class ActivityLoginBinding implements ViewBinding {
       id = R.id.loginButton;
       MaterialButton loginButton = ViewBindings.findChildViewById(rootView, id);
       if (loginButton == null) {
+        break missingId;
+      }
+
+      id = R.id.loginProgress;
+      ProgressBar loginProgress = ViewBindings.findChildViewById(rootView, id);
+      if (loginProgress == null) {
         break missingId;
       }
 
@@ -150,8 +172,8 @@ public final class ActivityLoginBinding implements ViewBinding {
       }
 
       return new ActivityLoginBinding((NestedScrollView) rootView, emailEdit, emailLayout,
-          forgotPassword, googleSignIn, headerImage, loginButton, passwordEdit, passwordLayout,
-          registerLink);
+          forgotPassword, googleProgress, googleSignIn, headerImage, loginButton, loginProgress,
+          passwordEdit, passwordLayout, registerLink);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

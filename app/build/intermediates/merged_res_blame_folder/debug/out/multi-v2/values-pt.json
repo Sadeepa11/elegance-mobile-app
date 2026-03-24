@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.nexora.elegance.app-mergeDebugResources-43:/values-pt/values-pt.xml",
+            "outputFile": "com.nexora.elegance.app-mergeDebugResources-44:/values-pt/values-pt.xml",
             "map": [
                 {
                     "source": "C:\\Users\\stf\\.gradle\\caches\\transforms-4\\2ba7d43197d00d87ef29c655303ca751\\transformed\\core-1.9.0\\res\\values-pt\\values-pt.xml",
