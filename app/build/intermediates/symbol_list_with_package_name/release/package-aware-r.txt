@@ -3574,6 +3574,7 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id errorText
 id etAddress
 id etCity
 id etCountry
@@ -3610,6 +3611,7 @@ id ghost_view
 id ghost_view_holder
 id glide_custom_view_target_tag
 id gone
+id googleProgress
 id googleSignIn
 id graph
 id graph_wrap
@@ -3669,6 +3671,7 @@ id listMode
 id list_item
 id loginButton
 id loginLink
+id loginProgress
 id logoImage
 id logoutButton
 id logoutContainer
@@ -4357,6 +4360,7 @@ string common_signin_button_text_long
 string copy_toast_msg
 string credit_debit_card
 string decline_description_label
+string default_web_client_id
 string email
 string error_a11y_label
 string error_icon_content_description

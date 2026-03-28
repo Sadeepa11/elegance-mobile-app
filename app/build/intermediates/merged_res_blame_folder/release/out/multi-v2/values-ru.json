@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.nexora.elegance.app-mergeReleaseResources-43:/values-ru/values-ru.xml",
+            "outputFile": "com.nexora.elegance.app-mergeReleaseResources-44:/values-ru/values-ru.xml",
             "map": [
                 {
                     "source": "C:\\Users\\stf\\.gradle\\caches\\transforms-4\\651dfa800543bd14553d40acb5b67259\\transformed\\browser-1.4.0\\res\\values-ru\\values-ru.xml",
@@ -91,7 +91,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\stf\\.gradle\\caches\\transforms-4\\9e955afcf49ee367ccf71f7915b93598\\transformed\\play-services-basement-18.1.0\\res\\values-ru\\values.xml",
+                    "source": "C:\\Users\\stf\\.gradle\\caches\\transforms-4\\a717dcd25d47af136ed41cc5c1f38684\\transformed\\play-services-basement-18.2.0\\res\\values-ru\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

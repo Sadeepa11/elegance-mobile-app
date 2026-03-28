@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.nexora.elegance.app-mergeReleaseResources-43:/values-tl/values-tl.xml",
+            "outputFile": "com.nexora.elegance.app-mergeReleaseResources-44:/values-tl/values-tl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\stf\\.gradle\\caches\\transforms-4\\ec5638f89ba0e95769c7dda0d7b2980d\\transformed\\play-services-base-18.1.0\\res\\values-tl\\values.xml",
@@ -21,6 +21,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\stf\\.gradle\\caches\\transforms-4\\a717dcd25d47af136ed41cc5c1f38684\\transformed\\play-services-basement-18.2.0\\res\\values-tl\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "140",
+                        "endOffsets": "335"
+                    },
+                    "to": {
+                        "startLines": "49",
+                        "startColumns": "4",
+                        "startOffsets": "4892",
+                        "endColumns": "144",
+                        "endOffsets": "5032"
+                    }
+                },
+                {
                     "source": "C:\\Users\\stf\\.gradle\\caches\\transforms-4\\651dfa800543bd14553d40acb5b67259\\transformed\\browser-1.4.0\\res\\values-tl\\values-tl.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -35,23 +52,6 @@
                         "startOffsets": "6195,6462,6567,6678",
                         "endColumns": "102,104,110,104",
                         "endOffsets": "6293,6562,6673,6778"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\stf\\.gradle\\caches\\transforms-4\\9e955afcf49ee367ccf71f7915b93598\\transformed\\play-services-basement-18.1.0\\res\\values-tl\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "140",
-                        "endOffsets": "335"
-                    },
-                    "to": {
-                        "startLines": "49",
-                        "startColumns": "4",
-                        "startOffsets": "4892",
-                        "endColumns": "144",
-                        "endOffsets": "5032"
                     }
                 },
                 {

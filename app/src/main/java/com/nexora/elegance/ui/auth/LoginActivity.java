@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (!email.isEmpty() && !password.isEmpty()) {
                 setLoading(true, false);
+                binding.errorText.setVisibility(android.view.View.GONE);
                 // Authenticate with Firebase Auth
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
@@ -100,23 +101,20 @@ public class LoginActivity extends AppCompatActivity {
                                                 navigateToMain();
                                             } else {
                                                 setLoading(false, false);
-                                                Toast.makeText(this, "User profile not found", Toast.LENGTH_SHORT)
-                                                        .show();
+                                                showError("User profile not found");
                                             }
                                         })
                                         .addOnFailureListener(e -> {
                                             setLoading(false, false);
-                                            Toast.makeText(this, "Firestore Error: " + e.getMessage(),
-                                                    Toast.LENGTH_SHORT).show();
+                                            showError("Firestore Error: " + e.getMessage());
                                         });
                             } else {
                                 setLoading(false, false);
-                                Toast.makeText(this, "Login Failed: " + task.getException().getMessage(),
-                                        Toast.LENGTH_SHORT).show();
+                                showError("Login Failed: " + task.getException().getMessage());
                             }
                         });
             } else {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                showError("Please fill all fields");
             }
         });
         
@@ -124,16 +122,17 @@ public class LoginActivity extends AppCompatActivity {
         binding.forgotPassword.setOnClickListener(v -> {
             String email = binding.emailEdit.getText().toString();
             if (email.isEmpty()) {
-                Toast.makeText(this, "Please enter your email to reset password", Toast.LENGTH_SHORT).show();
+                showError("Please enter your email to reset password");
                 return;
             }
 
+            binding.errorText.setVisibility(android.view.View.GONE);
             mAuth.sendPasswordResetEmail(email)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Reset link sent to your email", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            showError("Error: " + task.getException().getMessage());
                         }
                     });
         });
@@ -146,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
         // Setup Google Sign-In Button Click Listener
         binding.googleSignIn.setOnClickListener(v -> {
             setLoading(true, true);
+            binding.errorText.setVisibility(android.view.View.GONE);
             mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 googleSignInLauncher.launch(signInIntent);
@@ -167,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (ApiException e) {
             setLoading(false, true);
             Log.w(TAG, "Google sign in failed", e);
-            Toast.makeText(this, "Google Sign-In Failed: " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
+            showError("Google Sign-In Failed: " + e.getStatusCode());
         }
     }
 
@@ -187,22 +187,11 @@ public class LoginActivity extends AppCompatActivity {
                         // Check if user exists in Firestore
                         mFirestore.collection("users").document(uid).get()
                                 .addOnSuccessListener(documentSnapshot -> {
-                                    if (BuildConfig.DEBUG) {
-                                        new androidx.appcompat.app.AlertDialog.Builder(this)
-                                                .setTitle("Debug: Login Success")
-                                                .setMessage("Authenticated as: " + email)
-                                                .setPositiveButton("OK", (dialog, which) -> {
-                                                    handleFirestoreRedirect(documentSnapshot, uid, email, name, photoUrl);
-                                                })
-                                                .setCancelable(false)
-                                                .show();
-                                    } else {
-                                        handleFirestoreRedirect(documentSnapshot, uid, email, name, photoUrl);
-                                    }
+                                    handleFirestoreRedirect(documentSnapshot, uid, email, name, photoUrl);
                                 });
                     } else {
                         setLoading(false, true);
-                        Toast.makeText(this, "Firebase Authentication Failed", Toast.LENGTH_SHORT).show();
+                        showError("Firebase Authentication Failed");
                     }
                 });
     }
@@ -230,8 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                     })
                     .addOnFailureListener(e -> {
                         setLoading(false, true);
-                        Toast.makeText(this, "Firestore Error: " + e.getMessage(),
-                                Toast.LENGTH_SHORT).show();
+                        showError("Firestore Error: " + e.getMessage());
                     });
         }
     }
@@ -254,6 +242,14 @@ public class LoginActivity extends AppCompatActivity {
         binding.emailEdit.setEnabled(!isLoading);
         binding.passwordEdit.setEnabled(!isLoading);
         binding.registerLink.setEnabled(!isLoading);
+    }
+
+    /**
+     * Shows a customized error message in the UI.
+     */
+    private void showError(String message) {
+        binding.errorText.setText(message);
+        binding.errorText.setVisibility(android.view.View.VISIBLE);
     }
 
     /**
