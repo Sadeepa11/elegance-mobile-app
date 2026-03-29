@@ -176,6 +176,10 @@
         "source": "com.nexora.elegance.app-main-47:/layout/fragment_order_history.xml"
     },
     {
+        "merged": "com.nexora.elegance.app-merged_res-46:/drawable_ic_phone.xml.flat",
+        "source": "com.nexora.elegance.app-main-47:/drawable/ic_phone.xml"
+    },
+    {
         "merged": "com.nexora.elegance.app-merged_res-46:/menu_bottom_nav_menu.xml.flat",
         "source": "com.nexora.elegance.app-main-47:/menu/bottom_nav_menu.xml"
     },

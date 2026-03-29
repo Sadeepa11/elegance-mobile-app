@@ -125,6 +125,7 @@ drawable ic_menu
 drawable ic_mic
 drawable ic_minus
 drawable ic_person
+drawable ic_phone
 drawable ic_plus
 drawable ic_search
 drawable ic_setting
@@ -193,6 +194,9 @@ id colorsSection
 id confirmPasswordEdit
 id confirmPasswordLayout
 id connectingProgressBar
+id contactAddress
+id contactMobile1
+id contactMobile2
 id containerCity
 id containerCountry
 id containerDistrict
@@ -397,6 +401,7 @@ mipmap ic_launcher_round
 string admin
 string app_name
 string cart
+string contact_us_title
 string default_web_client_id
 string email
 string fashion_tagline
@@ -405,8 +410,12 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string head_office_address
+string head_office_label
 string home
 string login
+string mobile_1
+string mobile_2
 string password
 string profile
 string project_id

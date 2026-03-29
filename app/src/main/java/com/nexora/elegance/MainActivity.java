@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
         // Check for Android 13+ notification permissions and get FCM token for push notifications
         checkNotificationPermission();
         getFcmToken();
+        
+        // Immediate synchronization notification as requested by USER
+        com.nexora.elegance.utils.NotificationHelper.showGeneralNotification(this, "App Sync", "Initial synchronization started...");
     }
 
     private void applySettingsTheme() {
@@ -197,6 +200,38 @@ public class MainActivity extends AppCompatActivity {
             logoutBtn.setOnClickListener(v -> {
                 binding.drawerLayout.closeDrawer(GravityCompat.START);
                 showLogoutDialog();
+            });
+        }
+
+        // Contact Us section logic
+        View addressView = findViewById(R.id.contactAddress);
+        if (addressView != null) {
+            addressView.setOnClickListener(v -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                String address = getString(R.string.head_office_address);
+                String uri = "geo:0,0?q=" + android.net.Uri.encode(address);
+                Intent intent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(uri));
+                startActivity(intent);
+            });
+        }
+
+        View mobile1View = findViewById(R.id.contactMobile1);
+        if (mobile1View != null) {
+            mobile1View.setOnClickListener(v -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(android.net.Uri.parse("tel:" + getString(R.string.mobile_1)));
+                startActivity(intent);
+            });
+        }
+
+        View mobile2View = findViewById(R.id.contactMobile2);
+        if (mobile2View != null) {
+            mobile2View.setOnClickListener(v -> {
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(android.net.Uri.parse("tel:" + getString(R.string.mobile_2)));
+                startActivity(intent);
             });
         }
     }
@@ -442,10 +477,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void scheduleBackgroundSync() {
-        PeriodicWorkRequest syncRequest = new PeriodicWorkRequest.Builder(
-                BackgroundSyncWorker.class, 15, TimeUnit.MINUTES).build();
-        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-                "EleganceSync", ExistingPeriodicWorkPolicy.KEEP, syncRequest);
+        androidx.work.OneTimeWorkRequest syncRequest = new androidx.work.OneTimeWorkRequest.Builder(
+                BackgroundSyncWorker.class)
+                .setInitialDelay(10, TimeUnit.MINUTES)
+                .build();
+        WorkManager.getInstance(this).enqueueUniqueWork(
+                "CategorySyncWork", androidx.work.ExistingWorkPolicy.KEEP, syncRequest);
     }
 
     @Override

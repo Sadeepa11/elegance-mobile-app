@@ -3192,6 +3192,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_person
+drawable ic_phone
 drawable ic_plus
 drawable ic_search
 drawable ic_search_black_24
@@ -3490,6 +3491,9 @@ id confirmPasswordLayout
 id confirm_button
 id connectingProgressBar
 id constraint
+id contactAddress
+id contactMobile1
+id contactMobile2
 id container
 id containerCity
 id containerCountry
@@ -4357,6 +4361,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string contact_us_title
 string copy_toast_msg
 string credit_debit_card
 string decline_description_label
@@ -4377,6 +4382,8 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string head_office_address
+string head_office_label
 string hide_bottom_view_on_scroll_behavior
 string hold_card_success_msg
 string home
@@ -4428,6 +4435,8 @@ string material_timepicker_minute
 string material_timepicker_pm
 string material_timepicker_select_time
 string material_timepicker_text_input_mode_description
+string mobile_1
+string mobile_2
 string mobile_wallet
 string msg_no_internet
 string mtrl_badge_numberless_content_description

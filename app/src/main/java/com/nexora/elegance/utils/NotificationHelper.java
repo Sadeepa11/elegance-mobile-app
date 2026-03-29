@@ -17,20 +17,31 @@ import com.nexora.elegance.R;
 public class NotificationHelper {
     private static final String CHANNEL_ID = "EleganceChannel";
     private static final String CHANNEL_NAME = "Order Updates";
+    
+    private static final String CHANNEL_ID_GENERAL = "EleganceGeneral";
+    private static final String CHANNEL_NAME_GENERAL = "General Updates";
 
     public static void showNotification(Context context, String title, String message) {
-        showOrderNotification(context, title, message, null, null);
+        showGeneralNotification(context, title, message);
+    }
+
+    public static void showGeneralNotification(Context context, String title, String message) {
+        showBaseNotification(context, title, message, CHANNEL_ID_GENERAL, CHANNEL_NAME_GENERAL, null, null);
     }
 
     public static void showOrderNotification(Context context, String title, String message, String orderId, String itemsJson) {
+        showBaseNotification(context, title, message, CHANNEL_ID, CHANNEL_NAME, orderId, itemsJson);
+    }
+
+    private static void showBaseNotification(Context context, String title, String message, String channelId, String channelName, String orderId, String itemsJson) {
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (notificationManager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME,
+                NotificationChannel channel = new NotificationChannel(channelId, channelName,
                         NotificationManager.IMPORTANCE_HIGH);
-                channel.setDescription("Notifications for order status changes");
+                channel.setDescription("Notifications for Elegance updates");
                 channel.enableLights(true);
                 channel.enableVibration(true);
                 channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC);
@@ -50,7 +61,7 @@ public class NotificationHelper {
             }
             PendingIntent markAsReadPendingIntent = PendingIntent.getBroadcast(context, notificationId + 2, markAsReadIntent, broadcastFlags);
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
                     .setSmallIcon(R.drawable.ic_logo)
                     .setContentTitle(title)
                     .setContentText(message)

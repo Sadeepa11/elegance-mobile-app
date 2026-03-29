@@ -30,6 +30,15 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView cartBadge;
 
   @NonNull
+  public final LinearLayout contactAddress;
+
+  @NonNull
+  public final LinearLayout contactMobile1;
+
+  @NonNull
+  public final LinearLayout contactMobile2;
+
+  @NonNull
   public final DrawerLayout drawerLayout;
 
   @NonNull
@@ -61,14 +70,19 @@ public final class ActivityMainBinding implements ViewBinding {
 
   private ActivityMainBinding(@NonNull DrawerLayout rootView,
       @NonNull LinearLayout bottomNavigationContainer, @NonNull TextView cartBadge,
-      @NonNull DrawerLayout drawerLayout, @NonNull FrameLayout fragmentContainer,
-      @NonNull LinearLayout logoutContainer, @NonNull RelativeLayout navCart,
-      @NonNull LinearLayout navHome, @NonNull LinearLayout navOrderHistory,
-      @NonNull LinearLayout navSearch, @NonNull LinearLayout navWishlist,
-      @NonNull NavigationView navigationView, @NonNull TextView wishlistBadge) {
+      @NonNull LinearLayout contactAddress, @NonNull LinearLayout contactMobile1,
+      @NonNull LinearLayout contactMobile2, @NonNull DrawerLayout drawerLayout,
+      @NonNull FrameLayout fragmentContainer, @NonNull LinearLayout logoutContainer,
+      @NonNull RelativeLayout navCart, @NonNull LinearLayout navHome,
+      @NonNull LinearLayout navOrderHistory, @NonNull LinearLayout navSearch,
+      @NonNull LinearLayout navWishlist, @NonNull NavigationView navigationView,
+      @NonNull TextView wishlistBadge) {
     this.rootView = rootView;
     this.bottomNavigationContainer = bottomNavigationContainer;
     this.cartBadge = cartBadge;
+    this.contactAddress = contactAddress;
+    this.contactMobile1 = contactMobile1;
+    this.contactMobile2 = contactMobile2;
     this.drawerLayout = drawerLayout;
     this.fragmentContainer = fragmentContainer;
     this.logoutContainer = logoutContainer;
@@ -117,6 +131,24 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.cartBadge;
       TextView cartBadge = ViewBindings.findChildViewById(rootView, id);
       if (cartBadge == null) {
+        break missingId;
+      }
+
+      id = R.id.contactAddress;
+      LinearLayout contactAddress = ViewBindings.findChildViewById(rootView, id);
+      if (contactAddress == null) {
+        break missingId;
+      }
+
+      id = R.id.contactMobile1;
+      LinearLayout contactMobile1 = ViewBindings.findChildViewById(rootView, id);
+      if (contactMobile1 == null) {
+        break missingId;
+      }
+
+      id = R.id.contactMobile2;
+      LinearLayout contactMobile2 = ViewBindings.findChildViewById(rootView, id);
+      if (contactMobile2 == null) {
         break missingId;
       }
 
@@ -177,8 +209,9 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((DrawerLayout) rootView, bottomNavigationContainer, cartBadge,
-          drawerLayout, fragmentContainer, logoutContainer, navCart, navHome, navOrderHistory,
-          navSearch, navWishlist, navigationView, wishlistBadge);
+          contactAddress, contactMobile1, contactMobile2, drawerLayout, fragmentContainer,
+          logoutContainer, navCart, navHome, navOrderHistory, navSearch, navWishlist,
+          navigationView, wishlistBadge);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

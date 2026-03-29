@@ -14,4 +14,11 @@
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
     <string name="admin">Admin</string>
+    
+    <!-- Contact Us -->
+    <string name="contact_us_title">Contact Us</string>
+    <string name="head_office_label">Head Office</string>
+    <string name="head_office_address">123, Galle Road, Colombo 03, Sri Lanka</string>
+    <string name="mobile_1">+94 77 123 4567</string>
+    <string name="mobile_2">+94 71 890 1234</string>
 </resources>

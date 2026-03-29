@@ -74,6 +74,7 @@
     <string name="admin">Admin</string>
     <string name="app_name">Elegance</string>
     <string name="cart">Cart</string>
+    <string name="contact_us_title">Contact Us</string>
     <string name="default_web_client_id" translatable="false">608776197551-24bfjlgrois7dn8n869qgkblqm4erbab.apps.googleusercontent.com</string>
     <string name="email">Email</string>
     <string name="fashion_tagline">Women\'s Fashion Boutique</string>
@@ -82,8 +83,12 @@
     <string name="google_app_id" translatable="false">1:608776197551:android:b757ca004d5a9b05ad4b5a</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAA8-IaslcoxsCJkW7iTb-gfHHhbJWbIXw</string>
     <string name="google_storage_bucket" translatable="false">elegancenew-64a67.firebasestorage.app</string>
+    <string name="head_office_address">123, Galle Road, Colombo 03, Sri Lanka</string>
+    <string name="head_office_label">Head Office</string>
     <string name="home">Home</string>
     <string name="login">Login</string>
+    <string name="mobile_1">+94 77 123 4567</string>
+    <string name="mobile_2">+94 71 890 1234</string>
     <string name="password">Password</string>
     <string name="profile">Profile</string>
     <string name="project_id" translatable="false">elegancenew-64a67</string>
