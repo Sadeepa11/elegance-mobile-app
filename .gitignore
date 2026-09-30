@@ -42,3 +42,5 @@ keystore.properties
 !check.log
 !build_error.log
 !last_build.txt
+config.bat
+node_modules
